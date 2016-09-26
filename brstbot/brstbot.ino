@@ -3,10 +3,21 @@
 AF_DCMotor motorLeft(1, MOTOR12_64KHZ);  // Initialize the left motor.
 AF_DCMotor motorRight(2, MOTOR12_64KHZ);  // Initialize the left motor.
 
-const float MOTOR_BIAS_LR = 0.8;
+const float MOTOR_BIAS_LR = 0.757;
+
+/*
+ * Calibration Data
+Speed  Bias
+200, 0.757
+
+ 
+ * 
+ */
+
 
 
 void motorsSetSpeed(int speed) {
+  log("Motor speed set to: ", speed);
   motorLeft.setSpeed(speed * MOTOR_BIAS_LR);
   motorRight.setSpeed(speed);
 }
@@ -17,6 +28,14 @@ String concat(String a, int b) {
 
 String concat(String a, float b) {
   return a + b;
+}
+
+void log(String a, int b) {
+  Serial.println(concat(a, b));
+}
+
+void log(String a, float b) {
+  Serial.println(concat(a, b));
 }
 
 // Left
@@ -35,7 +54,7 @@ void setup() {
   Serial.begin(9600);
 
   //String prefix = ;
-  Serial.println(concat("Motor bias set to: ", MOTOR_BIAS_LR));
+  log("Motor bias set to: ", MOTOR_BIAS_LR);
   
   Serial.println("Hello World!");
 
@@ -61,6 +80,7 @@ void loop() {
   Serial.println(x);
 
 }
+
 
 
 /*
