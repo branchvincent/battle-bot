@@ -3,13 +3,20 @@
 AF_DCMotor motorLeft(1, MOTOR12_64KHZ);  // Initialize the left motor.
 AF_DCMotor motorRight(2, MOTOR12_64KHZ);  // Initialize the left motor.
 
-const float MOTOR_BIAS_LR = 0.5;
+const float MOTOR_BIAS_LR = 0.8;
 
 
 void motorsSetSpeed(int speed) {
-  String hello = "Setting motor speed to: ";
-  String world = hello + speed;
-  Serial.println(world);
+  motorLeft.setSpeed(speed * MOTOR_BIAS_LR);
+  motorRight.setSpeed(speed);
+}
+
+String concat(String a, int b) {
+  return a + b;
+}
+
+String concat(String a, float b) {
+  return a + b;
 }
 
 // Left
@@ -26,30 +33,42 @@ void setup() {
   // put your setup code here, to run once:
 
   Serial.begin(9600);
+
+  //String prefix = ;
+  Serial.println(concat("Motor bias set to: ", MOTOR_BIAS_LR));
+  
   Serial.println("Hello World!");
 
   Serial.println("Motor test!");
 
-  motorsSetSpeed(100);
+  motorsSetSpeed(200);
 
-  //motorLeft.setSpeed(200);
-  //motorRight.setSpeed(200);
+
   
-  //motorLeft.run(FORWARD);
-  //motorRight.run(FORWARD);
+  motorLeft.run(FORWARD);
+  motorRight.run(FORWARD);
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
-  delay(3000);
-  //motorLeft.run(RELEASE);
-  //motorRight.run(RELEASE);
+  delay(2500);
+  motorLeft.run(RELEASE);
+  motorRight.run(RELEASE);
   
   x++;
   Serial.println(x);
 
 }
+
+
+/*
+ * String concatenation example: 
+ *   String hello = "Setting motor speed to: ";
+ *   String world = hello + speed;
+ *   Serial.println(world);
+ * 
+ */
 
 
