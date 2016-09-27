@@ -1,8 +1,12 @@
+# BRSTbot #
+
 Hello World!
 hi2
 BRST-bot Setup
 Welcome to the best robot in the game.
 
+
+## Command Interface ##
 
 BRSTbot comes with a command interface, allowing you to enter commands through the Serial Moniter
 
