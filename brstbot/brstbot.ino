@@ -12,9 +12,7 @@
  */
 
 
-
 BRSTbot b;
-
 
 void run_command(String key, String value) {
   if (key.equals("speed")) {
