@@ -10,6 +10,10 @@ String concat(String a, float b) {
   return a + b;
 }
 
+String concat(String a, String b) {
+  return a + b;
+}
+
 void log(String a) {
   Serial.println(a);
 }
@@ -27,5 +31,9 @@ void log(String a, int b) {
 }
 
 void log(String a, float b) {
+  Serial.println(concat(a, b));
+}
+
+void log(String a, String b) {
   Serial.println(concat(a, b));
 }

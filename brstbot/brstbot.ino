@@ -17,9 +17,22 @@ class BRSTbot {
 
 
 void parse_command(String s) {
-  
+  int colon_index = s.indexOf(':');
+  if (colon_index >= 0) {
+    String key = s.substring(0, colon_index);
+    String value = s.substring(colon_index+1);
+    run_command(key, value);
+  } else {
+    log("Command not recognized");
+  }
 }
 
+void run_command(String key, String value) {
+  //log(concat("Running command (", concat(key, concat(",", concat(value,")")))));
+  if (key.equals("speed")) {
+    log("Changing speed to: ", value);
+  }
+}
 
 void setup() {
   // put your setup code here, to run once:
@@ -34,7 +47,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   if (Serial.available() > 0) {
-    log(Serial.readString());
+    parse_command(Serial.readString());
   }
 }
 
