@@ -16,10 +16,21 @@ BRSTbot b;
 
 void run_command(String key, String value) {
   if (key.equals("speed")) {   // e.g., user entered  "speed:37"  in serial monitor
-    log("Changing speed to: ", value);
+    
     b.setSpeed(value.toInt());
+    log("Changing speed to: ", value);
+    
+  } else if (key.equals("dir")) {
+    
+    if (value.equals("forward")) { b.startMotors(); } 
+    else if (value.equals("back")) { b.reverseMotors(); }
+    else if (value.equals("stop")) { b.stopMotors(); }
+    log("Setting motor direction to: ", value);
+    
   } else {
+    
     log("Command '", concat(key, "' not recognized."));
+    
   }
 }
 
