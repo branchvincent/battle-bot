@@ -9,24 +9,26 @@
  * 
  */
 
-//class BRSTbot {
-//  public:
-//    int speed;
-//}
+class BRSTbot {
+  public:
+    int speed;
+};
 
 
 
 
 void setup() {
   // put your setup code here, to run once:
-
-
+  init_utilities();
+  BRSTbot b;
+  log("Hello World!");
+  log(b.speed);
+  b.speed = 7;
+  log(b.speed);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
-
 
 }
 
