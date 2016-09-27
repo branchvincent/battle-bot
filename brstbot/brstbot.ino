@@ -25,16 +25,20 @@ void run_command(String key, String value) {
 
 void setup() {
   init_utilities();
+
+  b.setMotorBias(0.757);
   
   log("Hello World!");
   log(b.getSpeed());
-  b.setSpeed(7);
+  b.setSpeed(200);
   log(b.getSpeed());
+  b.startMotors();
 }
 
 void loop() {
   parse_serial_command();
-
+  //delay(2000);
+  //b.stopMotors();
 }
 
 
