@@ -20,7 +20,6 @@ class BRSTbot {
 
 
 void run_command(String key, String value) {
-  //log(concat("Running command (", concat(key, concat(",", concat(value,")")))));
   if (key.equals("speed")) {
     log("Changing speed to: ", value);
   } else {
@@ -29,8 +28,8 @@ void run_command(String key, String value) {
 }
 
 void setup() {
-  // put your setup code here, to run once:
   init_utilities();
+  
   BRSTbot b;
   log("Hello World!");
   log(b.speed);
