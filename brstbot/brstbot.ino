@@ -15,7 +15,7 @@
 BRSTbot b;
 
 void run_command(String key, String value) {
-  if (key.equals("speed")) {
+  if (key.equals("speed")) {   // e.g., user entered  "speed:37"  in serial monitor
     log("Changing speed to: ", value);
     b.setSpeed(value.toInt());
   } else {
