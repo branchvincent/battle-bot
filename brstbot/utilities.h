@@ -2,6 +2,8 @@ void init_utilities() {
   Serial.begin(9600);
 }
 
+/*  Logging Commands  */
+
 String concat(String a, int b) {
   return a + b;
 }
@@ -37,3 +39,24 @@ void log(String a, float b) {
 void log(String a, String b) {
   Serial.println(concat(a, b));
 }
+
+
+/*  Command Parser  */
+
+void run_command(String, String);
+
+void parse_command(String s) {
+  int colon_index = s.indexOf(':');
+  if (colon_index >= 0) {
+    String key = s.substring(0, colon_index);
+    String value = s.substring(colon_index+1);
+    run_command(key, value);
+  } else {
+    log("Command not recognized");
+  }
+}
+
+
+
+
+

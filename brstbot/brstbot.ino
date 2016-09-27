@@ -16,21 +16,13 @@ class BRSTbot {
 
 
 
-void parse_command(String s) {
-  int colon_index = s.indexOf(':');
-  if (colon_index >= 0) {
-    String key = s.substring(0, colon_index);
-    String value = s.substring(colon_index+1);
-    run_command(key, value);
-  } else {
-    log("Command not recognized");
-  }
-}
 
 void run_command(String key, String value) {
   //log(concat("Running command (", concat(key, concat(",", concat(value,")")))));
   if (key.equals("speed")) {
     log("Changing speed to: ", value);
+  } else {
+    log("Command '", concat(key, "' not recognized."));
   }
 }
 
