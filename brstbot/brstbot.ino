@@ -39,10 +39,8 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  if (Serial.available() > 0) {
-    parse_command(Serial.readString());
-  }
+  parse_serial_command();
+
 }
 
 

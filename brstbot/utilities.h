@@ -56,7 +56,12 @@ void parse_command(String s) {
   }
 }
 
+void parse_serial_command() {
+  if (Serial.available() > 0) {
+    parse_command(Serial.readString());
+  }
+}
 
 
 
-
+ 
