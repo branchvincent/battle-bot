@@ -1,6 +1,6 @@
 #include <AFMotor.h>
 #include "utilities.h"
-
+#include "BRSTbot.h"
  
 /* 
  * Requires installation of the following libraries:
@@ -11,25 +11,7 @@
  * 
  */
 
-class BRSTbot {
-  private:
-    int speed;
 
-  public:
-
-  /* Getters and Setters */
-  
-  void setSpeed(int s) {
-    speed = s;
-  }
-
-  int getSpeed() {
-    return speed;
-  }
-
-
-  
-};
 
 BRSTbot b;
 
