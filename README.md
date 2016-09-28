@@ -13,7 +13,7 @@ BRSTbot comes with a command interface, allowing you to enter commands through t
 
 | Command | Description |
 | ------- | ----------- |
-| speed:37 | Sets the speed to 37. Accepts *any number from 0 to 255*. |
-| dir:forward | Sets the motor direction. Accepts (*forward, back, stop*) |
+| speed:37 | Sets the speed to 37. Accepts **any number from 0 to 255**. |
+| dir:forward | Sets the motor direction. Accepts (**forward, back, stop**) |
 
 
