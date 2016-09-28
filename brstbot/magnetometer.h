@@ -64,3 +64,26 @@ float read_mag_heading() {
   
 }
 
+int mag_sensor_n = 100;
+int mag_sensor_count = 0;
+float mag_sensor_sum = 0;
+int mag_sensor_heading_average;
+
+void update_mag() {
+  mag_sensor_sum += read_mag_heading();
+  mag_sensor_count++;
+
+  if (mag_sensor_count > mag_sensor_n) {
+    mag_sensor_heading_average = (int)(mag_sensor_sum / mag_sensor_count);
+    log(mag_sensor_heading_average);
+    mag_sensor_sum = 0;
+    mag_sensor_count = 0;
+    // Report new average.
+  }
+}
+
+int get_mag_heading() {
+  return mag_sensor_heading_average;
+}
+
+

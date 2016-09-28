@@ -53,31 +53,12 @@ void setup() {
 
 }
 
-int n = 100;
-int count = 0;
-float sum = 0;
-
 void loop() {
   parse_serial_command();
-  //delay(2000);
-  //b.stopMotors();
-
-  sum += read_mag_heading();
-  count++;
-
-  if (count > n) {
-    log((int)(sum / count));
-    sum = 0;
-    count = 0;
-    // Report new average.
-  }
-
-  //log(read_mag_heading());
+  update_mag();
 
 
-
-  
-  
+  log("Average: ", get_mag_heading());
   
 }
 

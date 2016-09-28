@@ -16,27 +16,45 @@ String concat(String a, String b) {
   return a + b;
 }
 
+
+int log_counter = 0;
+
+void print_log_counter() {
+  log_counter++;
+  Serial.print(log_counter);
+  Serial.print(": ");
+  if (log_counter >= 999) {
+    log_counter = 0;
+  }
+}
+
 void log(String a) {
+  print_log_counter();
   Serial.println(a);
 }
 
 void log(int a) {
+  print_log_counter();
   Serial.println(a);
 }
 
 void log(float a) {
+  print_log_counter();
   Serial.println(a);
 }
 
 void log(String a, int b) {
+  print_log_counter();
   Serial.println(concat(a, b));
 }
 
 void log(String a, float b) {
+  print_log_counter();
   Serial.println(concat(a, b));
 }
 
 void log(String a, String b) {
+  print_log_counter();
   Serial.println(concat(a, b));
 }
 
