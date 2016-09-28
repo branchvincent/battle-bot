@@ -53,9 +53,18 @@ void setup() {
 
 }
 
+unsigned long time;
+unsigned long last_time;
+
 void loop() {
+
+  time = micros();
+  Serial.println(time - last_time);
+  last_time = time;
+  
   parse_serial_command();
   update_mag();
+
 
 
   //log("Average: ", get_mag_heading());
