@@ -57,6 +57,17 @@ void loop() {
   parse_serial_command();
   //delay(2000);
   //b.stopMotors();
+
+  sensors_event_t event;
+  mag.getEvent(&event);
+
+  log("X: ", event.magnetic.x); 
+  log("Y: ", event.magnetic.y);
+  log("Z: ", event.magnetic.z);
+  log("");
+
+  
+  
 }
 
 
