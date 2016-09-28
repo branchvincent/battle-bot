@@ -2,6 +2,7 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
 #include "utilities.h"
+#include "magnetometer.h"
 #include "BRSTbot.h"
  
 /* 
@@ -15,8 +16,6 @@
 
 
 BRSTbot b;
-
-Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
 
 void run_command(String key, String value) {
   if (key.equals("speed")) {   // e.g., user entered  "speed:37"  in serial monitor
@@ -40,12 +39,16 @@ void run_command(String key, String value) {
 
 void setup() {
   init_utilities();
+  init_magsensor();
 
   b.setMotorBias(0.757);
   b.setSpeed(200);
   //b.startMotors();
   
   log("Hello World!");
+
+  
+  
 
 
 }
