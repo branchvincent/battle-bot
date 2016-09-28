@@ -58,7 +58,7 @@ void loop() {
   update_mag();
 
 
-  log("Average: ", get_mag_heading());
+  //log("Average: ", get_mag_heading());
   
 }
 
