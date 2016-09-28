@@ -62,12 +62,13 @@ unsigned long last_time;
 void loop() {
 
   time = micros();
-  //Serial.println(time - last_time);
+  print_log_counter();
+  Serial.println(time - last_time);
   last_time = time;
   
-  parse_serial_command();
+  //parse_serial_command();
   //update_mag();
-  update_mag_running();
+  //update_mag_running();
 
 
 

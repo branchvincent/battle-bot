@@ -17,14 +17,14 @@ String concat(String a, String b) {
 }
 
 
-int log_counter = 0;
+int log_counter = 100;
 
 void print_log_counter() {
   log_counter++;
   Serial.print(log_counter);
   Serial.print(": ");
   if (log_counter >= 999) {
-    log_counter = 0;
+    log_counter = 100;
   }
 }
 
@@ -34,28 +34,27 @@ void log(String a) {
 }
 
 void log(int a) {
-  print_log_counter();
-  Serial.println(a);
+  log(String(a));
+}
+
+void log(long unsigned int a) {
+  log(String(a));
 }
 
 void log(float a) {
-  print_log_counter();
-  Serial.println(a);
+  log(String(a));
 }
 
 void log(String a, int b) {
-  print_log_counter();
-  Serial.println(concat(a, b));
+  log(concat(a, b));
 }
 
 void log(String a, float b) {
-  print_log_counter();
-  Serial.println(concat(a, b));
+  log(concat(a, b));
 }
 
 void log(String a, String b) {
-  print_log_counter();
-  Serial.println(concat(a, b));
+  log(concat(a, b));
 }
 
 
