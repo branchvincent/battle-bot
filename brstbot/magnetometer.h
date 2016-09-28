@@ -63,28 +63,30 @@ float read_mag_heading() {
   return headingDegrees;
   
 }
-
-int mag_sensor_n = 100;
-int mag_sensor_count = 0;
-float mag_sensor_sum = 0;
-int mag_sensor_heading_average;
-
-void update_mag() {
-  mag_sensor_sum += read_mag_heading();
-  mag_sensor_count++;
-
-  if (mag_sensor_count > mag_sensor_n) {
-    mag_sensor_heading_average = (int)(mag_sensor_sum / mag_sensor_count);
-    log(mag_sensor_heading_average);
-    mag_sensor_sum = 0;
-    mag_sensor_count = 0;
-    // Report new average.
-  }
-}
+//
+//int mag_sensor_n = 100;
+//int mag_sensor_count = 0;
+//float mag_sensor_sum = 0;
+//int mag_sensor_heading_average;
+//
+//void update_mag() {
+//  mag_sensor_sum += read_mag_heading();
+//  mag_sensor_count++;
+//
+//  if (mag_sensor_count > mag_sensor_n) {
+//    mag_sensor_heading_average = (int)(mag_sensor_sum / mag_sensor_count);
+//    log(mag_sensor_heading_average);
+//    mag_sensor_sum = 0;
+//    mag_sensor_count = 0;
+//    // Report new average.
+//  }
+//}
 
 const int mag_length = 5;
 float mag_sensor_values[mag_length];
 int mag_kickout_index = 0;
+int mag_sensor_heading_average;
+
 void update_mag_running() {
 
   mag_sensor_values[mag_kickout_index] = read_mag_heading();

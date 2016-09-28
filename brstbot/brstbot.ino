@@ -14,8 +14,15 @@
  * 
  */
 
+/*
+ * TODO:
+ * 
+ *   Print command.
+ * 
+ */
 
 BRSTbot b;
+String print_mode = "none";
 
 void run_command(String key, String value) {
   if (key.equals("speed")) {   // e.g., user entered  "speed:37"  in serial monitor
@@ -37,6 +44,10 @@ void run_command(String key, String value) {
   }
 }
 
+void print_command() {
+  
+}
+
 void setup() {
   init_utilities();
   init_magsensor();
@@ -53,23 +64,21 @@ void setup() {
 
 }
 
-unsigned long time;
-unsigned long last_time;
 
 // Fastest Loop Time:
 // 6240 microseconds
+// With magnetometer: 22880 microseconds.
+
+// Reguar (9600): 22880
+// Baud (): 2200
 
 void loop() {
 
-  time = micros();
-  print_log_counter();
-  Serial.println(time - last_time);
-  last_time = time;
-  
-  //parse_serial_command();
-  //update_mag();
-  //update_mag_running();
 
+  
+  parse_serial_command();
+  update_mag_running();
+  update_loop_timer();
 
 
   //log("Average: ", get_mag_heading());

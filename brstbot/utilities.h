@@ -1,5 +1,6 @@
 void init_utilities() {
-  Serial.begin(9600);
+  //Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 /*  Logging Commands  */
@@ -79,6 +80,17 @@ void parse_serial_command() {
   }
 }
 
+/*  Loop Timer  */
 
 
- 
+unsigned long loop_time;
+unsigned long loop_last_time;
+
+update_loop_timer() {
+  loop_time = micros();
+  log(loop_time - loop_last_time);
+  loop_last_time = loop_time;
+
+}
+
+
