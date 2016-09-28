@@ -82,6 +82,22 @@ void update_mag() {
   }
 }
 
+const int mag_length = 5;
+float mag_sensor_values[mag_length];
+int mag_kickout_index = 0;
+void update_mag_running() {
+
+  mag_sensor_values[mag_kickout_index] = read_mag_heading();
+  mag_kickout_index++;
+  mag_kickout_index%=mag_length;
+  int sum = 0;
+  for (int i = 0; i < mag_length; i++) {
+    sum+=mag_sensor_values[i];
+  }
+  mag_sensor_heading_average = sum / mag_length;
+  log(mag_sensor_heading_average);
+}
+
 int get_mag_heading() {
   return mag_sensor_heading_average;
 }
