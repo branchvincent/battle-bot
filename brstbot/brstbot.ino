@@ -64,7 +64,6 @@ void loop() {
 //  log("X: ", event.magnetic.x); 
 //  log("Y: ", event.magnetic.y);
 //  log("Z: ", event.magnetic.z);
-  log("");
 
   // Hold the module so that Z is pointing 'up' and you can measure the heading with x&y
   // Calculate heading when the magnetometer is level, then correct for signs of axis.
@@ -88,7 +87,8 @@ void loop() {
   // Convert radians to degrees for readability.
   float headingDegrees = heading * 180/M_PI; 
   
-  Serial.print("Heading (degrees): "); Serial.println(headingDegrees);
+  Serial.print("Heading (degrees): "); Serial.println(headingDegrees); //log("");
+
   
   
   
