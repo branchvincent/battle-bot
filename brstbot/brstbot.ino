@@ -1,4 +1,6 @@
 #include <AFMotor.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_HMC5883_U.h>
 #include "utilities.h"
 #include "BRSTbot.h"
  
@@ -13,6 +15,8 @@
 
 
 BRSTbot b;
+
+Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
 
 void run_command(String key, String value) {
   if (key.equals("speed")) {   // e.g., user entered  "speed:37"  in serial monitor
@@ -38,12 +42,12 @@ void setup() {
   init_utilities();
 
   b.setMotorBias(0.757);
+  b.setSpeed(200);
+  //b.startMotors();
   
   log("Hello World!");
-  log(b.getSpeed());
-  b.setSpeed(200);
-  log(b.getSpeed());
-  b.startMotors();
+
+
 }
 
 void loop() {
