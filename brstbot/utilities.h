@@ -80,8 +80,8 @@ void parse_serial_command() {
   }
 }
 
-/*  Loop Timer  */
 
+/*  Loop Timer  */
 
 unsigned long loop_time;
 unsigned long loop_last_time;

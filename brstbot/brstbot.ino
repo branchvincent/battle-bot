@@ -1,8 +1,10 @@
 #include <AFMotor.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
+#include <SPI.h>
 #include "utilities.h"
 #include "magnetometer.h"
+#include "chinabee/ChinaBee.h"
 #include "BRSTbot.h"
  
 /* 
@@ -74,14 +76,11 @@ void setup() {
 
 void loop() {
 
+  parse_serial_command();
+  //update_mag_running();
+  //update_loop_timer();
 
   
-  parse_serial_command();
-  update_mag_running();
-  update_loop_timer();
-
-
-  //log("Average: ", get_mag_heading());
   
 }
 
