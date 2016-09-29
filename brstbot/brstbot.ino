@@ -99,22 +99,26 @@ void loop() {
 
   bee.update();
 
-  for (int i = 0; i < bee.get_num_teams(); i++) {
-    team_status_t* stat = bee.get_status(i);
-    if (stat->haveFound || true) {
-      //Serial.print("Team ");
-      //Serial.print(i);
-      Serial.print("(");
-      Serial.print(x_true(stat->x));
-      Serial.print(",");
-      Serial.print(y_true(stat->y));
-      Serial.print(")");
-      //Serial.print(" time since (ms): ");
-      //Serial.print(millis() - stat->timestamp);
-    }
-  }
-  Serial.println("");
-  
+//  for (int i = 0; i < bee.get_num_teams(); i++) {
+//    team_status_t* stat = bee.get_status(i);
+//    if (stat->haveFound || true) {
+//      //Serial.print("Team ");
+//      //Serial.print(i);
+//      Serial.print("(");
+//      Serial.print(x_true(stat->x));
+//      Serial.print(",");
+//      Serial.print(y_true(stat->y));
+//      Serial.print(")");
+//      //Serial.print(" time since (ms): ");
+//      //Serial.print(millis() - stat->timestamp);
+//    }
+//  }
+//  Serial.println("");
+//  
+
+  b.setTarget(5, 6);
+  Point t = b.getTarget();
+  log(concat("x: ", t.x), concat(", y: ", concat(String(t.y), ")")));
   
 }
 

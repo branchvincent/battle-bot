@@ -40,6 +40,22 @@ class BRSTbot {
     return motorBias;
   }
 
+  void setTarget(Point t) {
+    target = t;
+  }
+
+  void setTarget(float x, float y) {
+    Point p;
+    p.x = x;
+    p.y = y;
+    setTarget(p);
+  }
+
+  Point getTarget() {
+    return target;
+  }
+  
+
   /*  Non-Getters/Setters  */
 
   void startMotors() {
