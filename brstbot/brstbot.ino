@@ -26,6 +26,48 @@
 BRSTbot b;
 String print_mode = "none";
 
+bool print_append_mode = false;
+//32+360=392
+
+class PrintMode {
+
+  private:
+    char printChar;
+    bool inAppendMode;
+
+  public:
+//    void appendMode() {
+//      inAppendMode = true;
+//    }
+//
+//    void resetMode() {
+//      inAppendMode = false;
+//    }
+
+    void setPrintChar(char c) {
+      log("Setting printChar to: ", String(c));
+      printChar = c;
+    }
+
+    void print() {
+      if (printChar == 's') {
+        log("Motorspeed: ", b.getSpeed());
+      } else if (printChar == 'm') {
+        log("Magnetometer: ", b.getRawHeading());
+      } else if (printChar == 't') {
+        log("Target: ", b.getTarget().toString());
+      }
+    }
+    
+  
+};
+
+PrintMode p;
+
+void print_command() {
+  
+}
+
 void run_command(String key, String value) {
   if (key.equals("speed")) {   // e.g., user entered  "speed:37"  in serial monitor
     
@@ -41,8 +83,6 @@ void run_command(String key, String value) {
 
   } else if (key.equals("target")) {
 
-    log("value: ", value);
-//    log("y: ", y);
     String* coords = string_split(value, ',');
     log("Prefix: ", coords[0] );
     int x = coords[0].toInt();
@@ -50,16 +90,17 @@ void run_command(String key, String value) {
     log("Setting x target to: ", x);
     log("Setting y target to: ", y);
     b.setTarget(x, y);
+    
+  } else if (key.equals("print") || key.equals("p")) {
+    char printchar = value.charAt(0);
+    p.setPrintChar(printchar);
+    log("Setting print mode to: ", String(printchar));
   
   } else {
     
     log("Command '", concat(key, "' not recognized."));
     
   }
-}
-
-void print_command() {
-  
 }
 
 ChinaBee bee;
@@ -106,10 +147,11 @@ int y_true(float y) {
 void loop() {
 
   parse_serial_command();
-  //update_mag_running();
+  update_mag_running();
   //update_loop_timer();
+  p.print();
 
-  bee.update();
+  //bee.update();
 
 //  for (int i = 0; i < bee.get_num_teams(); i++) {
 //    team_status_t* stat = bee.get_status(i);

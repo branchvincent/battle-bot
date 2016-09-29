@@ -82,7 +82,7 @@ float read_mag_heading() {
 //  }
 //}
 
-const int mag_length = 5;
+const int mag_length = 50;
 float mag_sensor_values[mag_length];
 int mag_kickout_index = 0;
 int mag_sensor_heading_average;
@@ -97,7 +97,8 @@ void update_mag_running() {
     sum+=mag_sensor_values[i];
   }
   mag_sensor_heading_average = sum / mag_length;
-  log(mag_sensor_heading_average);
+  //log(mag_sensor_values[mag_kickout_index]);
+  //log(mag_sensor_heading_average);
 }
 
 int get_mag_heading() {

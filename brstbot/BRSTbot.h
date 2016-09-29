@@ -3,6 +3,11 @@ class Point {
   public:
     float x;
     float y;
+
+  public:
+    String toString() {
+      return concat("(", x) + concat(", ", y) + ")";
+    }
 };
 
 class BRSTbot {
@@ -53,6 +58,10 @@ class BRSTbot {
 
   Point getTarget() {
     return target;
+  }
+
+  int getRawHeading() {
+    return mag_sensor_heading_average;
   }
   
 
