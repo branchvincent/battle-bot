@@ -4,7 +4,7 @@
 #include <SPI.h>
 #include "utilities.h"
 #include "magnetometer.h"
-#include "chinabee/ChinaBee.h"
+#include "ChinaBee.h"
 #include "BRSTbot.h"
  
 /* 
@@ -50,6 +50,8 @@ void print_command() {
   
 }
 
+ChinaBee bee;
+
 void setup() {
   init_utilities();
   init_magsensor();
@@ -60,7 +62,7 @@ void setup() {
   
   log("Hello World!");
 
-  
+  bee.init(48, 49);
   
 
 
@@ -80,6 +82,21 @@ void loop() {
   //update_mag_running();
   //update_loop_timer();
 
+  bee.update();
+
+  for (int i = 0; i < bee.get_num_teams(); i++) {
+    team_status_t* stat = bee.get_status(i);
+    if (stat->haveFound || true) {
+      Serial.print("Team ");
+      Serial.print(i);
+      Serial.print(" ");
+      Serial.print(stat->x);
+      Serial.print(" ");
+      Serial.print(stat->y);
+      Serial.print(" time since (ms): ");
+      Serial.println(millis() - stat->timestamp);
+    }
+  }
   
   
 }
