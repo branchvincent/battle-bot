@@ -87,16 +87,18 @@ void loop() {
   for (int i = 0; i < bee.get_num_teams(); i++) {
     team_status_t* stat = bee.get_status(i);
     if (stat->haveFound || true) {
-      Serial.print("Team ");
-      Serial.print(i);
-      Serial.print(" ");
+      //Serial.print("Team ");
+      //Serial.print(i);
+      Serial.print("(");
       Serial.print(stat->x);
-      Serial.print(" ");
+      Serial.print(",");
       Serial.print(stat->y);
-      Serial.print(" time since (ms): ");
-      Serial.println(millis() - stat->timestamp);
+      Serial.print(")");
+      //Serial.print(" time since (ms): ");
+      //Serial.print(millis() - stat->timestamp);
     }
   }
+  Serial.println("");
   
   
 }
