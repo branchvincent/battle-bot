@@ -59,6 +59,29 @@ void log(String a, String b) {
 }
 
 
+/*  String Split  */
+
+// Returns an array of size two of the two strings separated by the first occurence of the delim.
+String* string_split(String s, char delim) {
+  log("Received input ", s);
+  int delim_index = s.indexOf(delim);
+  log("Delimeter found at index: ", delim_index);
+  if (delim_index >= 0) {
+    String left = s.substring(0, delim_index);
+    log("Result 1: ", left);
+    String right = s.substring(delim_index+1);
+    log("Result 2: ", right);
+    String* result = new String[2];
+    result[0] = left;
+    result[1] = right;
+    return result;
+  } else {
+    log("Command not recognized");
+    return {};
+  }
+}
+
+
 /*  Command Parser  */
 
 void run_command(String, String);

@@ -38,7 +38,19 @@ void run_command(String key, String value) {
     else if (value.equals("back")) { b.reverseMotors(); }
     else if (value.equals("stop")) { b.stopMotors(); }
     log("Setting motor direction to: ", value);
-    
+
+  } else if (key.equals("target")) {
+
+    log("value: ", value);
+//    log("y: ", y);
+    String* coords = string_split(value, ',');
+    log("Prefix: ", coords[0] );
+    int x = coords[0].toInt();
+    int y = coords[1].toInt();
+    log("Setting x target to: ", x);
+    log("Setting y target to: ", y);
+    b.setTarget(x, y);
+  
   } else {
     
     log("Command '", concat(key, "' not recognized."));
@@ -116,9 +128,10 @@ void loop() {
 //  Serial.println("");
 //  
 
-  b.setTarget(5, 6);
-  Point t = b.getTarget();
-  log(concat("x: ", t.x), concat(", y: ", concat(String(t.y), ")")));
+  //b.setTarget(5, 6);
+  
+  //Point t = b.getTarget();
+  //log(concat("x: ", t.x), concat(", y: ", concat(String(t.y), ")")));
   
 }
 
