@@ -1,10 +1,18 @@
 
+class Point {
+  public:
+    float x;
+    float y;
+};
+
 class BRSTbot {
   private:
     int speed;
     float motorBias;
     AF_DCMotor motorLeft;
     AF_DCMotor motorRight;
+    Point target;
+    
 
   public:
 
