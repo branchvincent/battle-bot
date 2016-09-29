@@ -83,6 +83,14 @@ void setup() {
 // Top-Left: (265.00,194.00)
 // Bottom-Left: (260.00,14.00)
 
+int x_true(float x) {
+  return -x+260;
+}
+
+int y_true(float y) {
+  return y-14;
+}
+
 void loop() {
 
   parse_serial_command();
@@ -97,9 +105,9 @@ void loop() {
       //Serial.print("Team ");
       //Serial.print(i);
       Serial.print("(");
-      Serial.print(stat->x);
+      Serial.print(x_true(stat->x));
       Serial.print(",");
-      Serial.print(stat->y);
+      Serial.print(y_true(stat->y));
       Serial.print(")");
       //Serial.print(" time since (ms): ");
       //Serial.print(millis() - stat->timestamp);
@@ -109,6 +117,7 @@ void loop() {
   
   
 }
+
 
 
 
