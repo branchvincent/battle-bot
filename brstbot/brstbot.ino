@@ -31,6 +31,8 @@ String print_mode = "none";
 bool print_append_mode = false;
 //32+360=392
 
+String print_bots();
+
 class PrintMode {
 
   private:
@@ -38,13 +40,6 @@ class PrintMode {
     bool inAppendMode;
 
   public:
-//    void appendMode() {
-//      inAppendMode = true;
-//    }
-//
-//    void resetMode() {
-//      inAppendMode = false;
-//    }
 
     void setPrintChar(char c) {
       log("Setting printChar to: ", String(c));
@@ -61,6 +56,8 @@ class PrintMode {
         log("Target: ", b.getTarget().toString());
       } else if (printChar == 'b') {
         log("Motor bias: ", b.getMotorBias());
+      } else if (printChar == 'h') {
+        log("Bots Heading: ", print_bots());
       }
     }
     
@@ -143,7 +140,7 @@ void setup() {
   init_magsensor();
 
   b.setMotorBias(0.88);
-  b.setSpeed(200);
+  //b.setSpeed(200);
   //b.startMotors();
   
   log("Hello World!");
@@ -207,50 +204,51 @@ class Bot {
       position = p;
     }
 
-    void getVisualHeading() {
+    int getVisualHeading() {
       return visualHeading;
     }
 };
 
 Bot bots[4];
 
+String print_bots() {
+  String result = "";
+  for (int i = 0; i < 4; i++) {
+    result += bots[i].getVisualHeading() + String(", ");
+  }
+  return result;
+}
+
+
+
+  //update_loop_timer();
+
+  
 void loop() {
 
-  parse_serial_command();
-  update_mag_running();
+  //parse_serial_command();
+  //update_mag_running();
+  //p.print();
 
-  //b.op_check();
 
-  b.update();
-  
-  //update_loop_timer();
-  p.print();
-
-  
+  // This must be called every loop
   bee.update();
-
-  for (int i = 0; i < bee.get_num_teams(); i++) {
+  
+  for (int i=0; i<bee.get_num_teams(); i++) {
     team_status_t* stat = bee.get_status(i);
     if (stat->haveFound || true) {
-      //Serial.print("Team ");
-      //Serial.print(i);
       Serial.print("(");
-      Serial.print(x_true(stat->x));
+      Serial.print(int(stat->x));
       Serial.print(",");
-      Serial.print(y_true(stat->y));
-      Serial.print(")");
-      bots[i].setPosition(Point(x_true(stat->x), y_true(stat->y)));
-      //Serial.print(" time since (ms): ");
-      //Serial.print(millis() - stat->timestamp);
+      Serial.print(int(stat->y));
+      Serial.print(")   ");
     }
   }
-  Serial.println("");
-  
+  Serial.println();
 
-  //b.setTarget(5, 6);
+
   
-  //Point t = b.getTarget();
-  //log(concat("x: ", t.x), concat(", y: ", concat(String(t.y), ")")));
+//  bee.update();
   
 }
 
