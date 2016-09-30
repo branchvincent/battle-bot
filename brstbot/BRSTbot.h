@@ -98,6 +98,19 @@ class BRSTbot {
     motorLeft.run(FORWARD);
     motorRight.run(BACKWARD);
   }
+
+  void customConfiguration() {
+    motorLeft.run(RELEASE);
+    motorRight.run(FORWARD);
+  }
+
+  void goToHeading(int degrees) {
+    
+  }
+
+  void getHeading() {
+    
+  }
   
   
   

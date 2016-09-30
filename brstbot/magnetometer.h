@@ -105,4 +105,14 @@ int get_mag_heading() {
   return mag_sensor_heading_average;
 }
 
+int mag_raw[]  = { -20, 82, 130, 153, 171, 186, 198, 211, 219, 230, 239, 247, 255, 264, 274, 283, 295, 313, 340, 442 };
+int mag_true[] = { -20,  0,  20,  40,  60,  80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360 };
+
+int mag_raw_to_true(int r) {
+  
+}
+
+int mag_true_to_raw(int t) {
+  
+}
 

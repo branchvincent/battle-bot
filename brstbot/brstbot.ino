@@ -106,9 +106,15 @@ void run_command(String key, String value) {
     b.setTarget(x, y);
     
   } else if (key.equals("print") || key.equals("p")) {
+
     char printchar = value.charAt(0);
     p.setPrintChar(printchar);
     log("Setting print mode to: ", String(printchar));
+  
+  } else if (key.equals("custom") || key.equals("c")) {
+
+    b.customConfiguration();
+    log("Running custom motor configuration now...");
   
   } else {
     
