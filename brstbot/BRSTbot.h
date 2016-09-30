@@ -39,6 +39,7 @@ class BRSTbot {
 
   void setMotorBias(float b) {
     motorBias = b;
+    setSpeed(speed);
   }
 
   float getMotorBias() {

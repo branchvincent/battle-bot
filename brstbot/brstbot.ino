@@ -83,7 +83,7 @@ void run_command(String key, String value) {
     
   } else if (key.equals("dir") || key.equals("d")) {
     
-    if (value.equals("forward")) { b.startMotors(); } 
+    if (value.equals("forward") || value.equals("f")) { b.startMotors(); } 
     else if (value.equals("back")) { b.reverseMotors(); }
     else if (value.equals("stop")) { b.stopMotors(); }
     log("Setting motor direction to: ", value);
