@@ -86,10 +86,12 @@ const int mag_length = 50;
 float mag_sensor_values[mag_length];
 int mag_kickout_index = 0;
 int mag_sensor_heading_average;
+int mag_sensor_heading_unaverage;
 
 void update_mag_running() {
 
   mag_sensor_values[mag_kickout_index] = read_mag_heading();
+  mag_sensor_heading_unaverage = mag_sensor_values[mag_kickout_index];
   mag_kickout_index++;
   mag_kickout_index%=mag_length;
   int sum = 0;

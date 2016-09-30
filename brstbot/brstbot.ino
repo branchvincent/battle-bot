@@ -54,6 +54,7 @@ class PrintMode {
         log("Motorspeed: ", b.getSpeed());
       } else if (printChar == 'm') {
         log("Magnetometer: ", b.getRawHeading());
+        log("Unaverage Magnetometer: ", b.getRawHeadingUnaverage());
       } else if (printChar == 't') {
         log("Target: ", b.getTarget().toString());
       } else if (printChar == 'b') {

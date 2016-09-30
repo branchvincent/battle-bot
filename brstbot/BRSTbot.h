@@ -97,7 +97,22 @@ class BRSTbot {
   int getRawHeading() {
     return mag_sensor_heading_average;
   }
-  
+
+  int getTrueHeading() {
+    return mag_raw_to_true(mag_sensor_heading_average);
+  }
+
+  int getTrueHeadingUnaverage() {
+    return mag_raw_to_true(mag_sensor_heading_unaverage);
+  }
+
+  int getHeading() {
+    return mag_sensor_heading_average;
+  }
+
+  int getRawHeadingUnaverage() {
+    return mag_sensor_heading_unaverage;
+  }
 
   /*  Non-Getters/Setters  */
 
@@ -156,14 +171,17 @@ class BRSTbot {
 
     if (currentOp.label.equals("rotation")) {
       log("Rotating");
+      if(getTrueHeadingUnaverage() < currentOp.getRotation()) {
+        rotateLeft();
+      } else {
+        stopMotors();
+        //Op empty;
+        //currentOp = empty;
+      }
     }
     
   }
 
-  void getHeading() {
-    
-  }
-  
   
   
 };
