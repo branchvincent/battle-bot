@@ -177,6 +177,43 @@ int y_true(float y) {
   return y-14;
 }
 
+const int bot_position_buffer_size = 5;
+
+class Bot {
+  private:
+    Point position;
+    int visualHeading;
+    Point position_buffer[bot_position_buffer_size];
+    int position_kickout_index = 0;
+
+  public:
+    Point getPosition() {
+       return position;
+    }
+
+    void setPosition(Point p) {
+      
+      // Calculate new displacement vector.
+      position_buffer[position_kickout_index] = p;
+      int first_index = (position_kickout_index - 1) % bot_position_buffer_size;
+      Point first_point = position_buffer[first_index];
+      Point displacementVector((int)(p.x - first_point.x), (int)(p.y - first_point.y));
+      position_kickout_index++;
+
+      // Update estimated heading.
+      float headingDegrees = atan2(displacementVector.y, displacementVector.x);
+      visualHeading = headingDegrees;
+      
+      position = p;
+    }
+
+    void getVisualHeading() {
+      return visualHeading;
+    }
+};
+
+Bot bots[4];
+
 void loop() {
 
   parse_serial_command();
@@ -202,6 +239,7 @@ void loop() {
       Serial.print(",");
       Serial.print(y_true(stat->y));
       Serial.print(")");
+      bots[i].setPosition(Point(x_true(stat->x), y_true(stat->y)));
       //Serial.print(" time since (ms): ");
       //Serial.print(millis() - stat->timestamp);
     }

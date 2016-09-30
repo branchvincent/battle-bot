@@ -117,3 +117,19 @@ update_loop_timer() {
 }
 
 
+/*  Running Average  */
+
+int running_average(int buffer[], int buffer_size, int kickout_index, int new_value) {
+  buffer[kickout_index] = new_value;
+  kickout_index++;
+  kickout_index %= buffer_size;
+  int sum = 0;
+  for (int i = 0; i < buffer_size; i++) {
+    sum += buffer[i];
+  }
+  return sum / buffer_size;
+}
+
+
+
+
