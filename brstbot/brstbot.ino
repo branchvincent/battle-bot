@@ -88,6 +88,13 @@ void run_command(String key, String value) {
     else if (value.equals("stop")) { b.stopMotors(); }
     log("Setting motor direction to: ", value);
 
+  } else if (key.equals("rotate") || key.equals("r")) {
+
+    if (value.equals("left") || value.equals("l")) { b.rotateLeft(); } 
+    else if (value.equals("right") || value.equals("r")) { b.rotateRight(); }
+    else if (value.equals("straight") || value.equals("s")) { b.rotateStraight(); }
+    log("Setting bot body rotation to: ", value);
+
   } else if (key.equals("target") || key.equals("t")) {
 
     String* coords = string_split(value, ',');
