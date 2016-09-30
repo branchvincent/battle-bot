@@ -17,7 +17,8 @@ class BRSTbot {
     AF_DCMotor motorLeft;
     AF_DCMotor motorRight;
     Point target;
-    
+    const int MOTOR_LOW_SPEED;
+    const int MOTOR_HIGH_SPEED;
 
   public:
 
@@ -82,6 +83,22 @@ class BRSTbot {
     motorLeft.run(RELEASE);
     motorRight.run(RELEASE);
   }
+
+  void rotateStraight() {
+    motorLeft.run(FORWARD);
+    motorRight.run(FORWARD);
+  }
+
+  void rotateLeft() {
+    motorLeft.run(BACKWARD);
+    motorRight.run(FORWARD);
+  }
+
+  void rotateRight() {
+    motorLeft.run(FORWARD);
+    motorRight.run(BACKWARD);
+  }
+  
   
   
 };
