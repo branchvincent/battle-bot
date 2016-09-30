@@ -105,14 +105,35 @@ int get_mag_heading() {
   return mag_sensor_heading_average;
 }
 
+
+int linear_interpolate(int source_a, int source_b, int out_a, int out_b, int source) {
+  return (out_b - out_a) / (source_b - source_a) * (source - source_a) + out_a;
+}
+
 int mag_raw[]  = { -20, 82, 130, 153, 171, 186, 198, 211, 219, 230, 239, 247, 255, 264, 274, 283, 295, 313, 340, 442 };
 int mag_true[] = { -20,  0,  20,  40,  60,  80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360 };
 
 int mag_raw_to_true(int r) {
+
+  int index = 0;
+
+  while(r <= mag_raw[index]) {
+    index++;
+  }
+
+  int raw_a = mag_raw[index-1];
+  int raw_b = mag_raw[index];
+
+  int true_a = mag_true[index-1];
+  int true_b = mag_true[index];
+
+  //return (true_b - true_a) / (raw_b - raw_a) * (r - raw_a) + true_a;
+  return linear_interpolate(raw_a, raw_b, true_a, true_b, r);
   
 }
 
 int mag_true_to_raw(int t) {
   
 }
+
 
