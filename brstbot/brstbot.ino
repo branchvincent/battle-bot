@@ -56,6 +56,8 @@ class PrintMode {
         log("Magnetometer: ", b.getRawHeading());
       } else if (printChar == 't') {
         log("Target: ", b.getTarget().toString());
+      } else if (printChar == 'b') {
+        log("Motor bias: ", b.getMotorBias());
       }
     }
     
@@ -73,6 +75,11 @@ void run_command(String key, String value) {
     
     b.setSpeed(value.toInt());
     log("Changing speed to: ", value);
+  
+  } else if (key.equals("bias") || key.equals("b")) {
+
+    b.setMotorBias(value.toFloat());
+    log("Setting bias to: ", value);
     
   } else if (key.equals("dir") || key.equals("d")) {
     
