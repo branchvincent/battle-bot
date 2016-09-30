@@ -180,7 +180,9 @@ void loop() {
   parse_serial_command();
   update_mag_running();
 
-  b.op_check();
+  //b.op_check();
+
+  b.update();
   
   //update_loop_timer();
   p.print();

@@ -51,6 +51,8 @@ class BRSTbot {
     const int MOTOR_LOW_SPEED;
     const int MOTOR_HIGH_SPEED;
     Op currentOp;
+    int visualHeading = 0;
+    int targetHeading = 0;
 
   public:
 
@@ -114,6 +116,14 @@ class BRSTbot {
     return mag_sensor_heading_unaverage;
   }
 
+  int getVisualHeading() {
+    return visualHeading;
+  }
+
+  int getTargetHeading() {
+    return targetHeading;
+  }
+
   /*  Non-Getters/Setters  */
 
   void startMotors() {
@@ -161,27 +171,31 @@ class BRSTbot {
     currentOp = o;
   }
 
-  void op_check() {
+//  void op_check() {
+//
+//    if (!currentOp.label.equals("")) {
+//      
+//      log("Performing operation: ", currentOp.label);
+//    }
+//    
+//
+//    if (currentOp.label.equals("rotation")) {
+//      log("Rotating");
+//      if(getTrueHeadingUnaverage() < currentOp.getRotation()) {
+//        rotateLeft();
+//      } else {
+//        stopMotors();
+//        //Op empty;
+//        //currentOp = empty;
+//      }
+//    }
+//    
+//  }
 
-    if (!currentOp.label.equals("")) {
-      
-      log("Performing operation: ", currentOp.label);
-    }
-    
 
-    if (currentOp.label.equals("rotation")) {
-      log("Rotating");
-      if(getTrueHeadingUnaverage() < currentOp.getRotation()) {
-        rotateLeft();
-      } else {
-        stopMotors();
-        //Op empty;
-        //currentOp = empty;
-      }
-    }
-    
+  void update() {
+    log("Updating robot!");
   }
-
   
   
 };
