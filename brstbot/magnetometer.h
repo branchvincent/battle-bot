@@ -109,13 +109,13 @@ int get_mag_heading() {
 
 
 int linear_interpolate(int source_a, int source_b, int out_a, int out_b, int source) {
-  return (out_b - out_a) / (source_b - source_a) * (source - source_a) + out_a;
+  return (out_b - out_a) / ((float) (source_b - source_a)) * (source - source_a) + out_a;
 }
 
 int find_high_index(int data[], int value) {
   int index = 0;
 
-  while(value <= data[index]) {
+  while(data[index] <= value) {
     index++;
   }
 
