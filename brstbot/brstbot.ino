@@ -69,19 +69,19 @@ void print_command() {
 }
 
 void run_command(String key, String value) {
-  if (key.equals("speed")) {   // e.g., user entered  "speed:37"  in serial monitor
+  if (key.equals("speed") || key.equals("s")) {   // e.g., user entered  "speed:37"  in serial monitor
     
     b.setSpeed(value.toInt());
     log("Changing speed to: ", value);
     
-  } else if (key.equals("dir")) {
+  } else if (key.equals("dir") || key.equals("d")) {
     
     if (value.equals("forward")) { b.startMotors(); } 
     else if (value.equals("back")) { b.reverseMotors(); }
     else if (value.equals("stop")) { b.stopMotors(); }
     log("Setting motor direction to: ", value);
 
-  } else if (key.equals("target")) {
+  } else if (key.equals("target") || key.equals("t")) {
 
     String* coords = string_split(value, ',');
     log("Prefix: ", coords[0] );
