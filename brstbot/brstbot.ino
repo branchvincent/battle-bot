@@ -116,7 +116,7 @@ void setup() {
   init_utilities();
   init_magsensor();
 
-  b.setMotorBias(0.757);
+  b.setMotorBias(0.85);
   b.setSpeed(200);
   //b.startMotors();
   
