@@ -103,7 +103,17 @@ void run_command(String key, String value) {
     int y = coords[1].toInt();
     log("Setting x target to: ", x);
     log("Setting y target to: ", y);
-    b.setTarget(x, y);
+    b.setTarget(x, y); 
+  
+  } else if (key.equals("heading") || key.equals("h")) {
+
+    //b.rotateToHeading(value.toInt());
+    Op rotate;
+    rotate.label = "rotation";
+    rotate.setRotation(value.toInt());
+    b.setOp(rotate);
+    log("Rotating to Heading: ", value);
+  
     
   } else if (key.equals("print") || key.equals("p")) {
 
@@ -168,9 +178,13 @@ void loop() {
 
   parse_serial_command();
   update_mag_running();
+
+  b.op_check();
+  
   //update_loop_timer();
   p.print();
 
+  
   //bee.update();
 
 //  for (int i = 0; i < bee.get_num_teams(); i++) {

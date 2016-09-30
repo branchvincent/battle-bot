@@ -10,6 +10,37 @@ class Point {
     }
 };
 
+
+// For representing operations on the robot.
+class Op {
+
+  public:
+    String label;
+
+  private:
+    int rotation;
+
+  public:
+
+    int setRotation(int degrees) {
+      rotation = degrees;
+    }
+  
+    int getRotation() {
+      return rotation;
+    }
+
+  
+};
+
+void error(String e) {
+  log(e);
+  log("");
+  log("");
+  log("");
+  
+}
+
 class BRSTbot {
   private:
     int speed;
@@ -19,6 +50,7 @@ class BRSTbot {
     Point target;
     const int MOTOR_LOW_SPEED;
     const int MOTOR_HIGH_SPEED;
+    Op currentOp;
 
   public:
 
@@ -104,7 +136,27 @@ class BRSTbot {
     motorRight.run(FORWARD);
   }
 
-  void goToHeading(int degrees) {
+  void rotateToHeading(int degrees) {
+
+    
+    
+  }
+
+  void setOp(Op o) {
+    currentOp = o;
+  }
+
+  void op_check() {
+
+    if (!currentOp.label.equals("")) {
+      
+      log("Performing operation: ", currentOp.label);
+    }
+    
+
+    if (currentOp.label.equals("rotation")) {
+      log("Rotating");
+    }
     
   }
 

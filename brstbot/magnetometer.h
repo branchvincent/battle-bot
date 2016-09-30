@@ -110,16 +110,22 @@ int linear_interpolate(int source_a, int source_b, int out_a, int out_b, int sou
   return (out_b - out_a) / (source_b - source_a) * (source - source_a) + out_a;
 }
 
+int find_high_index(int data[], int value) {
+  int index = 0;
+
+  while(value <= data[index]) {
+    index++;
+  }
+
+  return index;
+}
+
 int mag_raw[]  = { -20, 82, 130, 153, 171, 186, 198, 211, 219, 230, 239, 247, 255, 264, 274, 283, 295, 313, 340, 442 };
 int mag_true[] = { -20,  0,  20,  40,  60,  80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360 };
 
 int mag_raw_to_true(int r) {
 
-  int index = 0;
-
-  while(r <= mag_raw[index]) {
-    index++;
-  }
+  int index = find_high_index(mag_raw, r);
 
   int raw_a = mag_raw[index-1];
   int raw_b = mag_raw[index];
@@ -133,6 +139,16 @@ int mag_raw_to_true(int r) {
 }
 
 int mag_true_to_raw(int t) {
+
+  int index = find_high_index(mag_true, t);
+
+  int raw_a = mag_raw[index-1];
+  int raw_b = mag_raw[index];
+
+  int true_a = mag_true[index-1];
+  int true_b = mag_true[index];
+
+  return linear_interpolate(true_a, true_b, raw_a, raw_b, t);
   
 }
 
