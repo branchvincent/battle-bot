@@ -179,30 +179,39 @@ const int bot_position_buffer_size = 5;
 class Bot {
   private:
     Point position;
+    Point lastPosition;
     int visualHeading;
     Point position_buffer[bot_position_buffer_size];
     int position_kickout_index = 0;
 
   public:
+
+    Point getLastPosition() {
+      return lastPosition;
+    }
+  
     Point getPosition() {
        return position;
     }
 
     void setPosition(Point p) {
-      
-      // Calculate new displacement vector.
-      position_buffer[position_kickout_index] = p;
-      int first_index = (position_kickout_index - 1) % bot_position_buffer_size;
-      Point first_point = position_buffer[first_index];
-      Point displacementVector((int)(p.x - first_point.x), (int)(p.y - first_point.y));
-      position_kickout_index++;
-      position_kickout_index %= bot_position_buffer_size;
 
-      // Update estimated heading.
-      float headingDegrees = atan2(displacementVector.y, displacementVector.x);
-      visualHeading = headingDegrees;
-      
-      position = p;
+      if ((p.x != lastPosition.x) || (p.y != lastPosition.y)) {
+
+        Point displacementVector((int)(p.x - lastPosition.x), (int)(p.y - lastPosition.y));
+  
+        // Update estimated heading.
+        float headingRadians = atan2(displacementVector.y, displacementVector.x);
+        float headingDegrees = headingRadians * 180/M_PI; ;
+        visualHeading = headingDegrees;
+        
+        lastPosition = position;
+        position = p;
+
+        log("New Position for Bot: ", p.toString());
+        log("New Heading for Bot: ", headingDegrees);
+        
+      }
     }
 
     int getVisualHeading() {
@@ -238,15 +247,22 @@ void loop() {
   for (int i=0; i<bee.get_num_teams(); i++) {
     team_status_t* stat = bee.get_status(i);
     if (stat->haveFound || true) {
-      Serial.print("(");
-      Serial.print(x_true(stat->x));
-      Serial.print(",");
-      Serial.print(y_true(stat->y));
-      Serial.print(")   ");
-      bots[i].setPosition(Point(x_true(stat->x),y_true(stat->y)));
+      
+      
+//      Serial.print("(");
+//      Serial.print(x_true(stat->x));
+//      Serial.print(",");
+//      Serial.print(y_true(stat->y));
+//      Serial.print(")   ");
+
+      if (i == 3) {
+        Point p = Point(x_true(stat->x),y_true(stat->y));
+        //log("Updating bot 3!  ", p.toString());
+        bots[i].setPosition(p);
+      }
     }
   }
-  Serial.println();
+//  Serial.println();
   
 }
 
