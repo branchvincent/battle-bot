@@ -27,7 +27,7 @@
 
  */
 
-int sensorPin = A7;    // select the input pin for the potentiometer
+int sensorPin = 31;    // select the input pin for the potentiometer
 
 void setup() {
   // declare the ledPin as an OUTPUT:
@@ -37,7 +37,7 @@ void setup() {
 
 void loop() {
   // read the value from the sensor:
-  double sensorValue = analogRead(sensorPin);
+  double sensorValue = digitalRead(sensorPin);
 
   Serial.println("IR value:");
   Serial.println(sensorValue);

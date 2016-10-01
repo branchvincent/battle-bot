@@ -257,7 +257,7 @@ void loop() {
 
       if (i == 3) {
         Point p = Point(x_true(stat->x),y_true(stat->y));
-        //log("Updating bot 3!  ", p.toString());
+        log("Updating bot 3!  ", p.toString());
         bots[i].setPosition(p);
       }
     }
