@@ -33,8 +33,6 @@ void setup() {
 
   //update_loop_timer();
 
-
-
 void loop() {
 
   parse_serial_command();
@@ -45,13 +43,10 @@ void loop() {
 
   //log("Hello");
 
+
   if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
     log("Detection condition.");
     b.evadeBorder(FRONT_SIDE);
-    
   }
 
 }
-
-
-

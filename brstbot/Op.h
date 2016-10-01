@@ -67,15 +67,11 @@ class ReverseABit : public Translation {
     bool execute() {
       Translation::execute();
     }
-
     
   
 };
 
 #endif
-
-
-
 
 
 
