@@ -182,6 +182,12 @@ class BRSTbot {
   void evadeBorder(int side) {
     switch (side) {
       case FRONT_SIDE:
+        if (currentOp->label.equals("reverse_a_bit")) {
+          log("Already reversing! yielding...");
+        } else {
+          ReverseABit* reverseABit = new ReverseABit();
+          currentOp = reverseABit;
+        }
         log("Evading front!");
         break;
       case BACK_SIDE:
