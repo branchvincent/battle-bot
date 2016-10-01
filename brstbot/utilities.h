@@ -131,5 +131,13 @@ int running_average(int buffer[], int buffer_size, int kickout_index, int new_va
 }
 
 
+/*  Calibrate XY  */
 
+int x_true(float x) {
+  return -x+260;
+}
+
+int y_true(float y) {
+  return y-14;
+}
 

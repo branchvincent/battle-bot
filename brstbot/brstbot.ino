@@ -6,6 +6,7 @@
 #include "magnetometer.h"
 #include "ChinaBee.h"
 #include "BRSTbot.h"
+#include "Print.h"
 
 const int starting_quadrant = 3;
 
@@ -25,50 +26,8 @@ const int starting_quadrant = 3;
  * 
  */
 
-BRSTbot b;
-String print_mode = "none";
-
-bool print_append_mode = false;
-//32+360=392
-
-String print_bots();
-
-class PrintMode {
-
-  private:
-    char printChar;
-    bool inAppendMode;
-
-  public:
-
-    void setPrintChar(char c) {
-      log("Setting printChar to: ", String(c));
-      printChar = c;
-    }
-
-    void print() {
-      if (printChar == 's') {
-        log("Motorspeed: ", b.getSpeed());
-      } else if (printChar == 'm') {
-        //log("Magnetometer: ", b.getRawHeading());
-        log(concat("Magnetometer: ", b.getRawHeadingUnaverage()), concat(", Unaverage True Magnetometer: ", b.getTrueHeadingUnaverage()));
-      } else if (printChar == 't') {
-        log("Target: ", b.getTarget().toString());
-      } else if (printChar == 'b') {
-        log("Motor bias: ", b.getMotorBias());
-      } else if (printChar == 'h') {
-        log("Bots Heading: ", print_bots());
-      }
-    }
-    
-  
-};
 
 PrintMode p;
-
-void print_command() {
-  
-}
 
 void run_command(String key, String value) {
   if (key.equals("speed") || key.equals("s")) {   // e.g., user entered  "speed:37"  in serial monitor
@@ -140,39 +99,14 @@ void setup() {
   init_magsensor();
 
   b.setMotorBias(0.88);
-  //b.setSpeed(200);
-  //b.startMotors();
   
   log("Hello World!");
 
   bee.init(48, 49);
   
-
-
 }
 
 
-// Fastest Loop Time:
-// 6240 microseconds
-// With magnetometer: 22880 microseconds.
-
-// Reguar (9600): 22880
-// Baud (): 2200
-
-
-
-// Bottom-Right: (85.00,18.00)
-// Top-Right: (87.00,196.00)
-// Top-Left: (265.00,194.00)
-// Bottom-Left: (260.00,14.00)
-
-int x_true(float x) {
-  return -x+260;
-}
-
-int y_true(float y) {
-  return y-14;
-}
 
 const int bot_position_buffer_size = 5;
 

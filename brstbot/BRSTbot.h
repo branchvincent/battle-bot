@@ -209,3 +209,7 @@ class BRSTbot {
   
   
 };
+
+
+BRSTbot b;
+

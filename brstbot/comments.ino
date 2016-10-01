@@ -92,3 +92,18 @@ Speed  Bias
  */
 
 
+ // Fastest Loop Time:
+// 6240 microseconds
+// With magnetometer: 22880 microseconds.
+
+// Reguar (9600): 22880
+// Baud (): 2200
+
+
+
+// Bottom-Right: (85.00,18.00)
+// Top-Right: (87.00,196.00)
+// Top-Left: (265.00,194.00)
+// Bottom-Left: (260.00,14.00)
+
+
