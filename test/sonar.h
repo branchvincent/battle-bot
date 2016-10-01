@@ -1,10 +1,22 @@
-// #ifndef SONAR_H
-// #define SONAR_H
+/****************************************************************************
+*																			*
+*	File:		Sonar.h													    *
+*																			*
+*	Purpose:	This file defines the Sonar class.						    *
+*																			*
+****************************************************************************/
 
-const int SIZE = 5;
-int CURR_INDEX = 0;
+#ifndef SONAR_H
+#define SONAR_H
 
-//  Class definition
+const int ARR_SIZE = 5;     // array size for previous distances
+int CURR_INDEX = 0;         // array index of current distance
+
+/****************************************************************************
+*																			*
+*	Definition of Sonar class											    *
+*																			*
+****************************************************************************/
 
 class Sonar {
 
@@ -12,26 +24,29 @@ class Sonar {
 
     public:
         Sonar(int tPin, int ePin) : triggerPin(tPin), echoPin(ePin)
-            {for (int i = 0; i < SIZE; i++) distances[i] = 1000;}
+            {for (int i = 0; i < ARR_SIZE; i++) distances[i] = 1000;}
         void init() {Serial.begin(9600);}
         long ping();
         bool objDetected();
         long avgDistance();
-        // long distance() {return distances[getLastIndex()];}
-    private:
         long msToMM(long microseconds) {return microseconds / 29 / 2;}
-        // int getLastIndex() {int i = CURR_INDEX - 1;
-        //     if (i < 0) i = SIZE; return i;}
 
 //  Data members
 
     public:
         int triggerPin;
         int echoPin;
-        long distances[SIZE];
+        long distances[ARR_SIZE];
 };
 
-// Function definitions
+/****************************************************************************
+*																			*
+*	Function:	ping    													*
+*																			*
+*	Purpose:	To ping the sonar sensor and return the distance of the     *
+*               detected object				                                *
+*																			*
+****************************************************************************/
 
 long Sonar::ping() {
 
@@ -52,12 +67,21 @@ long Sonar::ping() {
     pinMode(echoPin, INPUT);
     long duration = pulseIn(echoPin, HIGH);
     long distance = msToMM(duration);
-//  Update distances
+
+//  Update distances and return lastest distance 
 
     distances[CURR_INDEX++] = distance;
-    CURR_INDEX %= SIZE;
+    CURR_INDEX %= ARR_SIZE;
     return distance;
 }
+
+/****************************************************************************
+*																			*
+*	Function:	objDetected													*
+*																			*
+*	Purpose:	To return whether or not a close object was detected		*
+*																			*
+****************************************************************************/
 
 bool Sonar::objDetected() {
 
@@ -69,12 +93,20 @@ bool Sonar::objDetected() {
         return false;
 }
 
+/****************************************************************************
+*																			*
+*	Function:	avgDistance													*
+*																			*
+*	Purpose:	To average the distance of the previous distances			*
+*																			*
+****************************************************************************/
+
 long Sonar::avgDistance() {
 
     long sum = 0;
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < ARR_SIZE; i++)
         sum += distances[i];
-    return sum / SIZE;
+    return sum / ARR_SIZE;
 }
 
-// #endif
+#endif
