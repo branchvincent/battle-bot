@@ -1,4 +1,6 @@
 
+
+
 const int bot_position_buffer_size = 5;
 
 class Bot {
@@ -43,4 +45,17 @@ class Bot {
       return visualHeading;
     }
 };
+
+
+Bot bots[4];
+
+
+String print_bots() {
+  String result = "";
+  for (int i = 0; i < 4; i++) {
+    result += bots[i].getVisualHeading() + String(", ");
+  }
+  return result;
+}
+
 
