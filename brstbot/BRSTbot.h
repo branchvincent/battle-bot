@@ -28,6 +28,7 @@ const int ROTATE_STRAIGHT = 3;
 // Fresh Batt: 8.5
 const float millis_per_degree = 4.25;
 const int BOT_ROTATION_SPEED = 110;
+const int BOT_EVASIVE_SPEED = 255;
 const int rotation_base_time = 100;
 
 // For representing operations on the robot.
@@ -35,11 +36,16 @@ class Op {
 
   public:
     String label;
+    long timeEnd = 0;
+
+    
     int motorDirection;
     int motorSpeed;
-    long timeEnd = 0;
+    
+    
     int rotationDegrees;
     int rotationDirection;
+    Op *nextOp;
 
   private:
     int rotation;
@@ -74,7 +80,7 @@ class BRSTbot {
     Point target;
     const int MOTOR_LOW_SPEED;
     const int MOTOR_HIGH_SPEED;
-    Op currentOp;
+    Op* currentOp;
     int visualHeading = 0;
     int targetHeading = 0;
 
@@ -190,6 +196,7 @@ class BRSTbot {
     }
   }
 
+  // BACKWARD, FORWARD
   void setMotorDirection(int direction) {
     motorLeft.run(direction);
     motorRight.run(direction);
@@ -206,48 +213,86 @@ class BRSTbot {
     
   }
 
-  void setOp(Op o) {
+  void setOp(Op* o) {
     currentOp = o;
   }
 
   void op_check() {
 
-    if (!currentOp.label.equals("")) {
-      
-      log("Performing operation: ", currentOp.label);
-    }
-    
-
-    if (currentOp.label.equals("rotation")) {
+    if (currentOp->label.equals("rotation")) {
       log("Rotating");
 
-      if (currentOp.timeEnd == 0) {
-        currentOp.timeEnd = millis() + rotation_base_time + currentOp.rotationDegrees * millis_per_degree;
+      if (currentOp->timeEnd == 0) {
+        currentOp->timeEnd = millis() + rotation_base_time + currentOp->rotationDegrees * millis_per_degree;
+        log(String("Setting TIME END to: ") + currentOp->timeEnd);
+      } else {
+        log(String("TIME END NOT EQUAL TO ZERO: ") + currentOp->timeEnd);
       }
 
-      log(String("   ") + millis() + ",     " + currentOp.timeEnd);
-      if(millis() <= currentOp.timeEnd) {
+      log(String("   ") + millis() + ",     " + currentOp->timeEnd);
+      if(millis() <= currentOp->timeEnd) {
         setSpeed(BOT_ROTATION_SPEED);
-        setRotationDirection(currentOp.rotationDirection);
+        setRotationDirection(currentOp->rotationDirection);
         
       } else {
-        stopMotors();
-        Op empty;
-        currentOp = empty;
+        startMotors();
+
       }
 
       
-    } else if (currentOp.label.equals("edge_escape")) {
+    } else if (currentOp->label.equals("edge_escape")) {
       log("Operation: Edge Escape");
 
-      if (millis() <= currentOp.timeEnd) {
-        setMotorDirection(currentOp.motorDirection);
-        setSpeed(currentOp.motorSpeed);
+      if (currentOp->timeEnd == 0) {
+        currentOp->timeEnd = millis() + 500;
+      }
+
+      if (millis() <= currentOp->timeEnd) {
+        setMotorDirection(currentOp->motorDirection);
+        setSpeed(currentOp->motorSpeed);
       } else {
 //        reverseMotors();
-        Op empty;
-        currentOp = empty;
+
       }
+      
+    } else if (currentOp->label.equals("reverse_a_bit")) {
+      log(String("Operation: Reversing a bit.  ") + millis() + "       " + currentOp->timeEnd  );
+      log("Next Op Label: ", currentOp->nextOp->label);
+      if (currentOp->timeEnd == 0) {
+        currentOp->timeEnd = millis() + 500;
+      }
+
+      if (millis() <= currentOp->timeEnd) {
+        setMotorDirection(BACKWARD);
+        setSpeed(BOT_EVASIVE_SPEED);
+      } else {
+          setMotorDirection(FORWARD);
+//        reverseMotors();
+
+      }
+      
+
+      
+    }
+
+    if (!currentOp->label.equals("")) {
+
+      if(millis() <= currentOp->timeEnd) {
+        // Operation code common to all.
+        
+      } else {
+        // Stop operation code common to all.
+        Op* next;
+        if (currentOp->nextOp != NULL) {
+          next = currentOp->nextOp;
+          log("Setting next Operation!", next->label);
+
+          
+        } // Else, next is just an empty op.
+        currentOp = next;
+      }
+
+
     }
     
   }

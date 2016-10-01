@@ -41,12 +41,12 @@ void run_command(String key, String value) {
   } else if (key.equals("heading") || key.equals("h")) {
 
     //b.rotateToHeading(value.toInt());
-    Op rotate;
-    rotate.label = "rotation";
-    rotate.setRotation(value.toInt());
-    b.setOp(rotate);
-    log("Rotating to Heading: ", value);
-  
+//    Op rotate;
+//    rotate.label = "rotation";
+//    rotate.setRotation(value.toInt());
+//    b.setOp(rotate);
+//    log("Rotating to Heading: ", value);
+//  
     
   } else if (key.equals("print") || key.equals("p")) {
 
