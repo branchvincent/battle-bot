@@ -4,6 +4,18 @@ const int ROTATE_LEFT = 1;
 const int ROTATE_RIGHT = 2;
 const int ROTATE_STRAIGHT = 3;
 
+
+const int FRONT_SIDE = 1;
+const int BACK_SIDE = 2;
+const int LEFT_SIDE = 3;
+const int RIGHT_SIDE = 4;
+const int FRONT_LEFT_CORNER = 5;
+const int FRONT_RIGHT_CORNER = 6;
+const int BACK_LEFT_CORNER = 7;
+const int BACK_RIGHT_CORNER = 8;
+
+
+
 // Low Batt: 10.5
 // Fresh Batt: 8.5
 
@@ -165,6 +177,36 @@ class BRSTbot {
       log("Executing rotation.");
     }
     
+  }
+
+  void evadeBorder(int side) {
+    switch (side) {
+      case FRONT_SIDE:
+        if (currentOp->label.equals("reverse_a_bit")) {
+          log("Already reversing! yielding...");
+        } else {
+          ReverseABit* reverseABit = new ReverseABit();
+          currentOp = reverseABit;
+        }
+        log("Evading front!");
+        break;
+      case BACK_SIDE:
+        break;
+      case LEFT_SIDE:
+        break;
+      case RIGHT_SIDE:
+        break;
+      case FRONT_LEFT_CORNER:
+        break;
+      case FRONT_RIGHT_CORNER:
+        break;
+      case BACK_LEFT_CORNER:
+        break;
+      case BACK_RIGHT_CORNER:
+        break;
+      default:
+        break;
+    }
   }
 
 
