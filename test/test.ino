@@ -1,4 +1,4 @@
-#include "sonar.h"
+#include "ex/sonar.h"
 #include <SPI.h>
 
 Sonar snr(30, 32);

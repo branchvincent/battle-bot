@@ -1,14 +1,12 @@
-
-
 /* 
  * Requires installation of the following libraries:
- * 
+ *
  * https://github.com/adafruit/Adafruit-Motor-Shield-library
  * https://github.com/adafruit/Adafruit_HMC5883_Unified
  * https://github.com/adafruit/Adafruit_Sensor
- * 
+ *
  */
- 
+
 //      Op forwardEscape;
 //      forwardEscape.label = "edge_escape";
 //      forwardEscape.motorDirection = FORWARD;
@@ -22,7 +20,7 @@
 //      rotate->rotationDegrees = 180;
 //
 //      //reverseABit->nextOp = rotate;
-//      
+//
 
 
 //  Op rotateAmount;
@@ -75,8 +73,8 @@
 Speed  Bias
 200, 0.757
 
- 
- * 
+
+ *
  */
 
 
@@ -100,7 +98,7 @@ Speed  Bias
 //    void setSpeed(int speed) {
 //      this.speed = speed;
 //    }
-//  
+//
 //}
 
 
@@ -109,7 +107,7 @@ Speed  Bias
 //
 //  //String prefix = ;
 //  log("Motor bias set to: ", MOTOR_BIAS_LR);
-//  
+//
 //  Serial.println("Hello World!");
 //
 //  Serial.println("Motor test!");
@@ -117,7 +115,7 @@ Speed  Bias
 //  motorsSetSpeed(200);
 //
 //
-//  
+//
 //  motorLeft.run(FORWARD);
 //  motorRight.run(FORWARD);
 
@@ -134,11 +132,11 @@ Speed  Bias
 
 
 /*
- * String concatenation example: 
+ * String concatenation example:
  *   String hello = "Setting motor speed to: ";
  *   String world = hello + speed;
  *   Serial.println(world);
- * 
+ *
  */
 
 
@@ -155,5 +153,3 @@ Speed  Bias
 // Top-Right: (87.00,196.00)
 // Top-Left: (265.00,194.00)
 // Bottom-Left: (260.00,14.00)
-
-

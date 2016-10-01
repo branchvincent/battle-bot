@@ -117,7 +117,7 @@ void parse_serial_command() {
 unsigned long loop_time;
 unsigned long loop_last_time;
 
-update_loop_timer() {
+void update_loop_timer() {
   loop_time = micros();
   log(loop_time - loop_last_time);
   loop_last_time = loop_time;
