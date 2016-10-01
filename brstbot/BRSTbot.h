@@ -213,7 +213,7 @@ class BRSTbot {
         setMotorDirection(currentOp.motorDirection);
         setSpeed(currentOp.motorSpeed);
       } else {
-        reverseMotors();
+//        reverseMotors();
         Op empty;
         currentOp = empty;
       }
