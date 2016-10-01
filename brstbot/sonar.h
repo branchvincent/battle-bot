@@ -1,16 +1,13 @@
 #ifndef SONAR_H
 #define SONAR_H
 
-// const int triggerPin = 30;
-// const int echoPin = 32;
-
 class Sonar {
 
 //  Member functions
 
     public:
         Sonar(int tPin, int ePin) : triggerPin(tPin), echoPin(ePin) {}
-        void init_sonar() {Serial.begin(11520);}
+        void init() {Serial.begin(11520);}
         long ping();
     private:
         long msToMM(long microseconds) {
@@ -41,7 +38,7 @@ long Sonar::ping() {
 //  Read signal from PING
 
     pinMode(echoPin, INPUT);
-    duration = pulseIn(echoPin, HIGH);
+    long duration = pulseIn(echoPin, HIGH);
     return msToMM(duration);
 }
 

@@ -11,13 +11,10 @@
 #include "Bee.h"
 #include "B_Run.h"
 
-
 const int FRONT_LEFT_IR = 46;
 const int FRONT_RIGHT_IR = 47;
 const int BACK_LEFT_IR = 44;
 const int BACK_RIGHT_IR = 45;
-
-
 
 void setup() {
   init_utilities();
@@ -26,7 +23,7 @@ void setup() {
 
   b.setMotorBias(0.88);
   b.setSpeed(110);
-  
+
   log("Hello World!");
   log("Hello 2");
 
@@ -35,13 +32,11 @@ void setup() {
   rotateAmount.rotationDegrees = 90;
   rotateAmount.rotationDirection = ROTATE_LEFT;
   b.setOp(rotateAmount);
-  
-
 }
 
   //update_loop_timer();
 
-  
+
 void loop() {
 
   parse_serial_command();
@@ -74,23 +69,18 @@ void loop() {
   }
 
 
-  
-  
+
+
   String a = "   ";
   for (int i = 44; i <= 47; i++) {
     int sensorPin = i;
     int sensorValue = digitalRead(sensorPin);
     a += String("Pin ")+ String(sensorPin) + String(": ") + sensorValue + String("     ");
-    
+
   }
   //log(a);
 
 
-  
+
 
 }
-
-
-
-
-
