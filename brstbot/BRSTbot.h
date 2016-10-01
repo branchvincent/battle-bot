@@ -1,75 +1,18 @@
 
-class Point {
-  public:
-    float x;
-    float y;
-
-  public:
-    String toString() {
-      return concat("(", x) + concat(", ", y) + ")";
-    }
-
-    Point(int x_in, int y_in) {
-      x = x_in;
-      y = y_in;
-    }
-
-    Point() {
-      x = 0;
-      y = 0;
-    }
-};
-
 
 const int ROTATE_LEFT = 1;
 const int ROTATE_RIGHT = 2;
 const int ROTATE_STRAIGHT = 3;
+
 // Low Batt: 10.5
 // Fresh Batt: 8.5
+
 const float millis_per_degree = 4.25;
 const int BOT_ROTATION_SPEED = 110;
 const int BOT_EVASIVE_SPEED = 255;
 const int rotation_base_time = 100;
 
-// For representing operations on the robot.
-class Op {
 
-  public:
-    String label;
-    long timeEnd = 0;
-
-    
-    int motorDirection;
-    int motorSpeed;
-    
-    
-    int rotationDegrees;
-    int rotationDirection;
-    Op *nextOp;
-
-  private:
-    int rotation;
-
-  public:
-
-    int setRotation(int degrees) {
-      rotation = degrees;
-    }
-  
-    int getRotation() {
-      return rotation;
-    }
-
-  
-};
-
-void error(String e) {
-  log(e);
-  log("");
-  log("");
-  log("");
-  
-}
 
 class BRSTbot {
   private:
