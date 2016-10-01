@@ -58,6 +58,14 @@ void log(String a, String b) {
   log(concat(a, b));
 }
 
+void error(String e) {
+  log(e);
+  log("");
+  log("");
+  log("");
+  
+}
+
 
 /*  String Split  */
 
