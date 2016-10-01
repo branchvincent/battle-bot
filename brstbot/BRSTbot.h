@@ -21,6 +21,15 @@ class Point {
 };
 
 
+const int ROTATE_LEFT = 1;
+const int ROTATE_RIGHT = 2;
+const int ROTATE_STRAIGHT = 3;
+// Low Batt: 10.5
+// Fresh Batt: 8.5
+const float millis_per_degree = 4.25;
+const int BOT_ROTATION_SPEED = 110;
+const int rotation_base_time = 100;
+
 // For representing operations on the robot.
 class Op {
 
@@ -28,7 +37,9 @@ class Op {
     String label;
     int motorDirection;
     int motorSpeed;
-    long timeEnd;
+    long timeEnd = 0;
+    int rotationDegrees;
+    int rotationDirection;
 
   private:
     int rotation;
@@ -169,6 +180,16 @@ class BRSTbot {
     motorRight.run(BACKWARD);
   }
 
+  void setRotationDirection(int rotation) {
+    if (rotation == ROTATE_LEFT) {
+      rotateLeft();
+    } else if (rotation = ROTATE_RIGHT) {
+      rotateRight();
+    } else if (rotation = ROTATE_STRAIGHT) {
+      rotateStraight();
+    }
+  }
+
   void setMotorDirection(int direction) {
     motorLeft.run(direction);
     motorRight.run(direction);
@@ -199,13 +220,23 @@ class BRSTbot {
 
     if (currentOp.label.equals("rotation")) {
       log("Rotating");
-      if(getTrueHeadingUnaverage() < currentOp.getRotation()) {
-        rotateLeft();
+
+      if (currentOp.timeEnd == 0) {
+        currentOp.timeEnd = millis() + rotation_base_time + currentOp.rotationDegrees * millis_per_degree;
+      }
+
+      log(String("   ") + millis() + ",     " + currentOp.timeEnd);
+      if(millis() <= currentOp.timeEnd) {
+        setSpeed(BOT_ROTATION_SPEED);
+        setRotationDirection(currentOp.rotationDirection);
+        
       } else {
         stopMotors();
         Op empty;
         currentOp = empty;
       }
+
+      
     } else if (currentOp.label.equals("edge_escape")) {
       log("Operation: Edge Escape");
 
