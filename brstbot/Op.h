@@ -30,3 +30,21 @@ class Op {
   
 };
 
+
+class Rotation : public Op {
+  
+};
+
+class ReverseABit : public Op {
+  
+};
+
+
+
+
+
+
+
+
+
+
