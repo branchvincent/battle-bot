@@ -9,6 +9,43 @@
  * 
  */
  
+//      Op forwardEscape;
+//      forwardEscape.label = "edge_escape";
+//      forwardEscape.motorDirection = FORWARD;
+//      forwardEscape.motorSpeed = 200;
+//      b.setOp(forwardEscape);
+
+
+//      Op *rotate = new Op();
+//      rotate->label = "rotation";
+//      rotate->rotationDirection = ROTATE_LEFT;
+//      rotate->rotationDegrees = 180;
+//
+//      //reverseABit->nextOp = rotate;
+//      
+
+
+//  Op rotateAmount;
+//  rotateAmount.label = "rotation";
+//  rotateAmount.rotationDegrees = 90;
+//  rotateAmount.rotationDirection = ROTATE_LEFT;
+//  b.setOp(rotateAmount);
+
+
+
+
+
+//  String a = "   ";
+//  for (int i = 44; i <= 47; i++) {
+//    int sensorPin = i;
+//    int sensorValue = digitalRead(sensorPin);
+//    a += String("Pin ")+ String(sensorPin) + String(": ") + sensorValue + String("     ");
+//
+//  }
+  //log(a);
+
+
+
 
 
 // Left
