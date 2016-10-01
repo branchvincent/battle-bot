@@ -27,11 +27,12 @@ void setup() {
   log("Hello World!");
   log("Hello 2");
 
-  Op rotateAmount;
-  rotateAmount.label = "rotation";
-  rotateAmount.rotationDegrees = 90;
-  rotateAmount.rotationDirection = ROTATE_LEFT;
-  b.setOp(rotateAmount);
+
+//  Op rotateAmount;
+//  rotateAmount.label = "rotation";
+//  rotateAmount.rotationDegrees = 90;
+//  rotateAmount.rotationDirection = ROTATE_LEFT;
+//  b.setOp(rotateAmount);
 }
 
   //update_loop_timer();
@@ -50,21 +51,25 @@ void loop() {
 
 
 
-  if (false) {
+  if (true) {
     if (digitalRead(BACK_LEFT_IR) == 0 && digitalRead(BACK_RIGHT_IR) == 0) {
-      Op forwardEscape;
-      forwardEscape.label = "edge_escape";
-      forwardEscape.motorDirection = FORWARD;
-      forwardEscape.motorSpeed = 200;
-      forwardEscape.timeEnd = millis() + 1000;
-      b.setOp(forwardEscape);
+//      Op forwardEscape;
+//      forwardEscape.label = "edge_escape";
+//      forwardEscape.motorDirection = FORWARD;
+//      forwardEscape.motorSpeed = 200;
+//      b.setOp(forwardEscape);
     } else if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
-      Op backEscape;
-      backEscape.label = "edge_escape";
-      backEscape.motorDirection = BACKWARD;
-      backEscape.motorSpeed = 200;
-      backEscape.timeEnd = millis() + 1000;
-      b.setOp(backEscape);
+      Op *reverseABit = new Op();
+      reverseABit->label = "reverse_a_bit";
+
+      Op *rotate = new Op();
+      rotate->label = "rotation";
+      rotate->rotationDirection = ROTATE_LEFT;
+      rotate->rotationDegrees = 180;
+
+      reverseABit->nextOp = rotate;
+
+      b.setOp(reverseABit);
     }
   }
 
