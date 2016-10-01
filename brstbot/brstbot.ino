@@ -25,6 +25,7 @@ void setup() {
   init_bee();
 
   b.setMotorBias(0.88);
+  b.setSpeed(110);
   
   log("Hello World!");
   log("Hello 2");
@@ -41,17 +42,28 @@ void loop() {
   //update_mag_running();
   //update_bee();
   p.print();
+  b.op_check();
 
 //  log("Hello");
 
   String a = "   ";
+
+  if (digitalRead(BACK_LEFT_IR) == 0 && digitalRead(BACK_LEFT_IR) == 0) {
+    Op forwardEscape;
+    forwardEscape.label = "edge_escape";
+    forwardEscape.motorDirection = FORWARD;
+    forwardEscape.motorSpeed = 200;
+    forwardEscape.timeEnd = millis() + 1000;
+    b.setOp(forwardEscape);
+  }
+  
   for (int i = 44; i <= 47; i++) {
     int sensorPin = i;
     int sensorValue = digitalRead(sensorPin);
     a += String("Pin ")+ String(sensorPin) + String(": ") + sensorValue + String("     ");
     
   }
-  log(a);
+  //log(a);
 
 
   

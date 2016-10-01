@@ -26,6 +26,9 @@ class Op {
 
   public:
     String label;
+    int motorDirection;
+    int motorSpeed;
+    long timeEnd;
 
   private:
     int rotation;
@@ -166,6 +169,11 @@ class BRSTbot {
     motorRight.run(BACKWARD);
   }
 
+  void setMotorDirection(int direction) {
+    motorLeft.run(direction);
+    motorRight.run(direction);
+  }
+
   void customConfiguration() {
     motorLeft.run(RELEASE);
     motorRight.run(FORWARD);
@@ -181,26 +189,37 @@ class BRSTbot {
     currentOp = o;
   }
 
-//  void op_check() {
-//
-//    if (!currentOp.label.equals("")) {
-//      
-//      log("Performing operation: ", currentOp.label);
-//    }
-//    
-//
-//    if (currentOp.label.equals("rotation")) {
-//      log("Rotating");
-//      if(getTrueHeadingUnaverage() < currentOp.getRotation()) {
-//        rotateLeft();
-//      } else {
-//        stopMotors();
-//        //Op empty;
-//        //currentOp = empty;
-//      }
-//    }
-//    
-//  }
+  void op_check() {
+
+    if (!currentOp.label.equals("")) {
+      
+      log("Performing operation: ", currentOp.label);
+    }
+    
+
+    if (currentOp.label.equals("rotation")) {
+      log("Rotating");
+      if(getTrueHeadingUnaverage() < currentOp.getRotation()) {
+        rotateLeft();
+      } else {
+        stopMotors();
+        Op empty;
+        currentOp = empty;
+      }
+    } else if (currentOp.label.equals("edge_escape")) {
+      log("Operation: Edge Escape");
+
+      if (millis() <= currentOp.timeEnd) {
+        setMotorDirection(currentOp.motorDirection);
+        setSpeed(currentOp.motorSpeed);
+      } else {
+        reverseMotors();
+        Op empty;
+        currentOp = empty;
+      }
+    }
+    
+  }
 
 
   void update() {

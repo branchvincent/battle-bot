@@ -17,8 +17,8 @@ void run_command(String key, String value) {
   } else if (key.equals("dir") || key.equals("d")) {
     
     if (value.equals("forward") || value.equals("f")) { b.startMotors(); } 
-    else if (value.equals("back")) { b.reverseMotors(); }
-    else if (value.equals("stop")) { b.stopMotors(); }
+    else if (value.equals("back") || value.equals("r") || value.equals("b")) { b.reverseMotors(); }
+    else if (value.equals("stop") || value.equals("s")) { b.stopMotors(); }
     log("Setting motor direction to: ", value);
 
   } else if (key.equals("rotate") || key.equals("r")) {
