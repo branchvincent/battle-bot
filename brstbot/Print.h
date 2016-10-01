@@ -1,3 +1,9 @@
+#ifndef PRINT_H
+#define PRINT_H
+
+#include "Globals.h"
+
+using namespace globals;
 
 String print_bots();
 
@@ -29,6 +35,6 @@ class PrintMode {
         log("Bots Heading: ", print_bots());
       }
     }
-    
-  
 };
+
+#endif

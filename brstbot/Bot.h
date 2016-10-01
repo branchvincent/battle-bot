@@ -1,5 +1,5 @@
-
-
+#ifndef BOT_H
+#define BOT_H
 
 const int bot_position_buffer_size = 5;
 
@@ -16,7 +16,7 @@ class Bot {
     Point getLastPosition() {
       return lastPosition;
     }
-  
+
     Point getPosition() {
        return position;
     }
@@ -26,18 +26,18 @@ class Bot {
       if ((p.x != lastPosition.x) || (p.y != lastPosition.y)) {
 
         Point displacementVector((int)(p.x - lastPosition.x), (int)(p.y - lastPosition.y));
-  
+
         // Update estimated heading.
         float headingRadians = atan2(displacementVector.y, displacementVector.x);
         float headingDegrees = headingRadians * 180/M_PI; ;
         visualHeading = headingDegrees;
-        
+
         lastPosition = position;
         position = p;
 
         log("New Position for Bot: ", p.toString());
         log("New Heading for Bot: ", headingDegrees);
-        
+
       }
     }
 
@@ -58,4 +58,4 @@ String print_bots() {
   return result;
 }
 
-
+#endif

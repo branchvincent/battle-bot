@@ -1,10 +1,7 @@
-
 #ifndef BRSTBOT_H
 #define BRSTBOT_H
 
-
 #include "Op.h"
-
 
 enum RotationDirection {
   ROTATE_LEFT,
@@ -16,7 +13,7 @@ enum Side {
   FRONT_SIDE,
   BACK_SIDE,
   LEFT_SIDE,
-  RIGHT_SIDE, 
+  RIGHT_SIDE,
   FRONT_LEFT_CORNER,
   FRONT_RIGHT_CORNER,
   BACK_LEFT_CORNER,
@@ -54,7 +51,7 @@ class BRSTbot {
   }
 
   /* Getters and Setters */
-  
+
   void setSpeed(int s) {
     speed = s;
     motorLeft.setSpeed(speed * motorBias);
@@ -172,8 +169,8 @@ class BRSTbot {
 
   void rotateToHeading(int degrees) {
 
-    
-    
+
+
   }
 
   void setOp(Op* o) {
@@ -185,7 +182,7 @@ class BRSTbot {
       // Op finished execution. Replace with next op if necessary.
       currentOp = NULL;
     }
-    
+
   }
 
   void evadeBorder(int side) {
@@ -222,12 +219,10 @@ class BRSTbot {
   void update() {
     //log("Updating robot!");
   }
-  
-  
+
+
 };
 
 BRSTbot b;
 
 #endif
-
-

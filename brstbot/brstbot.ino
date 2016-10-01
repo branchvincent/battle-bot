@@ -13,6 +13,10 @@
 #include "Bee.h"
 #include "B_Run.h"
 
+#include "Globals.h"
+
+using namespace globals;
+
 const int FRONT_LEFT_IR = 46;
 const int FRONT_RIGHT_IR = 47;
 const int BACK_LEFT_IR = 44;
