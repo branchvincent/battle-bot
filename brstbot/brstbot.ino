@@ -196,6 +196,7 @@ class Bot {
       Point first_point = position_buffer[first_index];
       Point displacementVector((int)(p.x - first_point.x), (int)(p.y - first_point.y));
       position_kickout_index++;
+      position_kickout_index %= bot_position_buffer_size;
 
       // Update estimated heading.
       float headingDegrees = atan2(displacementVector.y, displacementVector.x);
@@ -226,9 +227,9 @@ String print_bots() {
   
 void loop() {
 
-  //parse_serial_command();
-  //update_mag_running();
-  //p.print();
+  parse_serial_command();
+  update_mag_running();
+  p.print();
 
 
   // This must be called every loop
@@ -238,17 +239,14 @@ void loop() {
     team_status_t* stat = bee.get_status(i);
     if (stat->haveFound || true) {
       Serial.print("(");
-      Serial.print(int(stat->x));
+      Serial.print(x_true(stat->x));
       Serial.print(",");
-      Serial.print(int(stat->y));
+      Serial.print(y_true(stat->y));
       Serial.print(")   ");
+      bots[i].setPosition(Point(x_true(stat->x),y_true(stat->y)));
     }
   }
   Serial.println();
-
-
-  
-//  bee.update();
   
 }
 
