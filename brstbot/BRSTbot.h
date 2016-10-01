@@ -176,7 +176,7 @@ class BRSTbot {
   }
 
   void op_check() {
-    if (currentOp->execute()) {
+    if (currentOp->execute(b)) {
       // Op finished execution. Replace with next op if necessary.
       currentOp = NULL;
     }
@@ -221,6 +221,5 @@ class BRSTbot {
 
 };
 
-BRSTbot b;
 
 #endif

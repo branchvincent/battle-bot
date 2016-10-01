@@ -1,3 +1,6 @@
+
+class BRSTbot;
+
 void init_utilities() {
   //Serial.begin(9600);
   Serial.begin(115200);
@@ -92,22 +95,22 @@ String* string_split(String s, char delim) {
 
 /*  Command Parser  */
 
-void run_command(String, String);
+void run_command(String, String, BRSTbot &);
 
-void parse_command(String s) {
+void parse_command(String s, BRSTbot & b) {
   int colon_index = s.indexOf(':');
   if (colon_index >= 0) {
     String key = s.substring(0, colon_index);
     String value = s.substring(colon_index+1);
-    run_command(key, value);
+    run_command(key, value, b);
   } else {
     log("Command not recognized");
   }
 }
 
-void parse_serial_command() {
+void parse_serial_command(BRSTbot & b) {
   if (Serial.available() > 0) {
-    parse_command(Serial.readString());
+    parse_command(Serial.readString(), b);
   }
 }
 

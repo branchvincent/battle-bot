@@ -1,6 +1,7 @@
 #ifndef OP_H
 #define OP_H
 
+#include "BRSTbot.h"
 #include "Globals.h"
 
 using namespace globals;
@@ -13,6 +14,7 @@ using namespace globals;
 *																			*
 ****************************************************************************/
 
+class BRSTbot;
 
 class Op {
 
@@ -22,7 +24,7 @@ class Op {
 
     Op *nextOp;
 
-    virtual bool execute()=0;
+    virtual bool execute(BRSTbot& a)=0;
 
 };
 
@@ -42,7 +44,7 @@ class Rotation : public Op {
       label = "rotation";
     }
 
-    bool execute() {
+    bool execute(BRSTbot& a) {
 
     }
 
@@ -54,7 +56,7 @@ class Translation : public Op {
     int motorDirection;
     int motorSpeed;
 
-    bool execute() {
+    bool execute(BRSTbot& b) {
       if (millis() <= endTime) {
         b.setMotorSpeed(motorSpeed);
         b.setMotorDirection(motorDirection);
@@ -83,8 +85,8 @@ class ReverseABit : public Translation {
       motorSpeed = 255;
     }
 
-    bool execute() {
-      Translation::execute();
+    bool execute(BRSTbot& a) {
+      Translation::execute(a);
     }
 
 

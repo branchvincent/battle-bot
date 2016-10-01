@@ -6,8 +6,9 @@
 using namespace globals;
 
 PrintMode p;
+BRSTbot b;
 
-void run_command(String key, String value) {
+void run_command(String key, String value, BRSTbot & b) {
   if (key.equals("speed") || key.equals("s")) {   // e.g., user entered  "speed:37"  in serial monitor
 
     b.setSpeed(value.toInt());
