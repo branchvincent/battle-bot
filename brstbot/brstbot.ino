@@ -29,6 +29,12 @@ void setup() {
   
   log("Hello World!");
   log("Hello 2");
+
+  Op rotateAmount;
+  rotateAmount.label = "rotation";
+  rotateAmount.rotationDegrees = 180;
+  rotateAmount.rotationDirection = ROTATE_LEFT;
+  b.setOp(rotateAmount);
   
 
 }
@@ -46,26 +52,31 @@ void loop() {
 
 //  log("Hello");
 
-  String a = "   ";
 
-  if (digitalRead(BACK_LEFT_IR) == 0 && digitalRead(BACK_RIGHT_IR) == 0) {
-    Op forwardEscape;
-    forwardEscape.label = "edge_escape";
-    forwardEscape.motorDirection = FORWARD;
-    forwardEscape.motorSpeed = 200;
-    forwardEscape.timeEnd = millis() + 1000;
-    b.setOp(forwardEscape);
-  } else if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
-    Op backEscape;
-    backEscape.label = "edge_escape";
-    backEscape.motorDirection = BACKWARD;
-    backEscape.motorSpeed = 200;
-    backEscape.timeEnd = millis() + 1000;
-    b.setOp(backEscape);
+
+
+  if (false) {
+    if (digitalRead(BACK_LEFT_IR) == 0 && digitalRead(BACK_RIGHT_IR) == 0) {
+      Op forwardEscape;
+      forwardEscape.label = "edge_escape";
+      forwardEscape.motorDirection = FORWARD;
+      forwardEscape.motorSpeed = 200;
+      forwardEscape.timeEnd = millis() + 1000;
+      b.setOp(forwardEscape);
+    } else if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
+      Op backEscape;
+      backEscape.label = "edge_escape";
+      backEscape.motorDirection = BACKWARD;
+      backEscape.motorSpeed = 200;
+      backEscape.timeEnd = millis() + 1000;
+      b.setOp(backEscape);
+    }
   }
+
+
   
   
-  
+  String a = "   ";
   for (int i = 44; i <= 47; i++) {
     int sensorPin = i;
     int sensorValue = digitalRead(sensorPin);
