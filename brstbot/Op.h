@@ -29,9 +29,21 @@ class Rotation : public Op {
 };
 
 class Translation : public Op {
-  bool execute() {
+
+  public:
+    int motorDirection;
+    int motorSpeed;
     
-  }
+    bool execute() {
+      if (millis() <= endTime) {
+        b.setMotorSpeed(motorSpeed);
+        b.setMotorDirection(motorDirection);
+        return false;
+      } else {
+        return true;
+      }
+      
+    }
 };
 
 class ReverseABit : public Translation {
@@ -40,10 +52,12 @@ class ReverseABit : public Translation {
     ReverseABit() {
       label = "reverse_a_bit";
       endTime = millis() + 500;
+      motorDirection = BACKWARD;
+      motorSpeed = 255;
     }
 
     bool execute() {
-      
+      Translation::execute();
     }
 
     
