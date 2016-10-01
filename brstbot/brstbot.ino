@@ -5,6 +5,7 @@
 #include "utilities.h"
 #include "magnetometer.h"
 #include "ChinaBee.h"
+#include "Point.h"
 #include "BRSTbot.h"
 #include "Print.h"
 #include "Bot.h"
