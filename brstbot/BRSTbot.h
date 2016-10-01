@@ -24,8 +24,11 @@ class Point {
 const int ROTATE_LEFT = 1;
 const int ROTATE_RIGHT = 2;
 const int ROTATE_STRAIGHT = 3;
-const float millis_per_degree = 5.5;
+// Low Batt: 10.5
+// Fresh Batt: 8.5
+const float millis_per_degree = 4.25;
 const int BOT_ROTATION_SPEED = 110;
+const int rotation_base_time = 100;
 
 // For representing operations on the robot.
 class Op {
@@ -219,7 +222,7 @@ class BRSTbot {
       log("Rotating");
 
       if (currentOp.timeEnd == 0) {
-        currentOp.timeEnd = millis() + currentOp.rotationDegrees * millis_per_degree;
+        currentOp.timeEnd = millis() + rotation_base_time + currentOp.rotationDegrees * millis_per_degree;
       }
 
       log(String("   ") + millis() + ",     " + currentOp.timeEnd);

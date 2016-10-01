@@ -32,7 +32,7 @@ void setup() {
 
   Op rotateAmount;
   rotateAmount.label = "rotation";
-  rotateAmount.rotationDegrees = 180;
+  rotateAmount.rotationDegrees = 90;
   rotateAmount.rotationDirection = ROTATE_LEFT;
   b.setOp(rotateAmount);
   
