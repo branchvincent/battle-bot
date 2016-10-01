@@ -27,9 +27,12 @@ class Sonar {
             {for (int i = 0; i < ARR_SIZE; i++) distances[i] = 1000;}
         void init() {Serial.begin(9600);}
         long ping();
+        long objDistance() {return distances[lastIndex()]};
         bool objDetected();
         long avgDistance();
         long msToMM(long microseconds) {return microseconds / 29 / 2;}
+        int lastIndex()
+            {int i = CURR_INDEX - 1; if (i < 0) i += ARR_SIZE; return i;}
 
 //  Data members
 
@@ -68,7 +71,7 @@ long Sonar::ping() {
     long duration = pulseIn(echoPin, HIGH);
     long distance = msToMM(duration);
 
-//  Update distances and return lastest distance 
+//  Update distances and return lastest distance
 
     distances[CURR_INDEX++] = distance;
     CURR_INDEX %= ARR_SIZE;
