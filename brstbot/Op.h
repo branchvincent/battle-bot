@@ -3,7 +3,7 @@ class Op {
 
   public:
     String label;
-    long timeEnd = 0;
+    long endTime = 0;
     
     Op *nextOp;
   
@@ -22,11 +22,16 @@ class Rotation : public Op {
   
 };
 
-class ReverseABit : public Op {
+class Translation : public Op {
+  
+};
+
+class ReverseABit : public Translation {
 
   public:
     ReverseABit() {
       label = "reverse_a_bit";
+      endTime = millis() + 500;
     }
 
   

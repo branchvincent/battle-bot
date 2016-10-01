@@ -1,19 +1,21 @@
 
 
-const int ROTATE_LEFT = 1;
-const int ROTATE_RIGHT = 2;
-const int ROTATE_STRAIGHT = 3;
+enum RotationDirection {
+  ROTATE_LEFT,
+  ROTATE_RIGHT,
+  ROTATE_STRAIGHT
+};
 
-
-const int FRONT_SIDE = 1;
-const int BACK_SIDE = 2;
-const int LEFT_SIDE = 3;
-const int RIGHT_SIDE = 4;
-const int FRONT_LEFT_CORNER = 5;
-const int FRONT_RIGHT_CORNER = 6;
-const int BACK_LEFT_CORNER = 7;
-const int BACK_RIGHT_CORNER = 8;
-
+enum Side {
+  FRONT_SIDE,
+  BACK_SIDE,
+  LEFT_SIDE,
+  RIGHT_SIDE, 
+  FRONT_LEFT_CORNER,
+  FRONT_RIGHT_CORNER,
+  BACK_LEFT_CORNER,
+  BACK_RIGHT_CORNER
+};
 
 
 // Low Batt: 10.5
@@ -173,8 +175,15 @@ class BRSTbot {
   }
 
   void op_check() {
-    if (currentOp->label.equals("rotation")) {
-      log("Executing rotation.");
+    if (currentOp->label.equals("reverse_a_bit")) {
+
+      if (currentOp->endTime == 0) {
+        currentOp->endTime == millis() + 500;
+      }
+//
+//      if
+
+      
     }
     
   }
