@@ -34,6 +34,7 @@ void setup() {
   //update_loop_timer();
 
 
+
 void loop() {
 
   parse_serial_command();
@@ -46,8 +47,7 @@ void loop() {
 
   if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
     log("Detection condition.");
-    //ReverseABit* reverse_a_bit = new ReverseABit();
-    //b.setOp(reverse_a_bit);
+    b.evadeBorder(FRONT_SIDE);
     
   }
 
