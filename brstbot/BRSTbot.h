@@ -161,81 +161,8 @@ class BRSTbot {
   }
 
   void op_check() {
-
     if (currentOp->label.equals("rotation")) {
-      log("Rotating");
-
-      if (currentOp->timeEnd == 0) {
-        currentOp->timeEnd = millis() + rotation_base_time + currentOp->rotationDegrees * millis_per_degree;
-        log(String("Setting TIME END to: ") + currentOp->timeEnd);
-      } else {
-        log(String("TIME END NOT EQUAL TO ZERO: ") + currentOp->timeEnd);
-      }
-
-      log(String("   ") + millis() + ",     " + currentOp->timeEnd);
-      if(millis() <= currentOp->timeEnd) {
-        setSpeed(BOT_ROTATION_SPEED);
-        setRotationDirection(currentOp->rotationDirection);
-        
-      } else {
-        startMotors();
-
-      }
-
-      
-    } else if (currentOp->label.equals("edge_escape")) {
-      log("Operation: Edge Escape");
-
-      if (currentOp->timeEnd == 0) {
-        currentOp->timeEnd = millis() + 500;
-      }
-
-      if (millis() <= currentOp->timeEnd) {
-        setMotorDirection(currentOp->motorDirection);
-        setSpeed(currentOp->motorSpeed);
-      } else {
-//        reverseMotors();
-
-      }
-      
-    } else if (currentOp->label.equals("reverse_a_bit")) {
-      log(String("Operation: Reversing a bit.  ") + millis() + "       " + currentOp->timeEnd  );
-      log("Next Op Label: ", currentOp->nextOp->label);
-      if (currentOp->timeEnd == 0) {
-        currentOp->timeEnd = millis() + 500;
-      }
-
-      if (millis() <= currentOp->timeEnd) {
-        setMotorDirection(BACKWARD);
-        setSpeed(BOT_EVASIVE_SPEED);
-      } else {
-          setMotorDirection(FORWARD);
-//        reverseMotors();
-
-      }
-      
-
-      
-    }
-
-    if (!currentOp->label.equals("")) {
-
-      if(millis() <= currentOp->timeEnd) {
-        // Operation code common to all.
-        
-      } else {
-        // Stop operation code common to all.
-        Op* next;
-        if (currentOp->nextOp != NULL) {
-          next = currentOp->nextOp;
-          log("Setting next Operation!", next->label);
-
-          
-        } // Else, next is just an empty op.
-        currentOp = next;
-      }
-
-
+      log("Executing rotation.");
     }
     
   }

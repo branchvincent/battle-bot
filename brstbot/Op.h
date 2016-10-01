@@ -4,29 +4,40 @@ class Op {
   public:
     String label;
     long timeEnd = 0;
-
     
-    int motorDirection;
-    int motorSpeed;
-    
-    
-    int rotationDegrees;
-    int rotationDirection;
     Op *nextOp;
+  
+};
 
-  private:
-    int rotation;
+
+class Rotation : public Op {
 
   public:
+    int rotationDegrees;
+    int rotationDirection;
 
-    int setRotation(int degrees) {
-      rotation = degrees;
+    Rotation() {
+      label = "rotation";
     }
   
-    int getRotation() {
-      return rotation;
+};
+
+class ReverseABit : public Op {
+
+  public:
+    ReverseABit() {
+      label = "reverse_a_bit";
     }
 
   
 };
+
+
+
+
+
+
+
+
+
 

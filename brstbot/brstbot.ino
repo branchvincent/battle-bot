@@ -42,17 +42,13 @@ void loop() {
   p.print();
   b.op_check();
 
-//  log("Hello");
+  //log("Hello");
 
-
-  if (true) {
-    if (digitalRead(BACK_LEFT_IR) == 0 && digitalRead(BACK_RIGHT_IR) == 0) {
-
-    } else if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
-      Op *reverseABit = new Op();
-      reverseABit->label = "reverse_a_bit";
-      b.setOp(reverseABit);
-    }
+  if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
+    log("Detection condition.");
+    ReverseABit* reverse_a_bit = new ReverseABit();
+    b.setOp(reverse_a_bit);
+    
   }
 
 }
