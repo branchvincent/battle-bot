@@ -1,3 +1,16 @@
+
+
+/* 
+ * Requires installation of the following libraries:
+ * 
+ * https://github.com/adafruit/Adafruit-Motor-Shield-library
+ * https://github.com/adafruit/Adafruit_HMC5883_Unified
+ * https://github.com/adafruit/Adafruit_Sensor
+ * 
+ */
+ 
+
+
 // Left
 // Black -> Top
 // Red -> Bottom
