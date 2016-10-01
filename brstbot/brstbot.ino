@@ -12,6 +12,13 @@
 #include "B_Run.h"
 
 
+const int FRONT_LEFT_IR = 44;
+const int FRONT_RIGHT_IR = 44;
+const int BACK_LEFT_IR = 44;
+const int BACK_RIGHT_IR = 44;
+
+
+
 void setup() {
   init_utilities();
   init_magsensor();
@@ -20,6 +27,8 @@ void setup() {
   b.setMotorBias(0.88);
   
   log("Hello World!");
+
+  
 
 }
 
