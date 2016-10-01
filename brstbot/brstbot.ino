@@ -71,7 +71,7 @@ void loop() {
       rotate->rotationDirection = ROTATE_LEFT;
       rotate->rotationDegrees = 180;
 
-      reverseABit->nextOp = rotate;
+      //reverseABit->nextOp = rotate;
       
       b.setOp(reverseABit);
     }
