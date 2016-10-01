@@ -6,6 +6,8 @@ class Op {
     long endTime = 0;
     
     Op *nextOp;
+
+    virtual bool execute()=0;
   
 };
 
@@ -19,11 +21,17 @@ class Rotation : public Op {
     Rotation() {
       label = "rotation";
     }
+
+    bool execute() {
+      
+    }
   
 };
 
 class Translation : public Op {
-  
+  bool execute() {
+    
+  }
 };
 
 class ReverseABit : public Translation {
@@ -34,6 +42,11 @@ class ReverseABit : public Translation {
       endTime = millis() + 500;
     }
 
+    bool execute() {
+      
+    }
+
+    
   
 };
 

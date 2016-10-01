@@ -175,15 +175,8 @@ class BRSTbot {
   }
 
   void op_check() {
-    if (currentOp->label.equals("reverse_a_bit")) {
-
-      if (currentOp->endTime == 0) {
-        currentOp->endTime == millis() + 500;
-      }
-//
-//      if
-
-      
+    if (currentOp->execute()) {
+      // Op finished execution. Replace with next op if necessary.
     }
     
   }
