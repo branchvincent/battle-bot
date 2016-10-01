@@ -1,3 +1,11 @@
+#ifndef OP_H
+#define OP_H
+
+#include "BRSTbot.h"
+
+
+
+
 // For representing operations on the robot.
 class Op {
 
@@ -63,6 +71,10 @@ class ReverseABit : public Translation {
     
   
 };
+
+#endif
+
+
 
 
 
