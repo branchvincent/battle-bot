@@ -30,6 +30,7 @@ class Sonar {
         long objDistance() {return distances[lastIndex()]};
         bool objDetected();
         long avgDistance();
+    private:
         long msToMM(long microseconds) {return microseconds / 29 / 2;}
         int lastIndex()
             {int i = CURR_INDEX - 1; if (i < 0) i += ARR_SIZE; return i;}

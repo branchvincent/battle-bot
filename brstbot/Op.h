@@ -4,9 +4,9 @@ class Op {
   public:
     String label;
     long timeEnd = 0;
-    
+
     Op *nextOp;
-  
+
 };
 
 
@@ -19,7 +19,7 @@ class Rotation : public Op {
     Rotation() {
       label = "rotation";
     }
-  
+
 };
 
 class ReverseABit : public Op {
@@ -29,15 +29,5 @@ class ReverseABit : public Op {
       label = "reverse_a_bit";
     }
 
-  
+
 };
-
-
-
-
-
-
-
-
-
-
