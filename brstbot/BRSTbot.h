@@ -1,8 +1,6 @@
 #ifndef BRSTBOT_H
 #define BRSTBOT_H
 
-#include "Op.h"
-
 enum RotationDirection {
   ROTATE_LEFT,
   ROTATE_RIGHT,

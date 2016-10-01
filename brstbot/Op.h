@@ -1,7 +1,6 @@
 #ifndef OP_H
 #define OP_H
 
-#include "BRSTbot.h"
 #include "Globals.h"
 
 using namespace globals;
@@ -13,6 +12,7 @@ using namespace globals;
 *	Definition of Op class											        *
 *																			*
 ****************************************************************************/
+
 
 class Op {
 
