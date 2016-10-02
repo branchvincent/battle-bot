@@ -160,7 +160,7 @@ void BRSTbot::op_check() {
         log("No Next op!");
       }
       delete finishedOp;
-      stopMotors();
+    //   stopMotors();
     //  setSpeed(110);
 //      setMotorDirection(FORWARD);
     }
@@ -177,7 +177,7 @@ void BRSTbot::evadeBorder(int side) {
                 log("Already evading front! Yielding...");
             } else {
                 log("Creating front evasion...");
-                TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED, op_label);
+                TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED, op_label, 500);
                 RotationOp* rotate = new RotationOp(180, ROTATE_LEFT, op_label);
                 TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
 

@@ -42,8 +42,8 @@ void setup() {
   b.setMotorBias(0.88);
   b.setSpeed(110);
 
-  RotationOp* r = new RotationOp(90, ROTATE_LEFT, EVADE_RIGHT);
-  b.setOp(r);
+  // RotationOp* r = new RotationOp(90, ROTATE_LEFT, EVADE_RIGHT);
+  // b.setOp(r);
 
   //b.startMotors();
 
@@ -65,25 +65,25 @@ void loop() {
 
   b.op_check();
 
-  // // log(S("Curr time = " + millis()));
-  // //log("Hello");
-  //
-  //   if (FRONT_LEFT_IR.detected() && FRONT_RIGHT_IR.detected()) {
-  //       log("Detection condition.");
-  //       b.evadeBorder(FRONT_SIDE);
-  //   }
-  //   else if (BACK_LEFT_IR.detected() && BACK_RIGHT_IR.detected())
-  //       b.evadeBorder(BACK_SIDE);
-  //   else if (FRONT_LEFT_IR.detected() && BACK_LEFT_IR.detected())
-  //       b.evadeBorder(LEFT_SIDE);
-  //   else if (FRONT_RIGHT_IR.detected() && BACK_RIGHT_IR.detected())
-  //       b.evadeBorder(RIGHT_SIDE);
-  //   else if (FRONT_LEFT_IR.detected())
-  //       b.evadeBorder(FRONT_LEFT_CORNER);
-  //   else if (FRONT_RIGHT_IR.detected())
-  //       b.evadeBorder(FRONT_RIGHT_CORNER);
-  //   else if (BACK_LEFT_IR.detected())
-  //       b.evadeBorder(BACK_LEFT_CORNER);
-  //   else if (BACK_RIGHT_IR.detected())
-  //       b.evadeBorder(BACK_RIGHT_CORNER);
+  // log(S("Curr time = " + millis()));
+  //log("Hello");
+
+    if (FRONT_LEFT_IR.detected() && FRONT_RIGHT_IR.detected()) {
+        log("Detection condition.");
+        b.evadeBorder(FRONT_SIDE);
+    }
+    else if (BACK_LEFT_IR.detected() && BACK_RIGHT_IR.detected())
+        b.evadeBorder(BACK_SIDE);
+    else if (FRONT_LEFT_IR.detected() && BACK_LEFT_IR.detected())
+        b.evadeBorder(LEFT_SIDE);
+    else if (FRONT_RIGHT_IR.detected() && BACK_RIGHT_IR.detected())
+        b.evadeBorder(RIGHT_SIDE);
+    else if (FRONT_LEFT_IR.detected())
+        b.evadeBorder(FRONT_LEFT_CORNER);
+    else if (FRONT_RIGHT_IR.detected())
+        b.evadeBorder(FRONT_RIGHT_CORNER);
+    else if (BACK_LEFT_IR.detected())
+        b.evadeBorder(BACK_LEFT_CORNER);
+    else if (BACK_RIGHT_IR.detected())
+        b.evadeBorder(BACK_RIGHT_CORNER);
 }
