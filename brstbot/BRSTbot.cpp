@@ -3,6 +3,9 @@
 #include "Utilities.h"
 #include <AFMotor.h>
 
+extern const int BOT_EVASIVE_SPEED;
+
+
 BRSTbot::BRSTbot() : motorLeft(1, MOTOR12_64KHZ), motorRight(2, MOTOR12_64KHZ) {}
 
   /* Getters and Setters */
@@ -129,12 +132,12 @@ void BRSTbot::setOp(Op* o) {
 }
 
 void BRSTbot::op_check() {
-    
+
     if (currentOp!= NULL && currentOp->execute()) {
 //      log(S("Executing
       // Op finished execution. Replace with next op if necessary.
       Op* finishedOp = currentOp;
-      
+
       if (currentOp->nextOp != NULL) {
         currentOp = currentOp->nextOp;
       } else {
@@ -143,23 +146,30 @@ void BRSTbot::op_check() {
       delete finishedOp;
 //      setSpeed(110);
 //      setMotorDirection(FORWARD);
-      
+
     }
 }
 
 void BRSTbot::evadeBorder(int side) {
+
     switch (side) {
-      case FRONT_SIDE:
-        if (currentOp->label.equals("reverse_a_bit")) {
-          //log("Already reversing! yielding...");
-        } else {
-          ReverseABitOp* reverseABitOp = new ReverseABitOp();
-          RotationOp* rotationOp = new RotationOp(180, ROTATE_LEFT);
-          reverseABitOp->nextOp = rotationOp;
-          currentOp = reverseABitOp;
+
+        case FRONT_SIDE: {
+            if (currentOp->label.equals("reverse_a_bit")) {
+                //log("Already reversing! yielding...");
+            } else {
+                TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED);
+                RotationOp* rotate = new RotationOp(180, ROTATE_LEFT);
+                TranslationOp* forward = new TranslationOp(FORWARD, 110);
+
+                reverse->nextOp = rotate;
+                rotate->nextOp = forward;
+
+                currentOp = reverse;
+            }
+            break;
         }
-        //log("Evading front!");
-        break;
+
       case BACK_SIDE:
         break;
       case LEFT_SIDE:

@@ -4,9 +4,6 @@
 #include <WString.h>
 using namespace std;
 
-
-
-
 /****************************************************************************
 *																			*
 *	Definition of Op class											        *
@@ -16,6 +13,7 @@ using namespace std;
 class Op {
     public:
         Op();
+        Op(String lab, long end);
         virtual bool execute() = 0;
     public:
         String label;
@@ -32,7 +30,7 @@ class Op {
 class RotationOp : public Op {
 
     public:
-        RotationOp(int rotationDegrees, int rotationDirection);
+        RotationOp(int rotationDegs, int rotationDir);
         bool execute();
     public:
         int rotationDegrees;
@@ -47,6 +45,7 @@ class RotationOp : public Op {
 
 class TranslationOp : public Op {
     public:
+        TranslationOp(int motorDir, int motorSpd);
         bool execute();
     public:
         int motorDirection;
@@ -59,15 +58,11 @@ class TranslationOp : public Op {
 *                                                                           *
 ****************************************************************************/
 
-class ReverseABitOp : public TranslationOp {
-
-  public:
-    ReverseABitOp();
-    bool execute();
-};
+// class ReverseABitOp : public TranslationOp {
+//
+//   public:
+//     ReverseABitOp();
+//     bool execute();
+// };
 
 #endif
-
-
-
-

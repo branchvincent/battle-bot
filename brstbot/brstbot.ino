@@ -65,6 +65,5 @@ void loop() {
   if (FRONT_LEFT_IR.detected() && FRONT_RIGHT_IR.detected()) {
     log("Detection condition.");
     b.evadeBorder(FRONT_SIDE);
-    
   }
 }

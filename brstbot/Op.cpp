@@ -19,7 +19,8 @@ extern const int rotation_base_time;
 *																			*
 ****************************************************************************/
 
-Op::Op() : endTime(0) {}
+Op::Op() : label(""), endTime(0), nextOp(NULL)  {}
+Op::Op(String lab, long end) : label(lab), endTime(end) {}
 
 /****************************************************************************
 *																			*
@@ -27,22 +28,21 @@ Op::Op() : endTime(0) {}
 *																			*
 ****************************************************************************/
 
-RotationOp::RotationOp(int rotationDegrees, int rotationDirection) {
-  label = "rotation";
-  this->rotationDegrees = rotationDegrees;
-  this->rotationDirection = rotationDirection;
-  endTime = millis() + rotation_base_time + millis_per_degree * rotationDegrees;
-}
+RotationOp::RotationOp(int rotationDegs, int rotationDir) :
+    Op("rotation", millis() + rotation_base_time + millis_per_degree * rotationDegrees),
+    rotationDegrees(rotationDegs),
+    rotationDirection(rotationDir)
+{}
 
 bool RotationOp::execute() {
-  if (millis() <= endTime) {
-    b.setSpeed(BOT_ROTATION_SPEED);
-    b.setRotationDirection(rotationDirection);
-    return false;
-  } else {
-    b.setMotorDirection(FORWARD);
-    return true;
-  }
+    if (millis() <= endTime) {
+        b.setSpeed(BOT_ROTATION_SPEED);
+        b.setRotationDirection(rotationDirection);
+        return false;
+    } else {
+        // b.setMotorDirection(FORWARD);
+        return true;
+    }
 }
 
 /****************************************************************************
@@ -50,6 +50,12 @@ bool RotationOp::execute() {
 *	Definition of Translation class											*
 *																			*
 ****************************************************************************/
+
+TranslationOp::TranslationOp(int motorDir, int motorSpd) :
+    Op("translation", millis() + 2000),
+    motorDirection(motorDir),
+    motorSpeed(motorSpd)
+{}
 
 bool TranslationOp::execute() {
     if (millis() <= endTime) {
@@ -67,18 +73,16 @@ bool TranslationOp::execute() {
 *                                                                           *
 ****************************************************************************/
 
-ReverseABitOp::ReverseABitOp() {
-    label = "reverse_a_bit";
-    endTime = millis() + 500;
-    motorDirection = BACKWARD;
-    motorSpeed = BOT_EVASIVE_SPEED;
-}
-
-bool ReverseABitOp::execute() {
-    log("Reverse is executing!");
-    return TranslationOp::execute();
-    //log("Reverse is executing!");
-    
-}
-
-
+// ReverseABitOp::ReverseABitOp() {
+//     label = "reverse_a_bit";
+//     endTime = millis() + 500;
+//     motorDirection = BACKWARD;
+//     motorSpeed = BOT_EVASIVE_SPEED;
+// }
+//
+// bool ReverseABitOp::execute() {
+//     log("Reverse is executing!");
+//     return TranslationOp::execute();
+//     //log("Reverse is executing!");
+//
+// }
