@@ -1,5 +1,9 @@
 #include "Op.h"
 #include "BRSTbot.h"
+#include "Arduino.h"
+
+#include "Globals.h"
+using namespace globals;
 
 /****************************************************************************
 *																			*
@@ -8,7 +12,6 @@
 ****************************************************************************/
 
 Op::Op() : endTime(0) {}
-virtual bool Op::execute() = 0;
 
 /****************************************************************************
 *																			*
@@ -32,8 +35,8 @@ bool Rotation::execute() {
 
 bool Translation::execute() {
     if (millis() <= endTime) {
-        BRSTbot::b.setMotorSpeed(motorSpeed);
-        BRSTbot::b.setMotorDirection(motorDirection);
+        b.setSpeed(motorSpeed);
+        b.setMotorDirection(motorDirection);
         return false;
     } else {
         return true;
@@ -56,5 +59,3 @@ ReverseABit::ReverseABit() {
 bool ReverseABit::execute() {
     Translation::execute();
 }
-
-#endif

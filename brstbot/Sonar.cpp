@@ -7,6 +7,7 @@
 ****************************************************************************/
 
 #include "Sonar.h"
+#include "Arduino.h"
 
 Sonar::Sonar(int tPin, int ePin) : triggerPin(tPin), echoPin(ePin) {
     for (int i = 0; i < ARR_SIZE; i++)

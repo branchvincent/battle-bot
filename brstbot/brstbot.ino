@@ -9,8 +9,12 @@
 #include "Op.h"
 #include "BRSTbot.h"
 #include "PrintMode.h"
+#include "EnumTypes.h"
 //#include "Bot.h"
 //#include "Bee.h"
+
+#include "Globals.h"
+using namespace globals;
 
 const int FRONT_LEFT_IR = 46;
 const int FRONT_RIGHT_IR = 47;
@@ -18,12 +22,13 @@ const int BACK_LEFT_IR = 44;
 const int BACK_RIGHT_IR = 45;
 
 void setup() {
-  init_utilities();
-  init_magsensor();
-  init_bee();
+  // init_utilities();
+  Serial.begin(115200);
+//  init_magsensor();
+//  init_bee();
 
-  BRSTbot::b.setMotorBias(0.88);
-  BRSTbot::b.setSpeed(110);
+  b.setMotorBias(0.88);
+  b.setSpeed(110);
 
   log("Hello World!");
   log("Hello 2");
@@ -34,18 +39,18 @@ void setup() {
 
 void loop() {
 
-  parse_serial_command(b);
+  parse_serial_command();
   //update_mag_running();
   //update_bee();
-  p.print();
-  BRSTbot::b.op_check();
+  PrintMode::p.print();
+  b.op_check();
 
   //log("Hello");
 
 
   if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
     log("Detection condition.");
-    BRSTbot::b.evadeBorder(FRONT_SIDE);
+    b.evadeBorder(FRONT_SIDE);
   }
 
 }

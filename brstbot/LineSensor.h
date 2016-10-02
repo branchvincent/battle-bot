@@ -17,8 +17,8 @@
 
 class LineSensor {
     public:
-        LineSensor(int pt) : port(pt) {}
-        bool detected() {return if digitalRead(port) == 0;}
+        LineSensor(int pt);
+        bool detected();
     private:
         int port;
 };

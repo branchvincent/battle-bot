@@ -7,7 +7,8 @@
 ****************************************************************************/
 
 #include "LineSensor.h"
+#include "Arduino.h"
 
 LineSensor::LineSensor(int pt) : port(pt) {}
 
-bool LineSensor::detected() {return if digitalRead(port) == 0;}
+bool LineSensor::detected() {return digitalRead(port) == 0;}

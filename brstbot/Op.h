@@ -13,7 +13,7 @@ using namespace std;
 class Op {
     public:
         Op();
-        virtual bool execute();
+        virtual bool execute() = 0;
     public:
         String label;
         long endTime;
