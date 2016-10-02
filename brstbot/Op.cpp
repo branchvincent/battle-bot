@@ -2,14 +2,14 @@
 #include "BRSTbot.h"
 #include "enumTypes.h"
 #include "Utilities.h"
-#include "Globals.h"
-using namespace globals;
+#include "Globals.cpp"
+// using namespace globals;
 
-extern BRSTbot b;
-extern const float millis_per_degree;
-extern const int BOT_ROTATION_SPEED;
-extern const int BOT_EVASIVE_SPEED;
-extern const int rotation_base_time;
+// extern BRSTbot b;
+// extern const float ms_per_degree;
+// extern const int BOT_ROTATION_SPEED;
+// extern const int BOT_EVASIVE_SPEED;
+// extern const int rotation_base_time;
 
 /****************************************************************************
 *																			*
@@ -33,7 +33,7 @@ Op::Op(int lab, long dur = 0) :
 ****************************************************************************/
 
 RotationOp::RotationOp(int rotationDegs, int rotationDir, int lab) :
-    Op(lab, rotation_base_time + millis_per_degree * rotationDegs),
+    Op(lab, rotation_base_time + ms_per_degree * rotationDegs),
     rotationDegrees(rotationDegs),
     rotationDirection(rotationDir) {
     // log(S("Rotation end time = ") + endTime);

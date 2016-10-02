@@ -158,7 +158,7 @@ Speed  Bias
 //      log("Rotating");
 //
 //      if (currentOp->timeEnd == 0) {
-//        currentOp->timeEnd = millis() + rotation_base_time + currentOp->rotationDegrees * millis_per_degree;
+//        currentOp->timeEnd = millis() + rotation_base_time + currentOp->rotationDegrees * ms_per_degree;
 //        log(String("Setting TIME END to: ") + currentOp->timeEnd);
 //      } else {
 //        log(String("TIME END NOT EQUAL TO ZERO: ") + currentOp->timeEnd);

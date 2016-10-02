@@ -2,10 +2,10 @@
 #include "Utilities.h"
 #include "BRSTbot.h"
 
-#include "Globals.h"
-using namespace globals;
+#include "Globals.cpp"
+// using namespace globals;
 
-extern BRSTbot b;
+// extern BRSTbot b;
 
 void PrintMode::setPrintChar(char c) {
     log("Setting printChar to: ", String(c));

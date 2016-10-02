@@ -5,15 +5,15 @@
 #include "Utilities.h"
 //  Defintions
 
-#include "Globals.h"
-using namespace globals;
+#include "Globals.cpp"
+// using namespace globals;
 
 // void init_utilities() {
 //   //Serial.begin(9600);
 //   // Serial.begin(115200);
 // }
 
-void run_command(String key, String value, BRSTbot& b, PrintMode& p) {
+void run_command(String key, String value) { //, BRSTbot& b, PrintMode& p
   if (key.equals("speed") || key.equals("s")) {   // e.g., user entered  "speed:37"  in serial monitor
 
     b.setSpeed(value.toInt());
@@ -165,20 +165,20 @@ String* string_split(String s, char delim) {
 
 /*  Command Parser  */
 
-void parse_command(String s, BRSTbot& b, PrintMode& p) {
+void parse_command(String s) { //, BRSTbot& b, PrintMode& p) {
   int colon_index = s.indexOf(':');
   if (colon_index >= 0) {
     String key = s.substring(0, colon_index);
     String value = s.substring(colon_index+1);
-    run_command(key, value, b, p);
+    run_command(key, value); //, b, p);
   } else {
     log("Command not recognized");
   }
 }
 
-void parse_serial_command(BRSTbot& b, PrintMode& p) {
+void parse_serial_command() { //BRSTbot& b, PrintMode& p) {
   if (Serial.available() > 0) {
-    parse_command(Serial.readString(), b, p);
+    parse_command(Serial.readString()); //, b, p);
   }
 }
 
@@ -224,4 +224,3 @@ int y_true(float y) {
 String S(String s) {
   return s;
 }
-

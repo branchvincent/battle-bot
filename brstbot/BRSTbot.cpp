@@ -1,10 +1,11 @@
+#include <AFMotor.h>
 #include "BRSTbot.h"
 #include "EnumTypes.h"
 #include "Utilities.h"
-#include <AFMotor.h>
+#include "Globals.cpp"
 
-extern const int BOT_EVASIVE_SPEED;
-extern const int BOT_CRUISING_SPEED;
+// extern const int BOT_EVASIVE_SPEED;
+// extern const int BOT_CRUISING_SPEED;
 
 BRSTbot::BRSTbot() : motorLeft(1, MOTOR12_64KHZ), motorRight(2, MOTOR12_64KHZ) {}
 
@@ -159,7 +160,8 @@ void BRSTbot::op_check() {
         log("No Next op!");
       }
       delete finishedOp;
-//      setSpeed(110);
+      stopMotors();
+    //  setSpeed(110);
 //      setMotorDirection(FORWARD);
     }
 }
@@ -232,7 +234,7 @@ void BRSTbot::evadeBorder(int side) {
         case FRONT_LEFT_CORNER: {
             int op_label = EVADE_FRONT_LEFT;
 
-            if (currentOp != NULL && currentOp->label == op_label) {
+            if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_FRONT || currentOp->label == EVADE_LEFT)) {
                 log("Already evading front left! Yielding...");
             } else {
                 log("Creating front evasion...");
@@ -247,7 +249,7 @@ void BRSTbot::evadeBorder(int side) {
         case FRONT_RIGHT_CORNER: {
             int op_label = EVADE_FRONT_RIGHT;
 
-            if (currentOp != NULL && currentOp->label == op_label) {
+            if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_FRONT || currentOp->label == EVADE_RIGHT)) {
                 log("Already evading front right! Yielding...");
             } else {
                 log("Creating front evasion...");
@@ -261,7 +263,7 @@ void BRSTbot::evadeBorder(int side) {
         case BACK_LEFT_CORNER: {
             int op_label = EVADE_BACK_LEFT;
 
-            if (currentOp != NULL && currentOp->label == op_label) {
+            if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_LEFT || currentOp->label == EVADE_BACK)) {
                 log("Already evading back left! Yielding...");
             } else {
                 log("Creating front evasion...");
@@ -275,7 +277,7 @@ void BRSTbot::evadeBorder(int side) {
         case BACK_RIGHT_CORNER: {
             int op_label = EVADE_BACK_RIGHT;
 
-            if (currentOp != NULL && currentOp->label == op_label) {
+            if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_BACK || currentOp->label == EVADE_RIGHT)) {
                 log("Already evading back right! Yielding...");
             } else {
                 log("Creating front evasion...");
