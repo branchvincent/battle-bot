@@ -26,12 +26,17 @@ IRSensor FRONT_RIGHT_IR(47);
 IRSensor BACK_LEFT_IR(44);
 IRSensor BACK_RIGHT_IR(45);
 
-
-
 BRSTbot b;
 PrintMode p;
 
+/****************************************************************************
+*																			*
+*	Function:  Setup           											    *
+*																			*
+****************************************************************************/
+
 void setup() {
+
   Serial.begin(115200);
 
   b.setMotorBias(0.88);
@@ -42,8 +47,13 @@ void setup() {
   log("Hello 2");
 
 }
-
   //update_loop_timer();
+
+/****************************************************************************
+*																			*
+*	Function:  Loop           											    *
+*																			*
+****************************************************************************/
 
 void loop() {
 
@@ -52,16 +62,9 @@ void loop() {
   b.op_check();
 
   //log("Hello");
-
-//
   if (FRONT_LEFT_IR.detected() && FRONT_RIGHT_IR.detected()) {
     log("Detection condition.");
     b.evadeBorder(FRONT_SIDE);
     
   }
-
-
-
-  
-
 }
