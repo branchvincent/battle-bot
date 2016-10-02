@@ -103,12 +103,8 @@ void loop() {
     LEFT_SONAR.ping();
     RIGHT_SONAR.ping();
     if (b.currentOp == NULL || (b.currentOp != NULL && b.currentOp->label == CRUISE_FORWARD)) {
+
       // Only initiate seek-follow behavior
-
-
-      int front_distance = 500;
-      int left_distance = 500;
-      int right_distance = 500;
 
       int distances[3];
       distances[0] = 500;  // FRONT
@@ -131,9 +127,8 @@ void loop() {
       }
 
       if (minIndex >= 0) {
-        if (minIndex == 0) {
-          b.followSonarResult(minIndex); // SONAR RESULT;
-        }
+        log("COMMENCING SONAR FOLLOWING...", minIndex);
+        b.followSonarResult(minIndex); // SONAR RESULT;
       }
 
 

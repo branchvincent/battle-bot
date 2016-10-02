@@ -7,6 +7,27 @@
 // extern const int BOT_EVASIVE_SPEED;
 // extern const int BOT_CRUISING_SPEED;
 
+// extern String op_labels_array[];
+//
+// String* op_labels_array[20];
+// op_labels_array[EVADE_FRONT] = "EVADE_FRONT";
+// op_labels_array[EVADE_BACK] = "EVADE_BACK";
+// op_labels_array[EVADE_LEFT] = "EVADE_LEFT";
+// op_labels_array[EVADE_RIGHT] = "EVADE_RIGHT";
+// op_labels_array[EVADE_FRONT_LEFT] = "EVADE_FRONT_LEFT";
+// op_labels_array[EVADE_FRONT_RIGHT] = "EVADE_FRONT_RIGHT";
+// op_labels_array[EVADE_BACK_LEFT] = "EVADE_BACK_LEFT";
+// op_labels_array[EVADE_BACK_RIGHT] = "EVADE_BACK_RIGHT";
+// op_labels_array[CRUISE_FORWARD] = "CRUISE_FORWARD";
+// op_labels_array[FOLLOW_TARGET] = "FOLLOW_TARGET";
+
+// String op_to_label(int oplabel) {
+//   switch (oplabel) {
+//     case EVADE_FRONT:
+//       return
+//   }
+// }
+
 BRSTbot::BRSTbot() : motorLeft(1, MOTOR12_64KHZ), motorRight(2, MOTOR12_64KHZ) {}
 
   /* Getters and Setters */
@@ -147,7 +168,13 @@ void BRSTbot::setOp(Op* o) {
 
 void BRSTbot::op_check() {
 
+    if (currentOp != NULL) {
+      log("EXECUTING Op: ", currentOp->label);
+    }
+
     if (currentOp != NULL && currentOp->execute()) {
+
+
 //      log(S("Executing
       // Op finished execution. Replace with next op if necessary.
       Op* finishedOp = currentOp;

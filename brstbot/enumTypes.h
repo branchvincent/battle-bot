@@ -13,16 +13,14 @@ enum Side {
     LEFT_SIDE,
     RIGHT_SIDE,
     FRONT_LEFT_CORNER,
-    FRONT_RIGHT_CORNER,
-    BACK_LEFT_CORNER,
-    BACK_RIGHT_CORNER
+    FRONT_RIGHT_CORNER,     BACK_LEFT_CORNER,     BACK_RIGHT_CORNER
 };
 
 enum OpLabel {
-    EVADE_FRONT,
-    EVADE_BACK,
-    EVADE_LEFT,
-    EVADE_RIGHT,
+    EVADE_FRONT,  // 0
+    EVADE_BACK,  //  1
+    EVADE_LEFT,  //  2
+    EVADE_RIGHT,  //
     EVADE_FRONT_LEFT,
     EVADE_FRONT_RIGHT,
     EVADE_BACK_LEFT,
@@ -30,6 +28,8 @@ enum OpLabel {
     CRUISE_FORWARD,
     FOLLOW_TARGET
 };
+
+
 
 enum SonarResult {
   DETECT_LEFT=0,
