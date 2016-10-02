@@ -10,7 +10,6 @@
 #define SONAR_H
 
 const int ARR_SIZE = 5;     // array size for previous distances
-int CURR_INDEX = 0;         // array index of current distance
 
 /****************************************************************************
 *																			*
@@ -24,7 +23,7 @@ class Sonar {
 
     public:
         Sonar(int tPin, int ePin);
-        void init();
+        // void init();
         long ping();
         long objDistance();
         bool objDetected();
@@ -39,6 +38,7 @@ class Sonar {
         int triggerPin;
         int echoPin;
         long distances[ARR_SIZE];
+        int currIndex; 
 };
 
 #endif

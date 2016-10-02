@@ -153,8 +153,10 @@ void BRSTbot::op_check() {
       Op* finishedOp = currentOp;
 
       if (currentOp->nextOp != NULL) {
-        log(currentOp->nextOp->label);
+        // log(currentOp->nextOp->label);
+        // Op* temp = currentOp;
         currentOp = currentOp->nextOp;
+        // delete temp;
       } else {
         currentOp = NULL;
         log("No Next op!");
@@ -178,11 +180,13 @@ void BRSTbot::evadeBorder(int side) {
             } else {
                 log("Creating front evasion...");
                 TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED, op_label, 500);
-                RotationOp* rotate = new RotationOp(180, ROTATE_LEFT, op_label);
-                TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
+                RotationOp* rotate = new RandRotationOp(180, 20, ROTATE_LEFT, op_label);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label, 500);
+                TranslationOp* cruise = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, CRUISE_FORWARD);
 
                 reverse->nextOp = rotate;
                 rotate->nextOp = forward;
+                forward->nextOp = cruise;
                 setOp(reverse);
             }
             break;
@@ -195,7 +199,9 @@ void BRSTbot::evadeBorder(int side) {
                 log("Already evading back! Yielding...");
             } else {
                 log("Creating front evasion...");
-                TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label, 500);
+                TranslationOp* cruise = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, CRUISE_FORWARD);
+                forward->nextOp = cruise;
                 setOp(forward);
             }
             break;
@@ -208,9 +214,11 @@ void BRSTbot::evadeBorder(int side) {
                 log("Already evading left! Yielding...");
             } else {
                 log("Creating front evasion...");
-                RotationOp* rotate = new RotationOp(90, ROTATE_RIGHT, op_label);
-                TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
+                RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_RIGHT, op_label);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label, 500);
+                TranslationOp* cruise = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, CRUISE_FORWARD);
                 rotate->nextOp = forward;
+                forward->nextOp = cruise;
                 setOp(rotate);
             }
             break;
@@ -223,9 +231,11 @@ void BRSTbot::evadeBorder(int side) {
                 log("Already evading right! Yielding...");
             } else {
                 log("Creating front evasion...");
-                RotationOp* rotate = new RotationOp(90, ROTATE_LEFT, op_label);
-                TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
+                RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_LEFT, op_label);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label, 500);
+                TranslationOp* cruise = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, CRUISE_FORWARD);
                 rotate->nextOp = forward;
+                forward->nextOp = cruise;
                 setOp(rotate);
             }
             break;
@@ -238,9 +248,11 @@ void BRSTbot::evadeBorder(int side) {
                 log("Already evading front left! Yielding...");
             } else {
                 log("Creating front evasion...");
-                RotationOp* rotate = new RotationOp(90, ROTATE_RIGHT, op_label);
-                TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
+                RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_RIGHT, op_label);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label, 500);
+                TranslationOp* cruise = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, CRUISE_FORWARD);
                 rotate->nextOp = forward;
+                forward->nextOp = cruise;
                 setOp(rotate);
             }
             break;
@@ -253,9 +265,11 @@ void BRSTbot::evadeBorder(int side) {
                 log("Already evading front right! Yielding...");
             } else {
                 log("Creating front evasion...");
-                RotationOp* rotate = new RotationOp(90, ROTATE_LEFT, op_label);
-                TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
+                RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_LEFT, op_label);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label, 500);
+                TranslationOp* cruise = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, CRUISE_FORWARD);
                 rotate->nextOp = forward;
+                forward->nextOp = cruise;
                 setOp(rotate);
             }
             break;
@@ -263,13 +277,15 @@ void BRSTbot::evadeBorder(int side) {
         case BACK_LEFT_CORNER: {
             int op_label = EVADE_BACK_LEFT;
 
-            if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_LEFT || currentOp->label == EVADE_BACK)) {
+            if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_LEFT || currentOp->label == EVADE_BACK || currentOp->label == EVADE_BACK_RIGHT)) {
                 log("Already evading back left! Yielding...");
             } else {
                 log("Creating front evasion...");
-                RotationOp* rotate = new RotationOp(90, ROTATE_RIGHT, op_label);
-                TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
+                RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_RIGHT, op_label);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label, 500);
+                TranslationOp* cruise = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, CRUISE_FORWARD);
                 rotate->nextOp = forward;
+                rotate->nextOp = cruise;
                 setOp(rotate);
             }
             break;
@@ -277,13 +293,15 @@ void BRSTbot::evadeBorder(int side) {
         case BACK_RIGHT_CORNER: {
             int op_label = EVADE_BACK_RIGHT;
 
-            if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_BACK || currentOp->label == EVADE_RIGHT)) {
+            if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_BACK || currentOp->label == EVADE_RIGHT) || currentOp->label == EVADE_BACK_LEFT) {
                 log("Already evading back right! Yielding...");
             } else {
                 log("Creating front evasion...");
-                RotationOp* rotate = new RotationOp(90, ROTATE_LEFT, op_label);
-                TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
+                RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_LEFT, op_label);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label, 500);
+                TranslationOp* cruise = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, CRUISE_FORWARD);
                 rotate->nextOp = forward;
+                forward->nextOp = cruise;
                 setOp(rotate);
             }
             break;

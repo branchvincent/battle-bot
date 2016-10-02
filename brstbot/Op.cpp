@@ -103,3 +103,7 @@ bool TranslationOp::execute() {
 //     //log("Reverse is executing!");
 //
 // }
+
+RandRotationOp::RandRotationOp(int rotationDegs, int offset, int rotationDir, int lab) :
+    RotationOp(random(rotationDegs - offset, rotationDegs + offset), rotationDir, lab)
+{}

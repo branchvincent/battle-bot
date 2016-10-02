@@ -9,12 +9,12 @@
 #include "Sonar.h"
 #include "Arduino.h"
 
-Sonar::Sonar(int tPin, int ePin) : triggerPin(tPin), echoPin(ePin) {
+Sonar::Sonar(int tPin, int ePin) : triggerPin(tPin), echoPin(ePin), currIndex(0) {
     for (int i = 0; i < ARR_SIZE; i++)
         distances[i] = 1000;
 }
 
-void Sonar::init() {Serial.begin(9600);}
+// void Sonar::init() {Serial.begin(9600);}
 
 long Sonar::ping() {
 
@@ -38,8 +38,8 @@ long Sonar::ping() {
 
 //  Update distances and return lastest distance
 
-    distances[CURR_INDEX++] = distance;
-    CURR_INDEX %= ARR_SIZE;
+    distances[currIndex++] = distance;
+    currIndex %= ARR_SIZE;
     return distance;
 }
 
@@ -66,7 +66,7 @@ long Sonar::avgDistance() {
 long Sonar::msToMM(long microseconds) {return microseconds / 29 / 2;}
 
 int Sonar::lastIndex() {
-    int i = CURR_INDEX - 1;
+    int i = currIndex - 1;
     if (i < 0)
         i += ARR_SIZE;
     return i;

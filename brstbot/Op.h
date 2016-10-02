@@ -68,4 +68,10 @@ class TranslationOp : public Op {
 //     bool execute();
 // };
 
+class RandRotationOp : public RotationOp {
+    public:
+        RandRotationOp(int rotationDegs, int offset, int rotationDir, int lab);
+};
+
+
 #endif
