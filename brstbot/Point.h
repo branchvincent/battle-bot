@@ -2,24 +2,15 @@
 #define POINT_H
 
 class Point {
-  public:
-    float x;
-    float y;
 
-  public:
-    String toString() {
-      return concat("(", x) + concat(", ", y) + ")";
-    }
+    public:
+        Point();
+        Point(int x_in, int y_in);
+        String toString();
 
-    Point(int x_in, int y_in) {
-      x = x_in;
-      y = y_in;
-    }
-
-    Point() {
-      x = 0;
-      y = 0;
-    }
+    public:
+        float x;
+        float y;
 };
 
 #endif

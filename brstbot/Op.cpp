@@ -1,7 +1,4 @@
-#ifndef OP_H
-#define OP_H
-
-#include "Ops.h"
+#include "BRSTbot.h"
 
 /****************************************************************************
 *																			*
@@ -9,15 +6,8 @@
 *																			*
 ****************************************************************************/
 
-class Op {
-    public:
-        Op();
-        virtual bool execute();
-    public:
-        String label;
-        long endTime;
-        Op *nextOp;
-};
+Op::Op() : endTime(0) {}
+virtual bool Op::execute() = 0;
 
 /****************************************************************************
 *																			*
@@ -25,15 +15,13 @@ class Op {
 *																			*
 ****************************************************************************/
 
-class Rotation : public Op {
+Rotation::Rotation() {
+  label = "rotation";
+}
 
-    public:
-        Rotation();
-        bool execute();
-    public:
-        int rotationDegrees;
-        int rotationDirection;
-};
+bool Rotation::execute() {
+
+}
 
 /****************************************************************************
 *																			*
@@ -41,13 +29,15 @@ class Rotation : public Op {
 *																			*
 ****************************************************************************/
 
-class Translation : public Op {
-    public:
-        bool execute();
-    public:
-        int motorDirection;
-        int motorSpeed;
-};
+bool Translation::execute() {
+    if (millis() <= endTime) {
+        BRSTbot::b.setMotorSpeed(motorSpeed);
+        BRSTbot::b.setMotorDirection(motorDirection);
+        return false;
+    } else {
+        return true;
+    }
+}
 
 /****************************************************************************
 *                                                                           *
@@ -55,11 +45,15 @@ class Translation : public Op {
 *                                                                           *
 ****************************************************************************/
 
-class ReverseABit : public Translation {
+ReverseABit::ReverseABit() {
+    label = "reverse_a_bit";
+    endTime = millis() + 500;
+    motorDirection = BACKWARD;
+    motorSpeed = 255;
+}
 
-  public:
-    ReverseABit();
-    bool execute();
-};
+bool ReverseABit::execute() {
+    Translation::execute();
+}
 
 #endif

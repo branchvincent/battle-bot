@@ -1,0 +1,16 @@
+enum RotationDirection {
+    ROTATE_LEFT,
+    ROTATE_RIGHT,
+    ROTATE_STRAIGHT
+};
+
+enum Side {
+    FRONT_SIDE,
+    BACK_SIDE,
+    LEFT_SIDE,
+    RIGHT_SIDE,
+    FRONT_LEFT_CORNER,
+    FRONT_RIGHT_CORNER,
+    BACK_LEFT_CORNER,
+    BACK_RIGHT_CORNER
+};
