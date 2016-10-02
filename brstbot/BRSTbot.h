@@ -44,6 +44,8 @@ class BRSTbot {
         void setOp(Op* o);
         void op_check();
         void evadeBorder(int side);
+        static const int MOTOR_LOW_SPEED = 110;
+        static const int MOTOR_HIGH_SPEED = 255;
 
       private:
           int speed;
@@ -51,8 +53,6 @@ class BRSTbot {
           AF_DCMotor motorLeft;
           AF_DCMotor motorRight;
           Point target;
-          const int MOTOR_LOW_SPEED;
-          const int MOTOR_HIGH_SPEED;
           Op* currentOp;
           int visualHeading = 0;
           int targetHeading = 0;

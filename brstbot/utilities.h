@@ -1,4 +1,5 @@
 #include <SoftwareSerial.h>
+#include "PrintMode.h"
 class BRSTbot;
 
 //  Prototypes
@@ -83,7 +84,7 @@ void run_command(String key, String value) {
   } else if (key.equals("print") || key.equals("p")) {
 
     char printchar = value.charAt(0);
-    p.setPrintChar(printchar);
+    PrintMode::p.setPrintChar(printchar);
     log("Setting print mode to: ", String(printchar));
 
   } else if (key.equals("custom") || key.equals("c")) {
@@ -97,15 +98,6 @@ void run_command(String key, String value) {
 
   }
 }
-
-
-
-
-
-
-
-
-
 
 /*  Logging Commands  */
 

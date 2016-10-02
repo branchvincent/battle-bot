@@ -1,6 +1,7 @@
 #include "BRSTbot.h"
 #include "EnumTypes.h"
 #include "Utilities.h"
+#include <AFMotor.h>
 
 BRSTbot::BRSTbot() : motorLeft(1, MOTOR12_64KHZ), motorRight(2, MOTOR12_64KHZ) {}
 
