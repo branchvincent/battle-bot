@@ -20,6 +20,7 @@
 // #include "Globals.h"
 // using namespace globals;
 
+// Conventions questionable.
 IRSensor FRONT_LEFT_IR(46);
 IRSensor FRONT_RIGHT_IR(47);
 IRSensor BACK_LEFT_IR(44);
@@ -33,8 +34,9 @@ PrintMode p;
 void setup() {
   Serial.begin(115200);
 
-//  b.setMotorBias(0.88);
-//  b.setSpeed(110);
+  b.setMotorBias(0.88);
+  b.setSpeed(110);
+  b.startMotors();
 
   log("Hello World!");
   log("Hello 2");
@@ -47,7 +49,7 @@ void loop() {
 
   parse_serial_command(b, p);
   p.print();
-//  b.op_check();
+  b.op_check();
 
   //log("Hello");
 
@@ -55,6 +57,7 @@ void loop() {
   if (FRONT_LEFT_IR.detected() && FRONT_RIGHT_IR.detected()) {
     log("Detection condition.");
     b.evadeBorder(FRONT_SIDE);
+    
   }
 
 

@@ -129,8 +129,11 @@ void BRSTbot::setOp(Op* o) {
 }
 
 void BRSTbot::op_check() {
-    if (currentOp->execute()) {
+    
+    if (currentOp!= NULL && currentOp->execute()) {
       // Op finished execution. Replace with next op if necessary.
+      setSpeed(110);
+      setMotorDirection(FORWARD);
       currentOp = NULL;
     }
 }
@@ -139,12 +142,12 @@ void BRSTbot::evadeBorder(int side) {
     switch (side) {
       case FRONT_SIDE:
         if (currentOp->label.equals("reverse_a_bit")) {
-          log("Already reversing! yielding...");
+          //log("Already reversing! yielding...");
         } else {
           ReverseABit* reverseABit = new ReverseABit();
           currentOp = reverseABit;
         }
-        log("Evading front!");
+        //log("Evading front!");
         break;
       case BACK_SIDE:
         break;
