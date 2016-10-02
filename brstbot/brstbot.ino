@@ -13,6 +13,7 @@
 #include "Utilities.h"
 #include "IRSensor.h"
 #include "Sonar.h"
+#include <Servo.h>
 //#include "magnetometer.h"
 //#include "ChinaBee.h"
 //#include "Bot.h"
@@ -36,6 +37,8 @@ Sonar RIGHT_SONAR(36, 34);
 
 BRSTbot b;
 PrintMode p;
+Servo myServo;
+int servoPos;
 
 /****************************************************************************
 *																			*
@@ -43,11 +46,15 @@ PrintMode p;
 *																			*
 ****************************************************************************/
 
+
 void setup() {
 
   Serial.begin(115200);
   b.setMotorBias(0.88);
   b.setSpeed(110);
+
+  myServo.attach(9);
+  myServo.write(180);
 
   // RotationOp* r = new RotationOp(90, ROTATE_LEFT, EVADE_RIGHT);
   // b.setOp(r);
