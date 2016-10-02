@@ -11,6 +11,7 @@
 const float millis_per_degree = 4.25;
 const int BOT_ROTATION_SPEED = 110;
 const int BOT_EVASIVE_SPEED = 255;
+const int BOT_CRUISING_SPEED = 110;
 const int rotation_base_time = 100;
 
 class BRSTbot {
