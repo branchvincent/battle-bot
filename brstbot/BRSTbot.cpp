@@ -145,7 +145,7 @@ void BRSTbot::op_check() {
         currentOp = NULL;
         log("No Next op!");
       }
-    //   delete finishedOp;
+      delete finishedOp;
 //      setSpeed(110);
 //      setMotorDirection(FORWARD);
     }
@@ -156,36 +156,52 @@ void BRSTbot::evadeBorder(int side) {
     switch (side) {
 
         case FRONT_SIDE: {
-            if (currentOp != NULL && currentOp->label.equals("evade_front")) {
+            string op_label = "evade_front";
+
+            if (currentOp != NULL && currentOp->label.equals(op_label)) {
                 log("Already evading front! Yielding...");
             } else {
-                TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED, "evade_front");
-                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, "evade_front2");
-                RotationOp* rotate = new RotationOp(180, ROTATE_LEFT, "evade_front2");
+                log("Creating front evasion...");
+                TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED, op_label);
+                RotationOp* rotate = new RotationOp(180, ROTATE_LEFT, op_label);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label);
 
                 reverse->nextOp = rotate;
                 rotate->nextOp = forward;
-
                 currentOp = reverse;
             }
             break;
         }
 
-      case BACK_SIDE:
-        break;
-      case LEFT_SIDE:
-        break;
-      case RIGHT_SIDE:
-        break;
-      case FRONT_LEFT_CORNER:
-        break;
-      case FRONT_RIGHT_CORNER:
-        break;
-      case BACK_LEFT_CORNER:
-        break;
-      case BACK_RIGHT_CORNER:
-        break;
-      default:
-        break;
+        case BACK_SIDE: {
+            string op_label = "evade_front";
+
+            if (currentOp != NULL && currentOp->label.equals(op_label)) {
+                log("Already evading front! Yielding...");
+            } else {
+                log("Creating front evasion...");
+                TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED, op_label);
+                RotationOp* rotate = new RotationOp(180, ROTATE_LEFT, op_label);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label);
+
+                reverse->nextOp = rotate;
+                rotate->nextOp = forward;
+                currentOp = reverse;
+            }
+            break;
+        case LEFT_SIDE:
+            break;
+        case RIGHT_SIDE:
+            break;
+        case FRONT_LEFT_CORNER:
+            break;
+        case FRONT_RIGHT_CORNER:
+            break;
+        case BACK_LEFT_CORNER:
+            break;
+        case BACK_RIGHT_CORNER:
+            break;
+        default:
+            break;
     }
 }

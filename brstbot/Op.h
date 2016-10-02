@@ -15,12 +15,13 @@
 class Op {
     public:
         Op();
-        Op(String lab, long end);
+        Op(String lab, long duration);
         virtual bool execute() = 0;
     public:
         String label;
         long endTime;
-        Op *nextOp;
+        long duration;
+        Op* nextOp;
 };
 
 /****************************************************************************
@@ -47,7 +48,7 @@ class RotationOp : public Op {
 
 class TranslationOp : public Op {
     public:
-        TranslationOp(int motorDir, int motorSpd, String lab = "translation", long end = millis() + 2000);
+        TranslationOp(int motorDir, int motorSpd, String lab = "translation", long duration = 2000);
         bool execute();
     public:
         int motorDirection;

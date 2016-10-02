@@ -6,7 +6,6 @@
 using namespace globals;
 
 extern BRSTbot b;
-
 extern const float millis_per_degree;
 extern const int BOT_ROTATION_SPEED;
 extern const int BOT_EVASIVE_SPEED;
@@ -18,11 +17,12 @@ extern const int rotation_base_time;
 *																			*
 ****************************************************************************/
 
-Op::Op() : label(""), endTime(0), nextOp(NULL)  {
-    log("OP Created!");
-}
+// Op::Op() : label(""),  duration(0), endTime(0), nextOp(NULL)  {
+//     log("OP Created!");
+// }
 
-Op::Op(String lab, long end) : label(lab), endTime(end), nextOp(NULL) {
+Op::Op(String lab = "", long dur = 0) :
+    label(lab),  duration(dur), endTime(0), nextOp(NULL) {
     log("OP Created!");
 }
 
@@ -33,12 +33,18 @@ Op::Op(String lab, long end) : label(lab), endTime(end), nextOp(NULL) {
 ****************************************************************************/
 
 RotationOp::RotationOp(int rotationDegs, int rotationDir, String lab) :
-    Op(lab, millis() + rotation_base_time + millis_per_degree * rotationDegrees),
+    Op(lab, rotation_base_time + millis_per_degree * rotationDegs),
     rotationDegrees(rotationDegs),
-    rotationDirection(rotationDir)
-{}
+    rotationDirection(rotationDir) {
+    // log(S("Rotation end time = ") + endTime);
+}
 
 bool RotationOp::execute() {
+    log(S("Starting ") + label);
+    log(S("End time = ") + endTime);
+
+    if (endTime == 0)
+        endTime = millis() + duration;
     if (millis() <= endTime) {
         b.setSpeed(BOT_ROTATION_SPEED);
         b.setRotationDirection(rotationDirection);
@@ -55,13 +61,20 @@ bool RotationOp::execute() {
 *																			*
 ****************************************************************************/
 
-TranslationOp::TranslationOp(int motorDir, int motorSpd, String lab, long end) :
-    Op(lab, end),
+TranslationOp::TranslationOp(int motorDir, int motorSpd, String lab, long duration) :
+    Op(lab, duration),
     motorDirection(motorDir),
     motorSpeed(motorSpd)
-{}
+{
+    // log(S("Translation end time = ") + endTime);
+}
 
 bool TranslationOp::execute() {
+    log(S("Starting ") + label);
+    log(S("End time = ") + endTime);
+
+    if (endTime == 0)
+        endTime = millis() + duration;
     if (millis() <= endTime) {
         b.setSpeed(motorSpeed);
         b.setMotorDirection(motorDirection);

@@ -59,7 +59,7 @@ void loop() {
   parse_serial_command(b, p);
   p.print();
   b.op_check();
-
+  // log(S("Curr time = " + millis()));
   //log("Hello");
   if (FRONT_LEFT_IR.detected() && FRONT_RIGHT_IR.detected()) {
     log("Detection condition.");
