@@ -2,7 +2,9 @@
 #define OP_H
 
 #include <WString.h>
-using namespace std;
+#include "Arduino.h"
+
+// using namespace std;
 
 /****************************************************************************
 *																			*
@@ -30,7 +32,7 @@ class Op {
 class RotationOp : public Op {
 
     public:
-        RotationOp(int rotationDegs, int rotationDir);
+        RotationOp(int rotationDegs, int rotationDir, String lab = "rotation");
         bool execute();
     public:
         int rotationDegrees;
@@ -45,7 +47,7 @@ class RotationOp : public Op {
 
 class TranslationOp : public Op {
     public:
-        TranslationOp(int motorDir, int motorSpd);
+        TranslationOp(int motorDir, int motorSpd, String lab = "translation", long end = millis() + 2000);
         bool execute();
     public:
         int motorDirection;

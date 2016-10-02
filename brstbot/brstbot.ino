@@ -44,8 +44,7 @@ void setup() {
   //b.startMotors();
 
   log("Hello World!");
-  log("Hello 2");
-
+  log("Hello 5");
 }
   //update_loop_timer();
 

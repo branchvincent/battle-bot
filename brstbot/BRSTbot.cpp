@@ -133,20 +133,21 @@ void BRSTbot::setOp(Op* o) {
 
 void BRSTbot::op_check() {
 
-    if (currentOp!= NULL && currentOp->execute()) {
+    if (currentOp != NULL && currentOp->execute()) {
 //      log(S("Executing
       // Op finished execution. Replace with next op if necessary.
       Op* finishedOp = currentOp;
 
       if (currentOp->nextOp != NULL) {
+        log(currentOp->nextOp->label);
         currentOp = currentOp->nextOp;
       } else {
         currentOp = NULL;
+        log("No Next op!");
       }
-      delete finishedOp;
+    //   delete finishedOp;
 //      setSpeed(110);
 //      setMotorDirection(FORWARD);
-
     }
 }
 
@@ -155,17 +156,21 @@ void BRSTbot::evadeBorder(int side) {
     switch (side) {
 
         case FRONT_SIDE: {
-            if (currentOp->label.equals("reverse_a_bit")) {
-                //log("Already reversing! yielding...");
+            if (currentOp != NULL && currentOp->label.equals("evade_front")) {
+                log("Already evading front! Yielding...");
             } else {
-                TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED);
-                RotationOp* rotate = new RotationOp(180, ROTATE_LEFT);
-                TranslationOp* forward = new TranslationOp(FORWARD, 110);
+                // TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED);
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, "evade_front");
 
-                reverse->nextOp = rotate;
-                rotate->nextOp = forward;
+                // RotationOp* rotate = new RotationOp(180, ROTATE_LEFT);
+                // TranslationOp* forward = new TranslationOp(FORWARD, 110);
 
-                currentOp = reverse;
+                // reverse->nextOp = forward;
+
+                // reverse->nextOp = rotate;
+                // rotate->nextOp = forward;
+
+                currentOp = forward;
             }
             break;
         }
