@@ -2,16 +2,15 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
 #include <SPI.h>
-#include "utilities.h"
-#include "magnetometer.h"
-#include "ChinaBee.h"
+#include "Utilities.h"
+//#include "magnetometer.h"
+//#include "ChinaBee.h"
 #include "Point.h"
 #include "Op.h"
 #include "BRSTbot.h"
-#include "Print.h"
-#include "Bot.h"
-#include "Bee.h"
-#include "B_Run.h"
+#include "PrintMode.h"
+//#include "Bot.h"
+//#include "Bee.h"
 
 const int FRONT_LEFT_IR = 46;
 const int FRONT_RIGHT_IR = 47;

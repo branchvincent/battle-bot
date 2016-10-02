@@ -1,7 +1,8 @@
 #ifndef OP_H
 #define OP_H
 
-#include "Ops.h"
+#include <WString.h>
+using namespace std;
 
 /****************************************************************************
 *																			*

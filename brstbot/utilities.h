@@ -6,8 +6,6 @@ void init_utilities() {
   Serial.begin(115200);
 }
 
-
-
 void run_command(String key, String value) {
   if (key.equals("speed") || key.equals("s")) {   // e.g., user entered  "speed:37"  in serial monitor
 

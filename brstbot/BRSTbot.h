@@ -56,6 +56,6 @@ class BRSTbot {
           Op* currentOp;
           int visualHeading = 0;
           int targetHeading = 0;
-  }
+ };
 
 #endif

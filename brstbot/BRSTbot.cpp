@@ -1,4 +1,5 @@
 #include "BRSTbot.h"
+#include "EnumTypes.h"
 
 BRSTbot::BRSTbot() : motorLeft(1, MOTOR12_64KHZ), motorRight(2, MOTOR12_64KHZ) {}
 
@@ -39,31 +40,31 @@ Point BRSTbot::getTarget() {
 }
 
 int BRSTbot::getRawHeading() {
-    return mag_sensor_heading_average;
+    return 0;//mag_sensor_heading_average;
 }
 
 int BRSTbot::getTrueHeading() {
-    return mag_raw_to_true(mag_sensor_heading_average);
+    return 0;//mag_raw_to_true(mag_sensor_heading_average);
 }
 
 int getTrueHeadingUnaverage() {
-    return mag_raw_to_true(mag_sensor_heading_unaverage);
+    return 0;//mag_raw_to_true(mag_sensor_heading_unaverage);
 }
 
 int BRSTbot::getHeading() {
-    return mag_sensor_heading_average;
+    return 0;//mag_sensor_heading_average;
 }
 
 int BRSTbot::getRawHeadingUnaverage() {
-    return mag_sensor_heading_unaverage;
+    return 0;//mag_sensor_heading_unaverage;
 }
 
 int BRSTbot::getVisualHeading() {
-    return visualHeading;
+    return 0;//visualHeading;
 }
 
 int BRSTbot::getTargetHeading() {
-    return targetHeading;
+    return 0;//targetHeading;
 }
 
 /*  Non-Getters/Setters  */
