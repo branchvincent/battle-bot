@@ -5,6 +5,8 @@
 #include "Globals.h"
 using namespace globals;
 
+extern BRSTbot b;
+
 void PrintMode::setPrintChar(char c) {
     log("Setting printChar to: ", String(c));
     printChar = c;
@@ -12,7 +14,7 @@ void PrintMode::setPrintChar(char c) {
 
 void PrintMode::print() {
     if (printChar == 's') {
-//        log("Motorspeed: ", b.getSpeed());
+        log("Motorspeed: ", b.getSpeed());
     } else if (printChar == 'm') {
         //log("Magnetometer: ", b.getRawHeading());
         // log(concat("Magnetometer: ", b.getRawHeadingUnaverage()), concat(", Unaverage True Magnetometer: ", b.getTrueHeadingUnaverage()));
