@@ -21,7 +21,7 @@ void PrintMode::print() {
     } else if (printChar == 't') {
 //        log("Target: ", b.getTarget().toString());
     } else if (printChar == 'b') {
-//        log("Motor bias: ", b.getMotorBias());
+        log("Motor bias: ", b.getMotorBias());
     } else if (printChar == 'h') {
         // log("Bots Heading: ", print_bots());
     }

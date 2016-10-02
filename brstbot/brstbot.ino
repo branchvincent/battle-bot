@@ -11,6 +11,7 @@
 #include "Point.h"
 #include "Utilities.h"
 #include "EnumTypes.h"
+#include "IRSensor.h"
 //#include "magnetometer.h"
 //#include "ChinaBee.h"
 //#include "Bot.h"
@@ -19,10 +20,12 @@
 // #include "Globals.h"
 // using namespace globals;
 
-const int FRONT_LEFT_IR = 46;
-const int FRONT_RIGHT_IR = 47;
-const int BACK_LEFT_IR = 44;
-const int BACK_RIGHT_IR = 45;
+IRSensor FRONT_LEFT_IR(46);
+IRSensor FRONT_RIGHT_IR(47);
+IRSensor BACK_LEFT_IR(44);
+IRSensor BACK_RIGHT_IR(45);
+
+
 
 BRSTbot b;
 PrintMode p;
@@ -49,9 +52,13 @@ void loop() {
   //log("Hello");
 
 //
-//  if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
-//    log("Detection condition.");
-//    b.evadeBorder(FRONT_SIDE);
-//  }
+  if (FRONT_LEFT_IR.detected() && FRONT_RIGHT_IR.detected()) {
+    log("Detection condition.");
+    b.evadeBorder(FRONT_SIDE);
+  }
+
+
+
+  
 
 }
