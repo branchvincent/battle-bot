@@ -159,18 +159,14 @@ void BRSTbot::evadeBorder(int side) {
             if (currentOp != NULL && currentOp->label.equals("evade_front")) {
                 log("Already evading front! Yielding...");
             } else {
-                // TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED);
-                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, "evade_front");
+                TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED, "evade_front");
+                TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, "evade_front2");
+                RotationOp* rotate = new RotationOp(180, ROTATE_LEFT, "evade_front2");
 
-                // RotationOp* rotate = new RotationOp(180, ROTATE_LEFT);
-                // TranslationOp* forward = new TranslationOp(FORWARD, 110);
+                reverse->nextOp = rotate;
+                rotate->nextOp = forward;
 
-                // reverse->nextOp = forward;
-
-                // reverse->nextOp = rotate;
-                // rotate->nextOp = forward;
-
-                currentOp = forward;
+                currentOp = reverse;
             }
             break;
         }

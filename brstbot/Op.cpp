@@ -18,8 +18,13 @@ extern const int rotation_base_time;
 *																			*
 ****************************************************************************/
 
-Op::Op() : label(""), endTime(0), nextOp(NULL)  {log("OP Created!");}
-Op::Op(String lab, long end) : label(lab), endTime(end), nextOp(NULL) {log("OP Created!");}
+Op::Op() : label(""), endTime(0), nextOp(NULL)  {
+    log("OP Created!");
+}
+
+Op::Op(String lab, long end) : label(lab), endTime(end), nextOp(NULL) {
+    log("OP Created!");
+}
 
 /****************************************************************************
 *																			*
