@@ -51,10 +51,11 @@ void setup() {
 
   Serial.begin(115200);
   b.setMotorBias(0.88);
-  b.setSpeed(110);
+  b.setSpeed(BOT_CRUISING_SPEED);
+  b.startMotors();
 
   myServo.attach(9);
-  myServo.write(180);
+  myServo.write(10);
 
   // RotationOp* r = new RotationOp(90, ROTATE_LEFT, EVADE_RIGHT);
   // b.setOp(r);
@@ -103,52 +104,61 @@ void loop() {
 
 //  Sonar sensor
 
-    // long distance1 = FRONT_LEFT_SONAR.ping();       //  do not use raw, use objDistance
-    // long distance1 = FRONT_RIGHT_SONAR.ping();
-
-    FRONT_SONAR.ping();
-    LEFT_SONAR.ping();
-    RIGHT_SONAR.ping();
-    if (b.currentOp == NULL || (b.currentOp != NULL && b.currentOp->label == CRUISE_FORWARD)) {
-
-      // Only initiate seek-follow behavior
-
-      int distances[3];
-      distances[0] = 500;  // FRONT
-      distances[1] = 500;  // LEFT
-      distances[2] = 500;  // RIGHT
-
-
-      if (FRONT_SONAR.objDetected()) { distances[0] = FRONT_SONAR.objDistance(); }
-      if (LEFT_SONAR.objDetected()) { distances[1] = LEFT_SONAR.objDistance(); }
-      if (RIGHT_SONAR.objDetected()) { distances[2] = RIGHT_SONAR.objDistance(); }
-
-      int minDistance = 500;
-      int minIndex = -1;
-
-      for (int i = 0; i < 3; i++) {
-        if (distances[i] < minDistance) {
-          minDistance = distances[i];
-          minIndex = i;
-        }
-      }
-
-      if (minIndex >= 0) {
-        log("COMMENCING SONAR FOLLOWING...", minIndex);
-        b.followSonarResult(minIndex); // SONAR RESULT;
-      }
 
 
 
+    //
+    //
+    // // SONAR CODE
+    //
+    // FRONT_SONAR.ping();
+    // LEFT_SONAR.ping();
+    // RIGHT_SONAR.ping();
+    // if (b.currentOp == NULL || (b.currentOp != NULL && b.currentOp->label == CRUISE_FORWARD)) {
+    //
+    //   // Only initiate seek-follow behavior
+    //
+    //   int distances[3];
+    //   distances[0] = 500;  // FRONT
+    //   distances[1] = 500;  // LEFT
+    //   distances[2] = 500;  // RIGHT
+    //
+    //
+    //   if (FRONT_SONAR.objDetected()) { distances[0] = FRONT_SONAR.objDistance(); }
+    //   if (LEFT_SONAR.objDetected()) { distances[1] = LEFT_SONAR.objDistance(); }
+    //   if (RIGHT_SONAR.objDetected()) { distances[2] = RIGHT_SONAR.objDistance(); }
+    //
+    //   int minDistance = 500;
+    //   int minIndex = -1;
+    //
+    //   for (int i = 0; i < 3; i++) {
+    //     if (distances[i] < minDistance) {
+    //       minDistance = distances[i];
+    //       minIndex = i;
+    //     }
+    //   }
+    //
+    //   if (minIndex >= 0) {
+    //     log("COMMENCING SONAR FOLLOWING...", minIndex);
+    //     b.followSonarResult(minIndex); // SONAR RESULT;
+    //   }
+    //
+    //
+    //
+    //
+    // }
+    // if (LEFT_SONAR.objDetected()) {
+    //   log(S("LEFT Object detected!  ") + LEFT_SONAR.objDistance());
+    // }
+    // if (RIGHT_SONAR.objDetected()) {
+    //   log(S("RIGHT Object detected!  ") + RIGHT_SONAR.objDistance());
+    // }
+    // // if (FRONT_LEFT_SONAR.objDistance())
+    //
+    //
+    //
 
-    }
-    if (LEFT_SONAR.objDetected()) {
-      log(S("LEFT Object detected!  ") + LEFT_SONAR.objDistance());
-    }
-    if (RIGHT_SONAR.objDetected()) {
-      log(S("RIGHT Object detected!  ") + RIGHT_SONAR.objDistance());
-    }
-    // if (FRONT_LEFT_SONAR.objDistance())
+
 
 
 }
