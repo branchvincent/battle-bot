@@ -17,6 +17,9 @@
 
 using namespace globals;
 
+
+BRSTbot b;
+
 const int FRONT_LEFT_IR = 46;
 const int FRONT_RIGHT_IR = 47;
 const int BACK_LEFT_IR = 44;
@@ -39,7 +42,7 @@ void setup() {
 
 void loop() {
 
-  parse_serial_command();
+  parse_serial_command(b);
   //update_mag_running();
   //update_bee();
   p.print();
