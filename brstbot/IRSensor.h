@@ -1,23 +1,23 @@
 /****************************************************************************
 *																			*
-*	File:		LineSensor.h											    *
+*	File:		IRSensor.h											    *
 *																			*
-*	Purpose:	This file defines the LineSensor class.						*
+*	Purpose:	This file defines the IRSensor class.						*
 *																			*
 ****************************************************************************/
 
-#ifndef LINESENSOR_H
-#define LINESENSOR_H
+#ifndef IRSENSOR_H
+#define IRSENSOR_H
 
 /****************************************************************************
 *																			*
-*	Definition of LineSensor class											*
+*	Definition of IRSensor class											*
 *																			*
 ****************************************************************************/
 
-class LineSensor {
+class IRSensor {
     public:
-        LineSensor(int pt);
+        IRSensor(int pt);
         bool detected();
     private:
         int port;

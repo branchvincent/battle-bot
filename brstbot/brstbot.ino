@@ -10,35 +10,38 @@
 #include "PrintMode.h"
 #include "Point.h"
 #include "Utilities.h"
+#include "IRSensor.h"
 #include "EnumTypes.h"
 //#include "magnetometer.h"
 //#include "ChinaBee.h"
 //#include "Bot.h"
 //#include "Bee.h"
 
-// #include "Globals.h"
-// using namespace globals;
-
 const int FRONT_LEFT_IR = 46;
 const int FRONT_RIGHT_IR = 47;
 const int BACK_LEFT_IR = 44;
 const int BACK_RIGHT_IR = 45;
 
+//  Globals
+
 BRSTbot b;
 PrintMode p;
+// IRSensor FL(46);
+// IRSensor FR(47);
+// IRSensor BL(44);
+// IRSensor BR(45);
+
 
 void setup() {
-  // init_utilities();
-  Serial.begin(115200);
-//  init_magsensor();
-//  init_bee();
+    // init_utilities();
+    Serial.begin(115200);
+    //  init_magsensor();
+    //  init_bee();
 
-  b.setMotorBias(0.88);
-  b.setSpeed(110);
+    b.setMotorBias(0.88);
+    b.setSpeed(110);
 
-  log("Hello World!");
-  log("Hello 2");
-
+    log("Hello World!");
 }
 
   //update_loop_timer();
@@ -54,9 +57,15 @@ void loop() {
   //log("Hello");
 
 
-  if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
-    log("Detection condition.");
-    b.evadeBorder(FRONT_SIDE);
-  }
+    if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
+        log("Detection condition.");
+        b.evadeBorder(FRONT_SIDE);
+    }
+
+  // if (FL.detected() && FR.detected()) {
+  //     b.evadeBorder(FRONT_SIDE)
+  // }
+  // else if (FL)
+
 
 }

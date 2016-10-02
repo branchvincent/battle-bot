@@ -1,14 +1,14 @@
 /****************************************************************************
 *																			*
-*	File:		LineSensor.cpp											    *
+*	File:		IRSensor.cpp											    *
 *																			*
-*	Purpose:	This file defines the LineSensor class.						*
+*	Purpose:	This file defines the IRSensor class.						*
 *																			*
 ****************************************************************************/
 
-#include "LineSensor.h"
+#include "IRSensor.h"
 #include "Arduino.h"
 
-LineSensor::LineSensor(int pt) : port(pt) {}
+IRSensor::IRSensor(int pt) : port(pt) {}
 
-bool LineSensor::detected() {return digitalRead(port) == 0;}
+bool IRSensor::detected() {return digitalRead(port) == 0;}
