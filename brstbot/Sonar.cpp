@@ -50,7 +50,7 @@ long Sonar::objDistance() {
 bool Sonar::objDetected() {
     long average = avgDistance();
 
-    if (average >= 3 && average <= 25)
+    if (average >= 3 && average <= 35)
         return true;
     else
         return false;

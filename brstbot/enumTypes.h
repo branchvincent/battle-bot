@@ -1,3 +1,6 @@
+#ifndef ENUMTYPES_H
+#define ENUMTYPES_H
+
 enum RotationDirection {
     ROTATE_LEFT,
     ROTATE_RIGHT,
@@ -24,5 +27,18 @@ enum OpLabel {
     EVADE_FRONT_RIGHT,
     EVADE_BACK_LEFT,
     EVADE_BACK_RIGHT,
-    CRUISE_FORWARD
+    CRUISE_FORWARD,
+    FOLLOW_TARGET
 };
+
+enum SonarResult {
+  DETECT_LEFT=0,
+  DETECT_RIGHT=1,
+  DETECT_FORWARD=2
+};
+
+enum OpLevel {
+  BORDER_EVASION
+};
+
+#endif

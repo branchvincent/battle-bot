@@ -4,6 +4,7 @@
 #include <AFMotor.h>
 #include "Point.h"
 #include "Op.h"
+#include "EnumTypes.h"
 #include "Globals.h"
 
 // Low Batt: 10.5
@@ -44,9 +45,13 @@ class BRSTbot {
         void customConfiguration();
         void setOp(Op* o);
         void op_check();
+        void followSonarResult(int r);
         void evadeBorder(int side);
         // static const int MOTOR_LOW_SPEED = 110;
         // static const int MOTOR_HIGH_SPEED = 255;
+
+      public:
+        Op* currentOp;
 
       private:
           int speed;
@@ -54,7 +59,6 @@ class BRSTbot {
           AF_DCMotor motorLeft;
           AF_DCMotor motorRight;
           Point target;
-          Op* currentOp;
           int visualHeading = 0;
           int targetHeading = 0;
  };

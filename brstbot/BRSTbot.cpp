@@ -168,6 +168,28 @@ void BRSTbot::op_check() {
     }
 }
 
+void BRSTbot::followSonarResult(int r) {
+
+    RotationOp* rotate;
+    int op_label = FOLLOW_TARGET;
+
+    // Call to here implies mode is in CRUISE_FORWARD.
+    if (r == DETECT_LEFT) {
+        rotate = new RotationOp(35, ROTATE_LEFT, op_label);
+    } else if (r == DETECT_RIGHT) {
+        rotate = new RotationOp(35, ROTATE_RIGHT, op_label);
+    }
+
+    TranslationOp* followForward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label, 5000);
+    TranslationOp* cruise = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, CRUISE_FORWARD);
+
+    rotate->nextOp = followForward;
+    followForward->nextOp = cruise;
+    setOp(rotate);
+
+
+}
+
 void BRSTbot::evadeBorder(int side) {
 
     switch (side) {

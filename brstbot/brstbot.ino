@@ -30,8 +30,8 @@ IRSensor BACK_RIGHT_IR(45);
 // int left_sonar_trigger_pin = 0;
 // int left_sonar_echo_pin = 0;
 Sonar FRONT_SONAR(40, 38);
-// Sonar RIGHT_SONAR(triggerPin, echoPin);
-// Sonar FRONT_SONAR(triggerPin, echoPin);
+Sonar LEFT_SONAR(30, 32);
+Sonar RIGHT_SONAR(36, 34);
 
 
 BRSTbot b;
@@ -70,7 +70,7 @@ void loop() {
   parse_serial_command();
   p.print();
 
-  // b.op_check();
+  b.op_check();
 
   // log(S("Curr time = " + millis()));
   //log("Hello");
@@ -100,8 +100,51 @@ void loop() {
     // long distance1 = FRONT_RIGHT_SONAR.ping();
 
     FRONT_SONAR.ping();
-    if (FRONT_SONAR.objDetected()) {
-      log(S("Object detected!  ") + FRONT_SONAR.objDistance());
+    LEFT_SONAR.ping();
+    RIGHT_SONAR.ping();
+    if (b.currentOp == NULL || (b.currentOp != NULL && b.currentOp->label == CRUISE_FORWARD)) {
+      // Only initiate seek-follow behavior
+
+
+      int front_distance = 500;
+      int left_distance = 500;
+      int right_distance = 500;
+
+      int distances[3];
+      distances[0] = 500;  // FRONT
+      distances[1] = 500;  // LEFT
+      distances[2] = 500;  // RIGHT
+
+
+      if (FRONT_SONAR.objDetected()) { distances[0] = FRONT_SONAR.objDistance(); }
+      if (LEFT_SONAR.objDetected()) { distances[1] = LEFT_SONAR.objDistance(); }
+      if (RIGHT_SONAR.objDetected()) { distances[2] = RIGHT_SONAR.objDistance(); }
+
+      int minDistance = 500;
+      int minIndex = -1;
+
+      for (int i = 0; i < 3; i++) {
+        if (distances[i] < minDistance) {
+          minDistance = distances[i];
+          minIndex = i;
+        }
+      }
+
+      if (minIndex >= 0) {
+        if (minIndex == 0) {
+          b.followSonarResult(minIndex); // SONAR RESULT;
+        }
+      }
+
+
+
+
+    }
+    if (LEFT_SONAR.objDetected()) {
+      log(S("LEFT Object detected!  ") + LEFT_SONAR.objDistance());
+    }
+    if (RIGHT_SONAR.objDetected()) {
+      log(S("RIGHT Object detected!  ") + RIGHT_SONAR.objDistance());
     }
     // if (FRONT_LEFT_SONAR.objDistance())
 
