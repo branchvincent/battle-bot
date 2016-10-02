@@ -35,8 +35,8 @@ bool Rotation::execute() {
 
 bool Translation::execute() {
     if (millis() <= endTime) {
-        b.setSpeed(motorSpeed);
-        b.setMotorDirection(motorDirection);
+        // b.setSpeed(motorSpeed);
+        // b.setMotorDirection(motorDirection);
         return false;
     } else {
         return true;

@@ -4,7 +4,7 @@
 #include "BRSTbot.h"
 
 namespace globals {
-    BRSTbot b;
+    // BRSTbot b;
 }
 
 #endif

@@ -1,25 +1,31 @@
+//  External
 #include <AFMotor.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
 #include <SPI.h>
+//  Internal
+#include "BRSTbot.h"
+// #include "Globals.h"
+#include "Op.h"
+#include "PrintMode.h"
+#include "Point.h"
 #include "Utilities.h"
+#include "EnumTypes.h"
 //#include "magnetometer.h"
 //#include "ChinaBee.h"
-#include "Point.h"
-#include "Op.h"
-#include "BRSTbot.h"
-#include "PrintMode.h"
-#include "EnumTypes.h"
 //#include "Bot.h"
 //#include "Bee.h"
 
-#include "Globals.h"
-using namespace globals;
+// #include "Globals.h"
+// using namespace globals;
 
 const int FRONT_LEFT_IR = 46;
 const int FRONT_RIGHT_IR = 47;
 const int BACK_LEFT_IR = 44;
 const int BACK_RIGHT_IR = 45;
+
+BRSTbot b;
+PrintMode p;
 
 void setup() {
   // init_utilities();
@@ -39,10 +45,10 @@ void setup() {
 
 void loop() {
 
-  parse_serial_command();
+  parse_serial_command(b, p);
   //update_mag_running();
   //update_bee();
-  PrintMode::p.print();
+  p.print();
   b.op_check();
 
   //log("Hello");
