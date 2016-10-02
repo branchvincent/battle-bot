@@ -15,10 +15,10 @@
 class Op {
     public:
         Op();
-        Op(String lab, long duration);
+        Op(int lab, long duration);
         virtual bool execute() = 0;
     public:
-        String label;
+        int label;
         long endTime;
         long duration;
         Op* nextOp;
@@ -33,7 +33,7 @@ class Op {
 class RotationOp : public Op {
 
     public:
-        RotationOp(int rotationDegs, int rotationDir, String lab = "rotation");
+        RotationOp(int rotationDegs, int rotationDir, int lab);
         bool execute();
     public:
         int rotationDegrees;
@@ -48,7 +48,7 @@ class RotationOp : public Op {
 
 class TranslationOp : public Op {
     public:
-        TranslationOp(int motorDir, int motorSpd, String lab = "translation", long duration = 2000);
+        TranslationOp(int motorDir, int motorSpd, int lab, long duration = 2000);
         bool execute();
     public:
         int motorDirection;

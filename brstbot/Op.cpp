@@ -21,7 +21,7 @@ extern const int rotation_base_time;
 //     log("OP Created!");
 // }
 
-Op::Op(String lab = "", long dur = 0) :
+Op::Op(int lab, long dur = 0) :
     label(lab),  duration(dur), endTime(0), nextOp(NULL) {
     log("OP Created!");
 }
@@ -32,7 +32,7 @@ Op::Op(String lab = "", long dur = 0) :
 *																			*
 ****************************************************************************/
 
-RotationOp::RotationOp(int rotationDegs, int rotationDir, String lab) :
+RotationOp::RotationOp(int rotationDegs, int rotationDir, int lab) :
     Op(lab, rotation_base_time + millis_per_degree * rotationDegs),
     rotationDegrees(rotationDegs),
     rotationDirection(rotationDir) {
@@ -40,8 +40,8 @@ RotationOp::RotationOp(int rotationDegs, int rotationDir, String lab) :
 }
 
 bool RotationOp::execute() {
-    log(S("Starting ") + label);
-    log(S("End time = ") + endTime);
+    // log(S("Starting ") + label);
+    // log(S("End time = ") + endTime);
 
     if (endTime == 0)
         endTime = millis() + duration;
@@ -61,7 +61,7 @@ bool RotationOp::execute() {
 *																			*
 ****************************************************************************/
 
-TranslationOp::TranslationOp(int motorDir, int motorSpd, String lab, long duration) :
+TranslationOp::TranslationOp(int motorDir, int motorSpd, int lab, long duration) :
     Op(lab, duration),
     motorDirection(motorDir),
     motorSpeed(motorSpd)
@@ -70,8 +70,8 @@ TranslationOp::TranslationOp(int motorDir, int motorSpd, String lab, long durati
 }
 
 bool TranslationOp::execute() {
-    log(S("Starting ") + label);
-    log(S("End time = ") + endTime);
+    // log(S("Starting ") + label);
+    // log(S("End time = ") + endTime);
 
     if (endTime == 0)
         endTime = millis() + duration;

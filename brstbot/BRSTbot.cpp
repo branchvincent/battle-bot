@@ -169,9 +169,9 @@ void BRSTbot::evadeBorder(int side) {
     switch (side) {
 
         case FRONT_SIDE: {
-            String op_label = "evade_front";
+            int op_label = EVADE_FRONT;
 
-            if (currentOp != NULL && currentOp->label.equals(op_label)) {
+            if (currentOp != NULL && currentOp->label == op_label) {
                 log("Already evading front! Yielding...");
             } else {
                 log("Creating front evasion...");
@@ -181,108 +181,108 @@ void BRSTbot::evadeBorder(int side) {
 
                 reverse->nextOp = rotate;
                 rotate->nextOp = forward;
-                currentOp = reverse;
+                setOp(reverse);
             }
             break;
         }
 
         case BACK_SIDE: {
-            String op_label = "evade_back";
+            int op_label = EVADE_BACK;
 
-            if (currentOp != NULL && currentOp->label.equals(op_label)) {
+            if (currentOp != NULL && currentOp->label == op_label) {
                 log("Already evading back! Yielding...");
             } else {
                 log("Creating front evasion...");
                 TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
-                currentOp = forward;
+                setOp(forward);
             }
             break;
         }
 
         case LEFT_SIDE:{
-            String op_label = "evade_left";
+            int op_label = EVADE_LEFT;
 
-            if (currentOp != NULL && currentOp->label.equals(op_label)) {
+            if (currentOp != NULL && currentOp->label == op_label) {
                 log("Already evading left! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RotationOp(90, ROTATE_RIGHT, op_label);
                 TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
                 rotate->nextOp = forward;
-                currentOp = rotate;
+                setOp(rotate);
             }
             break;
         }
 
         case RIGHT_SIDE: {
-            String op_label = "evade_right";
+            int op_label = EVADE_RIGHT;
 
-            if (currentOp != NULL && currentOp->label.equals(op_label)) {
+            if (currentOp != NULL && currentOp->label == op_label) {
                 log("Already evading right! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RotationOp(90, ROTATE_LEFT, op_label);
                 TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
                 rotate->nextOp = forward;
-                currentOp = rotate;
+                setOp(rotate);
             }
             break;
         }
 
         case FRONT_LEFT_CORNER: {
-            String op_label = "evade_front_left";
+            int op_label = EVADE_FRONT_LEFT;
 
-            if (currentOp != NULL && currentOp->label.equals(op_label)) {
+            if (currentOp != NULL && currentOp->label == op_label) {
                 log("Already evading front left! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RotationOp(90, ROTATE_RIGHT, op_label);
                 TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
                 rotate->nextOp = forward;
-                currentOp = rotate;
+                setOp(rotate);
             }
             break;
         }
 
         case FRONT_RIGHT_CORNER: {
-            String op_label = "evade_front_right";
+            int op_label = EVADE_FRONT_RIGHT;
 
-            if (currentOp != NULL && currentOp->label.equals(op_label)) {
+            if (currentOp != NULL && currentOp->label == op_label) {
                 log("Already evading front right! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RotationOp(90, ROTATE_LEFT, op_label);
                 TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
                 rotate->nextOp = forward;
-                currentOp = rotate;
+                setOp(rotate);
             }
             break;
         }
         case BACK_LEFT_CORNER: {
-            String op_label = "evade_back_left";
+            int op_label = EVADE_BACK_LEFT;
 
-            if (currentOp != NULL && currentOp->label.equals(op_label)) {
+            if (currentOp != NULL && currentOp->label == op_label) {
                 log("Already evading back left! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RotationOp(90, ROTATE_RIGHT, op_label);
                 TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
                 rotate->nextOp = forward;
-                currentOp = rotate;
+                setOp(rotate);
             }
             break;
         }
         case BACK_RIGHT_CORNER: {
-            String op_label = "evade_back_right";
+            int op_label = EVADE_BACK_RIGHT;
 
-            if (currentOp != NULL && currentOp->label.equals(op_label)) {
+            if (currentOp != NULL && currentOp->label == op_label) {
                 log("Already evading back right! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RotationOp(90, ROTATE_LEFT, op_label);
                 TranslationOp* forward = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, op_label);
                 rotate->nextOp = forward;
-                currentOp = rotate;
+                setOp(rotate);
             }
             break;
         }
