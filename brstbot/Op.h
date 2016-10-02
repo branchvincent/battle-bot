@@ -4,6 +4,9 @@
 #include <WString.h>
 using namespace std;
 
+
+
+
 /****************************************************************************
 *																			*
 *	Definition of Op class											        *
@@ -26,10 +29,10 @@ class Op {
 *																			*
 ****************************************************************************/
 
-class Rotation : public Op {
+class RotationOp : public Op {
 
     public:
-        Rotation();
+        RotationOp(int rotationDegrees, int rotationDirection);
         bool execute();
     public:
         int rotationDegrees;
@@ -42,7 +45,7 @@ class Rotation : public Op {
 *																			*
 ****************************************************************************/
 
-class Translation : public Op {
+class TranslationOp : public Op {
     public:
         bool execute();
     public:
@@ -56,10 +59,10 @@ class Translation : public Op {
 *                                                                           *
 ****************************************************************************/
 
-class ReverseABit : public Translation {
+class ReverseABitOp : public TranslationOp {
 
   public:
-    ReverseABit();
+    ReverseABitOp();
     bool execute();
 };
 

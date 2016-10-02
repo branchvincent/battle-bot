@@ -35,5 +35,6 @@ void update_loop_timer();
 int running_average(int buffer[], int buffer_size, int kickout_index, int new_value);
 int x_true(float x);
 int y_true(float y);
+String S(String s);
 
 #endif

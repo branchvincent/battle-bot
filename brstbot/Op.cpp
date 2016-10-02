@@ -1,12 +1,17 @@
 #include "Op.h"
 #include "BRSTbot.h"
 #include "Arduino.h"
-
+#include "enumTypes.h"
 #include "Utilities.h"
 #include "Globals.h"
 using namespace globals;
 
 extern BRSTbot b;
+
+extern const float millis_per_degree;
+extern const int BOT_ROTATION_SPEED;
+extern const int BOT_EVASIVE_SPEED;
+extern const int rotation_base_time;
 
 /****************************************************************************
 *																			*
@@ -22,12 +27,22 @@ Op::Op() : endTime(0) {}
 *																			*
 ****************************************************************************/
 
-Rotation::Rotation() {
+RotationOp::RotationOp(int rotationDegrees, int rotationDirection) {
   label = "rotation";
+  this->rotationDegrees = rotationDegrees;
+  this->rotationDirection = rotationDirection;
+  endTime = millis() + rotation_base_time + millis_per_degree * rotationDegrees;
 }
 
-bool Rotation::execute() {
-
+bool RotationOp::execute() {
+  if (millis() <= endTime) {
+    b.setSpeed(BOT_ROTATION_SPEED);
+    b.setRotationDirection(rotationDirection);
+    return false;
+  } else {
+    b.setMotorDirection(FORWARD);
+    return true;
+  }
 }
 
 /****************************************************************************
@@ -36,7 +51,7 @@ bool Rotation::execute() {
 *																			*
 ****************************************************************************/
 
-bool Translation::execute() {
+bool TranslationOp::execute() {
     if (millis() <= endTime) {
         b.setSpeed(motorSpeed);
         b.setMotorDirection(motorDirection);
@@ -52,16 +67,16 @@ bool Translation::execute() {
 *                                                                           *
 ****************************************************************************/
 
-ReverseABit::ReverseABit() {
+ReverseABitOp::ReverseABitOp() {
     label = "reverse_a_bit";
     endTime = millis() + 500;
     motorDirection = BACKWARD;
-    motorSpeed = 255;
+    motorSpeed = BOT_EVASIVE_SPEED;
 }
 
-bool ReverseABit::execute() {
+bool ReverseABitOp::execute() {
     log("Reverse is executing!");
-    return Translation::execute();
+    return TranslationOp::execute();
     //log("Reverse is executing!");
     
 }

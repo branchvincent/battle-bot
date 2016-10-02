@@ -1,4 +1,5 @@
 //  External
+#include "EnumTypes.h"
 #include <AFMotor.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
@@ -10,7 +11,6 @@
 #include "PrintMode.h"
 #include "Point.h"
 #include "Utilities.h"
-#include "EnumTypes.h"
 #include "IRSensor.h"
 //#include "magnetometer.h"
 //#include "ChinaBee.h"
@@ -36,7 +36,7 @@ void setup() {
 
   b.setMotorBias(0.88);
   b.setSpeed(110);
-  b.startMotors();
+  //b.startMotors();
 
   log("Hello World!");
   log("Hello 2");

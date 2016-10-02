@@ -219,3 +219,9 @@ int x_true(float x) {
 int y_true(float y) {
   return y-14;
 }
+
+/*  String  */
+String S(String s) {
+  return s;
+}
+
