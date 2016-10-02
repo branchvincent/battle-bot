@@ -12,7 +12,7 @@
 #include "Point.h"
 #include "Utilities.h"
 #include "IRSensor.h"
-// #include "Sonar.h"
+#include "Sonar.h"
 //#include "magnetometer.h"
 //#include "ChinaBee.h"
 //#include "Bot.h"
@@ -27,10 +27,12 @@ IRSensor FRONT_RIGHT_IR(47);
 IRSensor BACK_LEFT_IR(44);
 IRSensor BACK_RIGHT_IR(45);
 
-// int triggerPin = 0;
-// int echoPin = 0;
-// Sonar FRONT_LEFT_SONAR(triggerPin, echoPin);
-// Sonar FRONT_RIGHT_SONAR(triggerPin, echoPin);
+// int left_sonar_trigger_pin = 0;
+// int left_sonar_echo_pin = 0;
+Sonar FRONT_SONAR(40, 38);
+// Sonar RIGHT_SONAR(triggerPin, echoPin);
+// Sonar FRONT_SONAR(triggerPin, echoPin);
+
 
 BRSTbot b;
 PrintMode p;
@@ -68,7 +70,7 @@ void loop() {
   parse_serial_command();
   p.print();
 
-  b.op_check();
+  // b.op_check();
 
   // log(S("Curr time = " + millis()));
   //log("Hello");
@@ -97,7 +99,10 @@ void loop() {
     // long distance1 = FRONT_LEFT_SONAR.ping();       //  do not use raw, use objDistance
     // long distance1 = FRONT_RIGHT_SONAR.ping();
 
-    // if (FRONT_LEFT_SONAR.objDetected())
+    FRONT_SONAR.ping();
+    if (FRONT_SONAR.objDetected()) {
+      log(S("Object detected!  ") + FRONT_SONAR.objDistance());
+    }
     // if (FRONT_LEFT_SONAR.objDistance())
 
 

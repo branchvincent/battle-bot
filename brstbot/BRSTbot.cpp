@@ -176,7 +176,7 @@ void BRSTbot::evadeBorder(int side) {
             int op_label = EVADE_FRONT;
 
             if (currentOp != NULL && currentOp->label == op_label) {
-                log("Already evading front! Yielding...");
+                // log("Already evading front! Yielding...");
             } else {
                 log("Creating front evasion...");
                 TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED, op_label, 500);
@@ -196,7 +196,7 @@ void BRSTbot::evadeBorder(int side) {
             int op_label = EVADE_BACK;
 
             if (currentOp != NULL && currentOp->label == op_label) {
-                log("Already evading back! Yielding...");
+                // log("Already evading back! Yielding...");
             } else {
                 log("Creating front evasion...");
                 TranslationOp* forward = new TranslationOp(FORWARD, BOT_EVASIVE_SPEED, op_label, 500);
@@ -211,7 +211,7 @@ void BRSTbot::evadeBorder(int side) {
             int op_label = EVADE_LEFT;
 
             if (currentOp != NULL && currentOp->label == op_label) {
-                log("Already evading left! Yielding...");
+                // log("Already evading left! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_RIGHT, op_label);
@@ -228,7 +228,7 @@ void BRSTbot::evadeBorder(int side) {
             int op_label = EVADE_RIGHT;
 
             if (currentOp != NULL && currentOp->label == op_label) {
-                log("Already evading right! Yielding...");
+                // log("Already evading right! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_LEFT, op_label);
@@ -245,7 +245,7 @@ void BRSTbot::evadeBorder(int side) {
             int op_label = EVADE_FRONT_LEFT;
 
             if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_FRONT || currentOp->label == EVADE_LEFT)) {
-                log("Already evading front left! Yielding...");
+                // log("Already evading front left! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_RIGHT, op_label);
@@ -262,7 +262,7 @@ void BRSTbot::evadeBorder(int side) {
             int op_label = EVADE_FRONT_RIGHT;
 
             if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_FRONT || currentOp->label == EVADE_RIGHT)) {
-                log("Already evading front right! Yielding...");
+                // log("Already evading front right! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_LEFT, op_label);
@@ -278,7 +278,7 @@ void BRSTbot::evadeBorder(int side) {
             int op_label = EVADE_BACK_LEFT;
 
             if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_LEFT || currentOp->label == EVADE_BACK || currentOp->label == EVADE_BACK_RIGHT)) {
-                log("Already evading back left! Yielding...");
+                // log("Already evading back left! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_RIGHT, op_label);
@@ -294,7 +294,7 @@ void BRSTbot::evadeBorder(int side) {
             int op_label = EVADE_BACK_RIGHT;
 
             if (currentOp != NULL && (currentOp->label == op_label || currentOp->label == EVADE_BACK || currentOp->label == EVADE_RIGHT) || currentOp->label == EVADE_BACK_LEFT) {
-                log("Already evading back right! Yielding...");
+                // log("Already evading back right! Yielding...");
             } else {
                 log("Creating front evasion...");
                 RotationOp* rotate = new RandRotationOp(90, 20, ROTATE_LEFT, op_label);
