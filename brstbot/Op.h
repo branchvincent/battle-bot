@@ -1,9 +1,12 @@
 #ifndef OP_H
 #define OP_H
 
-#include "Globals.h"
 
-using namespace globals;
+//#include "Globals.h"
+
+class BRSTbot;
+
+//using namespace globals;
 
 // For representing operations on the robot.
 
@@ -18,11 +21,12 @@ class Op {
 
   public:
     String label;
-    long endTime = 0;
+    long endTime;
+    static BRSTbot* brstbot;
 
     Op *nextOp;
 
-    virtual bool execute()=0;
+    virtual bool execute();
 
 };
 
@@ -38,13 +42,9 @@ class Rotation : public Op {
     int rotationDegrees;
     int rotationDirection;
 
-    Rotation() {
-      label = "rotation";
-    }
+    Rotation();
 
-    bool execute() {
-
-    }
+    bool execute();
 
 };
 
@@ -54,16 +54,7 @@ class Translation : public Op {
     int motorDirection;
     int motorSpeed;
 
-    bool execute() {
-      if (millis() <= endTime) {
-        b.setMotorSpeed(motorSpeed);
-        b.setMotorDirection(motorDirection);
-        return false;
-      } else {
-        return true;
-      }
-
-    }
+    bool execute();
 };
 
 /****************************************************************************
@@ -76,16 +67,9 @@ class Translation : public Op {
 class ReverseABit : public Translation {
 
   public:
-    ReverseABit() {
-      label = "reverse_a_bit";
-      endTime = millis() + 500;
-      motorDirection = BACKWARD;
-      motorSpeed = 255;
-    }
+    ReverseABit();
 
-    bool execute() {
-      Translation::execute();
-    }
+    bool execute();
 
 
 };
