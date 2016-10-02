@@ -1,10 +1,17 @@
 #ifndef OP_H
 #define OP_H
 
+<<<<<<< HEAD
 #include "BRSTbot.h"
 #include "Globals.h"
+=======
+>>>>>>> newbrstbot
 
-using namespace globals;
+//#include "Globals.h"
+
+class BRSTbot;
+
+//using namespace globals;
 
 // For representing operations on the robot.
 
@@ -20,11 +27,16 @@ class Op {
 
   public:
     String label;
-    long endTime = 0;
+    long endTime;
+    static BRSTbot* brstbot;
 
     Op *nextOp;
 
+<<<<<<< HEAD
     virtual bool execute(BRSTbot& a)=0;
+=======
+    virtual bool execute();
+>>>>>>> newbrstbot
 
 };
 
@@ -40,13 +52,17 @@ class Rotation : public Op {
     int rotationDegrees;
     int rotationDirection;
 
+<<<<<<< HEAD
     Rotation() {
       label = "rotation";
     }
 
     bool execute(BRSTbot& a) {
+=======
+    Rotation();
+>>>>>>> newbrstbot
 
-    }
+    bool execute();
 
 };
 
@@ -56,6 +72,7 @@ class Translation : public Op {
     int motorDirection;
     int motorSpeed;
 
+<<<<<<< HEAD
     bool execute(BRSTbot& b) {
       if (millis() <= endTime) {
         b.setMotorSpeed(motorSpeed);
@@ -66,6 +83,9 @@ class Translation : public Op {
       }
 
     }
+=======
+    bool execute();
+>>>>>>> newbrstbot
 };
 
 /****************************************************************************
@@ -78,6 +98,7 @@ class Translation : public Op {
 class ReverseABit : public Translation {
 
   public:
+<<<<<<< HEAD
     ReverseABit() {
       label = "reverse_a_bit";
       endTime = millis() + 500;
@@ -88,6 +109,11 @@ class ReverseABit : public Translation {
     bool execute(BRSTbot& a) {
       Translation::execute(a);
     }
+=======
+    ReverseABit();
+
+    bool execute();
+>>>>>>> newbrstbot
 
 
 };
