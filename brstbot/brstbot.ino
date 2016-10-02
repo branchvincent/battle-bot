@@ -13,13 +13,6 @@
 #include "Bee.h"
 #include "B_Run.h"
 
-#include "Globals.h"
-
-using namespace globals;
-
-
-BRSTbot b;
-
 const int FRONT_LEFT_IR = 46;
 const int FRONT_RIGHT_IR = 47;
 const int BACK_LEFT_IR = 44;
@@ -30,8 +23,8 @@ void setup() {
   init_magsensor();
   init_bee();
 
-  b.setMotorBias(0.88);
-  b.setSpeed(110);
+  BRSTbot::b.setMotorBias(0.88);
+  BRSTbot::b.setSpeed(110);
 
   log("Hello World!");
   log("Hello 2");
@@ -46,14 +39,14 @@ void loop() {
   //update_mag_running();
   //update_bee();
   p.print();
-  b.op_check();
+  BRSTbot::b.op_check();
 
   //log("Hello");
 
 
   if (digitalRead(FRONT_LEFT_IR) == 0 && digitalRead(FRONT_RIGHT_IR) == 0) {
     log("Detection condition.");
-    b.evadeBorder(FRONT_SIDE);
+    BRSTbot::b.evadeBorder(FRONT_SIDE);
   }
 
 }

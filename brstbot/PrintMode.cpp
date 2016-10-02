@@ -10,8 +10,8 @@ void PrintMode::print() {
     if (printChar == 's') {
         log("Motorspeed: ", BRSTbot::b.getSpeed());
     } else if (printChar == 'm') {
-        //log("Magnetometer: ", b.getRawHeading());
-        // log(concat("Magnetometer: ", BRSTbot::b.getRawHeadingUnaverage()), concat(", Unaverage True Magnetometer: ", b.getTrueHeadingUnaverage()));
+        //log("Magnetometer: ", BRSTbot::b.getRawHeading());
+        // log(concat("Magnetometer: ", BRSTbot::b.getRawHeadingUnaverage()), concat(", Unaverage True Magnetometer: ", BRSTbot::b.getTrueHeadingUnaverage()));
     } else if (printChar == 't') {
         log("Target: ", BRSTbot::b.getTarget().toString());
     } else if (printChar == 'b') {

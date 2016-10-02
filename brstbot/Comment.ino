@@ -1,9 +1,9 @@
 /*
  * Requires installation of the following libraries:
  *
- * https://github.com/adafruit/Adafruit-Motor-Shield-library
- * https://github.com/adafruit/Adafruit_HMC5883_Unified
- * https://github.com/adafruit/Adafruit_Sensor
+ * https://githuBRSTbot::b.com/adafruit/Adafruit-Motor-Shield-library
+ * https://githuBRSTbot::b.com/adafruit/Adafruit_HMC5883_Unified
+ * https://githuBRSTbot::b.com/adafruit/Adafruit_Sensor
  *
  */
 
@@ -11,7 +11,7 @@
 //      forwardEscape.label = "edge_escape";
 //      forwardEscape.motorDirection = FORWARD;
 //      forwardEscape.motorSpeed = 200;
-//      b.setOp(forwardEscape);
+//      BRSTbot::b.setOp(forwardEscape);
 
 
 //      Op *rotate = new Op();
@@ -27,7 +27,7 @@
 //  rotateAmount.label = "rotation";
 //  rotateAmount.rotationDegrees = 90;
 //  rotateAmount.rotationDirection = ROTATE_LEFT;
-//  b.setOp(rotateAmount);
+//  BRSTbot::b.setOp(rotateAmount);
 
 
 
