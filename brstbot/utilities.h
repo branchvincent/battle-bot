@@ -1,5 +1,34 @@
-
+#include <SoftwareSerial.h>
 class BRSTbot;
+
+//  Prototypes
+
+void init_utilities();
+void run_command(String key, String value);
+String concat(String a, int b);
+String concat(String a, float b);
+String concat(String a, String b);
+void print_log_counter();
+void log(String a);
+void log(int a);
+void log(long unsigned int a);
+void log(float a);
+void log(String a, int b);
+void log(String a, float b);
+void log(String a, String b);
+void error(String e);
+String* string_split(String s, char delim);
+void run_command(String, String, BRSTbot &);
+void parse_command(String s, BRSTbot & b);
+void parse_serial_command(BRSTbot & b);
+void update_loop_timer();
+int running_average(int buffer[], int buffer_size, int kickout_index, int new_value);
+int x_true(float x);
+int y_true(float y);
+
+
+//  Defintions
+
 
 void init_utilities() {
   //Serial.begin(9600);
@@ -166,8 +195,6 @@ String* string_split(String s, char delim) {
 
 
 /*  Command Parser  */
-
-void run_command(String, String, BRSTbot &);
 
 void parse_command(String s, BRSTbot & b) {
   int colon_index = s.indexOf(':');

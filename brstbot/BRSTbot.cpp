@@ -1,5 +1,6 @@
 #include "BRSTbot.h"
 #include "EnumTypes.h"
+#include "Utilities.h"
 
 BRSTbot::BRSTbot() : motorLeft(1, MOTOR12_64KHZ), motorRight(2, MOTOR12_64KHZ) {}
 
@@ -120,7 +121,7 @@ void BRSTbot::customConfiguration() {
     motorRight.run(FORWARD);
 }
 
-void BRSTbot::rotateToHeading(int degrees) {}
+//void BRSTbot::rotateToHeading(int degrees) {}
 
 void BRSTbot::setOp(Op* o) {
     currentOp = o;
