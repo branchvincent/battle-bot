@@ -184,11 +184,21 @@ void BRSTbot::op_check() {
         // Op* temp = currentOp;
         currentOp = currentOp->nextOp;
         // delete temp;
+        delete finishedOp;
       } else {
+        delete finishedOp;
         currentOp = NULL;
         log("No Next op!");
+        int op_label = CRUISE_FORWARD;
+        TranslationOp* reverse = new TranslationOp(BACKWARD, BOT_EVASIVE_SPEED, op_label, 500);
+        RotationOp* rotate = new RandRotationOp(30, 10, ROTATE_LEFT, op_label);
+        TranslationOp* cruise = new TranslationOp(FORWARD, BOT_CRUISING_SPEED, CRUISE_FORWARD, 9000);
+
+        reverse->nextOp = rotate;
+        rotate->nextOp = cruise;
+        setOp(reverse);
+
       }
-      delete finishedOp;
     //   stopMotors();
     //  setSpeed(110);
 //      setMotorDirection(FORWARD);

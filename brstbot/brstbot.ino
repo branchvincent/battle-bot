@@ -55,7 +55,7 @@ void setup() {
   b.startMotors();
 
   myServo.attach(9);
-  myServo.write(10);
+  myServo.write(0);
 
   // RotationOp* r = new RotationOp(90, ROTATE_LEFT, EVADE_RIGHT);
   // b.setOp(r);
